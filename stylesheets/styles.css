@@ -18,6 +18,7 @@ body {
     font-family: arial;
     margin-bottom: 40px;
     color:#222;
+    max-width: 100%;
 }
 
 #nav {
@@ -179,12 +180,12 @@ body {
     margin: auto;
 }
 
-#blog a {
+a {
     text-decoration: none;
     color: rgb(2, 143, 118);
 }
 
-#blog a:hover {
+a:hover {
     color:#069;
 }
 
@@ -206,6 +207,31 @@ hr {
     text-align: center;
     margin: auto;
 }
+
+#all {
+    width: 500px;
+    margin: auto;
+}
+
+#all h1 {
+    margin-bottom: 10px;
+}
+
+#all a {
+    text-decoration: underline; 
+}
+
+#all p {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 0px;
+}
+
+#research {
+    display: none;
+}
+
+
 
 code, pre {
   font-family:Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
