@@ -170,6 +170,12 @@ body {
     margin: auto;
 }
 
+#sketch #nice_color_palettes {
+    width: 700px;
+    max-width: 100% - 50px;
+    margin: auto;
+}
+
 #sketch .description {
     text-align: center;
 }
