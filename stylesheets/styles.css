@@ -172,7 +172,7 @@ body {
 
 #sketch #nice_color_palettes {
     width: 700px;
-    max-width: 100% - 50px;
+    max-width: calc(100% - 40px);
     margin: auto;
 }
 
@@ -210,6 +210,7 @@ hr {
 
 #footer {
     width: 500px;
+    max-width: 100%;
     text-align: center;
     margin: auto;
 }
