@@ -115,6 +115,10 @@ body {
     width: 100%;
 }
 
+#sketch {
+    position: relative;
+}
+
 #sketch #lotus {
     width: 700px;
     margin: auto;
@@ -171,8 +175,8 @@ body {
 }
 
 #sketch #nice_color_palettes {
-    width: 700px;
-    max-width: calc(100% - 40px);
+    width: 1400px;
+    max-width: calc(100% - 20px);
     margin: auto;
 }
 
