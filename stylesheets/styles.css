@@ -62,6 +62,10 @@ body {
     margin-bottom: 20px;
 }
 
+#posts .hypnotize:hover {
+    background: rgb(0,0,0);
+}
+
 #posts .lotus:hover {
     background: rgb(165, 211, 109);
 }
@@ -113,6 +117,11 @@ body {
 
 #posts img {
     width: 100%;
+}
+
+#sketch #hypnotize {
+    width: 820px;
+    margin: auto;
 }
 
 #sketch #lotus {
