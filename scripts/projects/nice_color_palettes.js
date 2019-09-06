@@ -9,10 +9,12 @@ var savedPalettes;
 var palettePage;
 var palettePerPage;
 var grid;
+var buttons;
 
 function setup() {
     setupCanvas();
     setupPalettes();
+    setupButtons();
 }
 
 function setupCanvas() {
@@ -32,6 +34,26 @@ function setupPalettes() {
     savedPalettes = [];
     palettePage = 0;
     palettePerPage = 100;
+}
+
+function setupButtons() {
+    buttons = [];
+    let buttonHeight = 420;
+
+    let prev = new SimpleButton(15, buttonHeight, 40, 30);
+    prev.setText("<-");
+    prev.execute = function() {
+        if(palettePage > 0) palettePage--;
+    }
+
+    let next = new SimpleButton(100, buttonHeight, 40, 30);
+    next.setText("->");
+    next.execute = function() {
+        if(palettePage < 9) palettePage++;
+    }
+
+    buttons.push(prev);
+    buttons.push(next);
 }
 
 /**********
@@ -89,7 +111,9 @@ function drawVisiblePalettes() {
 }
 
 function drawButtons() {
-    drawPrevButton();
+    for(let i = 0; i < buttons.length; i++) {
+        buttons[i].show();
+    }
 }
 
 function drawOutline() {
@@ -111,6 +135,15 @@ function drawOutline() {
 /***********
  ** Other **
  **********/
+
+function mouseClicked() {
+    for(let i = 0; i < buttons.length; i++) {
+        let button = buttons[i];
+        if(button.isMouseOver()) {
+            button.execute();
+        }
+    }
+}
 
 function randomPalette() {
     let index = ~~random(1000);
