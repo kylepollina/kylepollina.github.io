@@ -13,8 +13,6 @@ var grid;
 function setup() {
     setupCanvas();
     setupPalettes();
-    // frameRate(20);
-    // noLoop();
 }
 
 function setupCanvas() {
@@ -91,14 +89,7 @@ function drawVisiblePalettes() {
 }
 
 function drawButtons() {
-    // button = createButton('submit');
-    // button.position(grid.x, grid.y + grid.height);
-    // button.mousePressed(greet);
-
-    let canvasX = (windowWidth - width) / 2 - 5;
-    let pageDown = createButton('<-');
-    pageDown.position(canvasX + grid.x, grid.y + grid.height);
-    pageDown.parent("nice_color_palettes");
+    drawPrevButton();
 }
 
 function drawOutline() {
