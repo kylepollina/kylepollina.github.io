@@ -140,9 +140,23 @@ class SavedPalettes {
     constructor() {
         this.palettes = [];
 
+        let gridXpos = visiblePalettes.grid.x;
+        let gridYpos = visiblePalettes.grid.y + visiblePalettes.grid.height + 80;
+        let gridWidth = width * 3/4;
+        let gridHeight = height - gridYpos - 10;
+        this.grid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, 5, 5);
+
         for(let i = 0; i < 5; i++) {
             this.palettes.push(getPalette1000(i));
         }
+    }
+
+    resize() {
+        this.grid.resize(width/2, this.grid.height);
+    }
+
+    show() {
+        this.grid.show();
     }
 }
 
@@ -155,6 +169,7 @@ function draw() {
     drawOutline();
     visiblePalettes.show();
     buttonToolbar.show();
+    savedPalettes.show();
 }
 
 function drawOutline() {
@@ -220,9 +235,11 @@ function windowResized() {
     if(windowWidth >= defaultCanvasWidth && oldCanvasWidth < defaultCanvasWidth) {
         resizeCanvas(defaultCanvasWidth, defaultCanvasHeight);
         visiblePalettes.resize();
+        savedPalettes.resize();
     } 
     else if(windowWidth <= defaultCanvasWidth) {
         resizeCanvas(windowWidth - 40, defaultCanvasHeight);
         visiblePalettes.resize();
+        savedPalettes.resize();
     }
 }
