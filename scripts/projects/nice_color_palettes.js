@@ -84,7 +84,7 @@ class PaletteBrowser {
     }
 
     resize() {
-        this.grid.resize(width - 2 * this.grid.x, this.grid.height);
+        this.grid.resize(this.grid.x, this.grid.y, width - 2 * this.grid.x, this.grid.height);
     }
 
     show() {
@@ -138,25 +138,34 @@ class PaletteBrowser {
 
 class SavedPalettes {
     constructor() {
-        this.palettes = [];
-
         let gridXpos = visiblePalettes.grid.x;
         let gridYpos = visiblePalettes.grid.y + visiblePalettes.grid.height + 80;
-        let gridWidth = width * 3/4;
+        let gridWidth = width - 2 * gridXpos;
         let gridHeight = height - gridYpos - 10;
-        this.grid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, 5, 5);
+        this.grid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, 5, 1);
 
-        for(let i = 0; i < 5; i++) {
-            this.palettes.push(getPalette1000(i));
+        for(let i = 0; i < this.grid.tiles.length; i++) {
+            let tile = this.grid.tiles[i];
+            let paletteGrid = new Grid(tile.x, tile.y, tile.width/2, tile.height, 1, 5);
+            this.grid.tiles[i].setItem(paletteGrid);
         }
     }
 
     resize() {
-        this.grid.resize(width/2, this.grid.height);
+        this.grid.resize(this.grid.x, this.grid.y, width - 2 * this.grid.x, this.grid.height);
+        
+        for(let i = 0; i < this.grid.tiles.length; i++) {
+            this.grid.tiles[i].item.resize(this.grid.tiles[i].x, this.grid.tiles[i].y, this.grid.tiles[i].width/2, this.grid.tiles[i].height);
+        }
     }
 
     show() {
         this.grid.show();
+
+        for(let i = 0; i < this.grid.tiles.length; i++) {
+            let paletteGrid = this.grid.tiles[i].item;
+            paletteGrid.show();
+        }
     }
 }
 
