@@ -8,13 +8,16 @@ var visiblePalettes;
 var savedPalettes;
 var palettePage;
 var palettePerPage;
-var grid;
+var paletteGrid;
 var buttons;
+var selectedPalettes;
+var selectedPalettesGrid;
 
 function setup() {
     setupCanvas();
     setupPalettes();
     setupButtons();
+    setupSelectedPalettes();
 }
 
 function setupCanvas() {
@@ -56,6 +59,14 @@ function setupButtons() {
     buttons.push(next);
 }
 
+function setupSelectedPalettes() {
+    selectedPalettes = [];
+
+    for(let i = 0; i < 5; i++) {
+        selectedPalettes.push(getPalette1000(i));
+    }
+}
+
 /**********
  ** Draw **
  *********/
@@ -64,6 +75,8 @@ function draw() {
     drawOutline();
     drawVisiblePalettes();
     drawButtons();
+    drawSelectedPalettes();
+    drawCursorBox();
 }
 
 function drawVisiblePalettes() {
@@ -74,11 +87,11 @@ function drawVisiblePalettes() {
     let numRows = 10;
     let numCols = 10;
 
-    grid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, numCols, numRows);
+    paletteGrid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, numCols, numRows);
     
     let firstPaletteIndex = palettePerPage * palettePage;
     for(let i = 0; i < palettePerPage; i++) {
-        let tile = grid.tiles[i];
+        let tile = paletteGrid.tiles[i];
         let index = firstPaletteIndex + i;
         let palette = getPalette1000(index);
         let padding = 4;
@@ -111,9 +124,25 @@ function drawVisiblePalettes() {
 }
 
 function drawButtons() {
-    for(let i = 0; i < buttons.length; i++) {
-        buttons[i].show();
+    let buttonHeight = 420;
+
+    let prev = new SimpleButton(15, buttonHeight, 40, 30);
+    prev.setText("<-");
+    prev.execute = function() {
+        if(palettePage > 0) palettePage--;
     }
+
+    let next = new SimpleButton(100, buttonHeight, 40, 30);
+    next.setText("->");
+    next.execute = function() {
+        if(palettePage < 9) palettePage++;
+    }
+
+    prev.show();
+    next.show();
+
+    textSize(24);
+    text(palettePage + 1, prev.x + prev.width + 10, buttonHeight + 25);
 }
 
 function drawOutline() {
@@ -131,6 +160,34 @@ function drawOutline() {
     line(5, height-5, 5, 5);
 }
 
+function drawSelectedPalettes() {
+    let gridYpos = paletteGrid.y + paletteGrid.height + 60;
+    selectedPalettesGrid = new Grid(paletteGrid.x, gridYpos, paletteGrid.width, height - gridYpos - 10, 5, 5);
+
+    noStroke();
+
+    for(let i = 0; i < selectedPalettes.length; i++) {
+        let palette = selectedPalettes[i];
+        
+        for(let j = 0; j < palette.length; j++) {
+            let tile = selectedPalettesGrid.getTile(i, j);
+            
+            fill(palette[j]);
+            rect(tile.x + 10, tile.y, tile.width - 20, tile.height); 
+        }
+    }
+}
+
+function drawCursorBox() {
+    for(let i = 0; i < selectedPalettesGrid.tiles.length; i++) {
+        let tile = selectedPalettesGrid.tiles[i];
+
+        if(tile.isMouseInside()) {
+            fill(255);
+            rect(mouseX, mouseY, 100, 100);
+        }
+    }
+}
 
 /***********
  ** Other **
