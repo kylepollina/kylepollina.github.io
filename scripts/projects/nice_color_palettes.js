@@ -4,25 +4,21 @@
 
 var defaultCanvasWidth;
 var defaultCanvasHeight;
+
 var visiblePalettes;
 var savedPalettes;
-var palettePage;
-var palettePerPage;
-var paletteGrid;
-var buttons;
-var selectedPalettes;
-var selectedPalettesGrid;
+var buttonToolbar;
 
 function setup() {
     setupCanvas();
     setupPalettes();
-    setupButtons();
-    setupSelectedPalettes();
+    setupButtonToolbar();
 }
 
 function setupCanvas() {
     defaultCanvasWidth = 1400;
     defaultCanvasHeight = 1200;
+
     var canvas;
     if(windowWidth >= defaultCanvasWidth) {
         canvas = createCanvas(defaultCanvasWidth, defaultCanvasHeight);
@@ -34,38 +30,122 @@ function setupCanvas() {
 }
 
 function setupPalettes() {
-    savedPalettes = [];
-    palettePage = 0;
-    palettePerPage = 100;
+    visiblePalettes = new PaletteBrowser();
+    savedPalettes = new SavedPalettes();
 }
 
-function setupButtons() {
-    buttons = [];
-    let buttonHeight = 420;
-
-    let prev = new SimpleButton(15, buttonHeight, 40, 30);
-    prev.setText("<-");
-    prev.execute = function() {
-        if(palettePage > 0) palettePage--;
-    }
-
-    let next = new SimpleButton(100, buttonHeight, 40, 30);
-    next.setText("->");
-    next.execute = function() {
-        if(palettePage < 9) palettePage++;
-    }
-
-    buttons.push(prev);
-    buttons.push(next);
+function setupButtonToolbar() {
+    buttonToolbar = new ButtonToolbar();
 }
 
-function setupSelectedPalettes() {
-    selectedPalettes = [];
+class ButtonToolbar {
+    constructor() {
+        this.y = visiblePalettes.grid.y + visiblePalettes.grid.height + 20;
+        this.prevButton = new SimpleButton(15, this.y, 40, 30);
+        this.prevButton.setText("<-");
+        this.prevButton.execute = function() {
+            visiblePalettes.prevPage();
+        };
 
-    for(let i = 0; i < 5; i++) {
-        selectedPalettes.push(getPalette1000(i));
+        this.nextButton = new SimpleButton(100, this.y, 40, 30);
+        this.nextButton.setText("->");
+        this.nextButton.execute = function() {
+            visiblePalettes.nextPage();
+        };
+    }
+
+    show() {
+        this.prevButton.show();
+        this.nextButton.show();
+        
+        textSize(24);
+        fill(0);
+        text(visiblePalettes.currentPage, 70, this.y + 20);
     }
 }
+
+class PaletteBrowser {
+    constructor() {
+        this.currentPage = 0;
+        this.palettesPerPage = 100;
+        this.numPages = 10;
+
+        let gridXpos = 10;
+        let gridYpos = 10;
+        let gridWidth = width - 2 * gridXpos;
+        let gridHeight = 400;
+        let numCols = 10;
+        let numRows = 10;
+        this.grid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, numCols, numRows);
+
+        for(let i = 0; i < this.grid.tiles.length; i++) {
+            this.grid.tiles[i].setItem(getPalette1000(i));
+        }
+    }
+
+    resize() {
+        this.grid.resize(width - 2 * this.grid.x, this.grid.height);
+    }
+
+    show() {
+        for(let i = 0; i < this.grid.tiles.length; i++) {
+            let tile = this.grid.tiles[i];
+            let palette = tile.item;
+            let margin = 5;
+            let paletteXpos = tile.x + margin;
+            let paletteYpos = tile.y + margin;
+            let paletteWidth = tile.width - 2 * margin;
+            let paletteHeight = tile.height - 2 * margin;
+            let colorWidth = paletteWidth / 5;
+            let colorHeight = paletteHeight;
+            
+            for(let j = 0; j < palette.length; j++) {
+                let color = palette[j];
+                fill(color);
+                stroke(color);
+                rect(paletteXpos + j * colorWidth, paletteYpos, colorWidth, colorHeight);
+            }
+
+            if(tile.isMouseInside()) {
+                noFill();
+                stroke(0);
+                strokeWeight(2);
+                rect(tile.x, tile.y, tile.width, tile.height);
+            }
+        }
+    }
+
+    prevPage() {
+        if(this.currentPage > 0) {
+            this.currentPage--;
+
+            for(let i = 0; i < this.grid.tiles.length; i++) {
+                this.grid.tiles[i].setItem(getPalette1000(this.currentPage * this.palettesPerPage + i));
+            }
+        }
+    }
+
+    nextPage() {
+        if(this.currentPage < this.numPages - 1) {
+            this.currentPage++;
+
+            for(let i = 0; i < this.grid.tiles.length; i++) {
+                this.grid.tiles[i].setItem(getPalette1000(this.currentPage * this.palettesPerPage + i));
+            }
+        }
+    }
+}
+
+class SavedPalettes {
+    constructor() {
+        this.palettes = [];
+
+        for(let i = 0; i < 5; i++) {
+            this.palettes.push(getPalette1000(i));
+        }
+    }
+}
+
 
 /**********
  ** Draw **
@@ -73,76 +153,8 @@ function setupSelectedPalettes() {
 function draw() {
     background(250, 250, 255);
     drawOutline();
-    drawVisiblePalettes();
-    drawButtons();
-    drawSelectedPalettes();
-    drawCursorBox();
-}
-
-function drawVisiblePalettes() {
-    let gridXpos = 10;
-    let gridYpos = 10;
-    let gridWidth = width-20;
-    let gridHeight = 400;
-    let numRows = 10;
-    let numCols = 10;
-
-    paletteGrid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, numCols, numRows);
-    
-    let firstPaletteIndex = palettePerPage * palettePage;
-    for(let i = 0; i < palettePerPage; i++) {
-        let tile = paletteGrid.tiles[i];
-        let index = firstPaletteIndex + i;
-        let palette = getPalette1000(index);
-        let padding = 4;
-        let paletteX = tile.x + padding;
-        let paletteY = tile.y + padding;
-        let paletteWidth = tile.width - 2*padding;
-        let paletteHeight = tile.height - 2*padding;
-
-        for(let j = 0; j < palette.length; j++) {
-            let color = palette[j];
-            let colorWidth = paletteWidth / palette.length;
-            let colorHeight = paletteHeight;
-            let colorX = paletteX + j * colorWidth;
-            let colorY = paletteY;
-
-            noStroke();
-            fill(color);
-            stroke(color);
-            rect(colorX, colorY, colorWidth, colorHeight);
-
-        }
-
-        if(tile.isMouseInside()) {
-            strokeWeight(2);
-            stroke(0);
-            noFill();
-            rect(tile.x, tile.y, tile.width, tile.height);
-        }
-    }
-}
-
-function drawButtons() {
-    let buttonHeight = 420;
-
-    let prev = new SimpleButton(15, buttonHeight, 40, 30);
-    prev.setText("<-");
-    prev.execute = function() {
-        if(palettePage > 0) palettePage--;
-    }
-
-    let next = new SimpleButton(100, buttonHeight, 40, 30);
-    next.setText("->");
-    next.execute = function() {
-        if(palettePage < 9) palettePage++;
-    }
-
-    prev.show();
-    next.show();
-
-    textSize(24);
-    text(palettePage + 1, prev.x + prev.width + 10, buttonHeight + 25);
+    visiblePalettes.show();
+    buttonToolbar.show();
 }
 
 function drawOutline() {
@@ -160,45 +172,40 @@ function drawOutline() {
     line(5, height-5, 5, 5);
 }
 
-function drawSelectedPalettes() {
-    let gridYpos = paletteGrid.y + paletteGrid.height + 60;
-    selectedPalettesGrid = new Grid(paletteGrid.x, gridYpos, paletteGrid.width, height - gridYpos - 10, 5, 5);
+// function drawSelectedPalettes() {
+//     let gridYpos = paletteGrid.y + paletteGrid.height + 60;
+//     selectedPalettesGrid = new Grid(paletteGrid.x, gridYpos, paletteGrid.width, height - gridYpos - 10, 5, 5);
+//     noStroke();
+//     for(let i = 0; i < selectedPalettes.length; i++) {
+//         let palette = selectedPalettes[i];
+//         for(let j = 0; j < palette.length; j++) {
+//             let tile = selectedPalettesGrid.getTile(i, j);
+//             fill(palette[j]);
+//             rect(tile.x + 10, tile.y, tile.width - 20, tile.height); 
+//         }
+//     }
+// }
 
-    noStroke();
-
-    for(let i = 0; i < selectedPalettes.length; i++) {
-        let palette = selectedPalettes[i];
-        
-        for(let j = 0; j < palette.length; j++) {
-            let tile = selectedPalettesGrid.getTile(i, j);
-            
-            fill(palette[j]);
-            rect(tile.x + 10, tile.y, tile.width - 20, tile.height); 
-        }
-    }
-}
-
-function drawCursorBox() {
-    for(let i = 0; i < selectedPalettesGrid.tiles.length; i++) {
-        let tile = selectedPalettesGrid.tiles[i];
-
-        if(tile.isMouseInside()) {
-            fill(255);
-            rect(mouseX, mouseY, 100, 100);
-        }
-    }
-}
+// function drawCursorBox() {
+//     for(let i = 0; i < selectedPalettesGrid.tiles.length; i++) {
+//         let tile = selectedPalettesGrid.tiles[i];
+//         if(tile.isMouseInside()) {
+//             fill(255);
+//             rect(mouseX, mouseY, 100, 100);
+//         }
+//     }
+// }
 
 /***********
  ** Other **
  **********/
 
 function mouseClicked() {
-    for(let i = 0; i < buttons.length; i++) {
-        let button = buttons[i];
-        if(button.isMouseOver()) {
-            button.execute();
-        }
+    if(buttonToolbar.prevButton.isMouseInside()) {
+        buttonToolbar.prevButton.execute();
+    }
+    else if(buttonToolbar.nextButton.isMouseInside()) {
+        buttonToolbar.nextButton.execute();
     }
 }
 
@@ -212,8 +219,10 @@ function windowResized() {
 
     if(windowWidth >= defaultCanvasWidth && oldCanvasWidth < defaultCanvasWidth) {
         resizeCanvas(defaultCanvasWidth, defaultCanvasHeight);
+        visiblePalettes.resize();
     } 
     else if(windowWidth <= defaultCanvasWidth) {
         resizeCanvas(windowWidth - 40, defaultCanvasHeight);
+        visiblePalettes.resize();
     }
 }
