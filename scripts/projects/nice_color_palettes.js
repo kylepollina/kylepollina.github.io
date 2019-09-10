@@ -52,15 +52,34 @@ class ButtonToolbar {
         this.nextButton.execute = function() {
             visiblePalettes.nextPage();
         };
+
+        this.randomizeButton = new SimpleButton(150, this.y, 100, 30);
+        this.randomizeButton.setText("Randomize");
+        this.randomizeButton.execute = function() {
+            savedPalettes.randomize();
+        }
     }
 
     show() {
         this.prevButton.show();
         this.nextButton.show();
+        this.randomizeButton.show();
         
         textSize(24);
         fill(0);
         text(visiblePalettes.currentPage, 70, this.y + 20);
+    }
+
+    mouseClicked() {
+        if(this.prevButton.isMouseInside()) {
+           this.prevButton.execute();
+        }
+        else if(this.nextButton.isMouseInside()) {
+            this.nextButton.execute();
+        }
+        else if(this.randomizeButton.isMouseInside()) {
+            this.randomizeButton.execute();
+        }
     }
 }
 
@@ -79,7 +98,7 @@ class PaletteBrowser {
         this.grid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, numCols, numRows);
 
         for(let i = 0; i < this.grid.tiles.length; i++) {
-            this.grid.tiles[i].setItem(getPalette1000(i));
+            this.grid.tiles[i].setItem({index: i, palette: getPalette1000(i)});
         }
     }
 
@@ -90,7 +109,7 @@ class PaletteBrowser {
     show() {
         for(let i = 0; i < this.grid.tiles.length; i++) {
             let tile = this.grid.tiles[i];
-            let palette = tile.item;
+            let palette = tile.item.palette;
             let margin = 5;
             let paletteXpos = tile.x + margin;
             let paletteYpos = tile.y + margin;
@@ -106,7 +125,7 @@ class PaletteBrowser {
                 rect(paletteXpos + j * colorWidth, paletteYpos, colorWidth, colorHeight);
             }
 
-            if(tile.isMouseInside()) {
+            if(tile.isMouseInside() || tile.isSelected) {
                 noFill();
                 stroke(0);
                 strokeWeight(2);
@@ -120,8 +139,11 @@ class PaletteBrowser {
             this.currentPage--;
 
             for(let i = 0; i < this.grid.tiles.length; i++) {
-                this.grid.tiles[i].setItem(getPalette1000(this.currentPage * this.palettesPerPage + i));
+                let index = this.currentPage * this.palettesPerPage + i;
+                this.grid.tiles[i].setItem({index: index, palette: getPalette1000(index)});
             }
+
+            this.grid.clearSelected();
         }
     }
 
@@ -130,7 +152,24 @@ class PaletteBrowser {
             this.currentPage++;
 
             for(let i = 0; i < this.grid.tiles.length; i++) {
-                this.grid.tiles[i].setItem(getPalette1000(this.currentPage * this.palettesPerPage + i));
+                let index = this.currentPage * this.palettesPerPage + i;
+                this.grid.tiles[i].setItem({index: index, palette: getPalette1000(index)});
+            }
+
+            this.grid.clearSelected();
+        }
+    }
+
+    mouseClicked() {
+        for(let i = 0; i < this.grid.tiles.length; i++) {
+            let tile = this.grid.tiles[i];
+            if(tile.isMouseInside()) {
+                this.grid.clearSelected();
+                tile.toggleSelect();
+
+                if(savedPalettes.grid.hasSelectedTiles()) {
+                    savedPalettes.swap(tile);
+                }
             }
         }
     }
@@ -145,6 +184,7 @@ class SavedPalettes {
         let gridWidth = width - 2 * gridXpos;
         let gridHeight = height - gridYpos - 10;
         this.grid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, 5, 1);
+        this.grid.setSingleSelect(true);
 
         for(let i = 0; i < this.grid.tiles.length; i++) {
             let tile = this.grid.tiles[i];
@@ -169,17 +209,76 @@ class SavedPalettes {
 
     show() {
         for(let i = 0; i < this.grid.tiles.length; i++) {
-            let paletteGrid = this.grid.tiles[i].item;
+            let tile = this.grid.tiles[i];
+            let paletteGrid = tile.item;
             let palette = this.palettes[i].palette;
             let paletteIndex = this.palettes[i].index;
 
             for(let j = 0; j < paletteGrid.tiles.length; j++) {
                 let colorTile =  paletteGrid.tiles[j];
-                fill(palette[j]);
+                let color = palette[j];
+
+                fill(color);
+                stroke(color);
+                strokeWeight(2);
                 rect(colorTile.x, colorTile.y, colorTile.width, colorTile.height);
 
-                textSize(12);
-                // text(paletteIndex, )
+                noStroke();
+                textSize(14);
+                fill(0);
+                text(color, colorTile.x + colorTile.width + 5, colorTile.y + 16, tile.width/2, 100);
+                let rgb = "rgb(" + red(color) + ", " + green(color) + ", " + blue(color) + ")";
+                text(rgb, colorTile.x + colorTile.width + 5, colorTile.y + 32, tile.width/2, 100);
+            }
+
+            noStroke();
+            textSize(20);
+            fill(0);
+            text("Palette: " + paletteIndex, paletteGrid.x, paletteGrid.y - 15);
+
+            if(paletteGrid.isMouseInside() || tile.isSelected) {
+                noFill();
+                stroke(0);
+                strokeWeight(2);
+                rect(paletteGrid.x, paletteGrid.y, paletteGrid.width * 2 - 4, paletteGrid.height);
+            }
+        }
+    }
+
+    swap(tile) {
+        if(this.grid.hasSelectedTiles() == false) return -1;
+
+        for(let i = 0; i < this.grid.tiles.length; i++) {
+            if(this.grid.tiles[i].isSelected) {
+                this.palettes[i] = tile.item;
+            }
+        }
+    }
+
+    randomize() {
+        let chosenIndices = [];
+        
+        for(let i = 0; i < this.grid.tiles.length; i++) {
+            let newIndex = ~~random(0, 1000);
+
+            if(chosenIndices.includes(newIndex) == false) {
+                chosenIndices.push(newIndex);
+                this.palettes[i] = {index: newIndex, palette: getPalette1000(newIndex)};
+            }
+        }
+    }
+
+    mouseClicked() {
+        for(let i = 0; i < this.grid.tiles.length; i++) {
+            let tile = this.grid.tiles[i];
+
+            if(tile.isMouseInside() && tile.isSelected == false) {
+                this.grid.clearSelected();
+                tile.toggleSelect();
+            }
+
+            else if(tile.isMouseInside() && tile.isSelected == true) {
+                this.grid.clearSelected();
             }
         }
     }
@@ -195,6 +294,23 @@ function draw() {
     visiblePalettes.show();
     buttonToolbar.show();
     savedPalettes.show();
+    drawMouseCursor();
+}
+
+
+function drawMouseCursor() {
+    for(let i = 0; i < visiblePalettes.grid.tiles.length; i++) {
+        let tile = visiblePalettes.grid.tiles[i];
+        if(tile.isMouseInside()) {
+            noStroke();
+            fill(255,255,255,230);
+            rect(mouseX + 5, mouseY + 5, 40, 30);
+
+            fill(0);
+            textSize(14);
+            text(tile.item.index, mouseX + 10, mouseY + 25)
+        }
+    }
 }
 
 function drawOutline() {
@@ -212,46 +328,14 @@ function drawOutline() {
     line(5, height-5, 5, 5);
 }
 
-// function drawSelectedPalettes() {
-//     let gridYpos = paletteGrid.y + paletteGrid.height + 60;
-//     selectedPalettesGrid = new Grid(paletteGrid.x, gridYpos, paletteGrid.width, height - gridYpos - 10, 5, 5);
-//     noStroke();
-//     for(let i = 0; i < selectedPalettes.length; i++) {
-//         let palette = selectedPalettes[i];
-//         for(let j = 0; j < palette.length; j++) {
-//             let tile = selectedPalettesGrid.getTile(i, j);
-//             fill(palette[j]);
-//             rect(tile.x + 10, tile.y, tile.width - 20, tile.height); 
-//         }
-//     }
-// }
-
-// function drawCursorBox() {
-//     for(let i = 0; i < selectedPalettesGrid.tiles.length; i++) {
-//         let tile = selectedPalettesGrid.tiles[i];
-//         if(tile.isMouseInside()) {
-//             fill(255);
-//             rect(mouseX, mouseY, 100, 100);
-//         }
-//     }
-// }
-
 /***********
  ** Other **
  **********/
 
 function mouseClicked() {
-    if(buttonToolbar.prevButton.isMouseInside()) {
-        buttonToolbar.prevButton.execute();
-    }
-    else if(buttonToolbar.nextButton.isMouseInside()) {
-        buttonToolbar.nextButton.execute();
-    }
-}
-
-function randomPalette() {
-    let index = ~~random(1000);
-    return {colors: getPalette1000(index), index: index}
+    visiblePalettes.mouseClicked();
+    buttonToolbar.mouseClicked();
+    savedPalettes.mouseClicked();
 }
 
 function windowResized() {
