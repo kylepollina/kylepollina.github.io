@@ -138,8 +138,10 @@ class PaletteBrowser {
 
 class SavedPalettes {
     constructor() {
+        this.palettes = [];
+
         let gridXpos = visiblePalettes.grid.x;
-        let gridYpos = visiblePalettes.grid.y + visiblePalettes.grid.height + 80;
+        let gridYpos = visiblePalettes.grid.y + visiblePalettes.grid.height + 100;
         let gridWidth = width - 2 * gridXpos;
         let gridHeight = height - gridYpos - 10;
         this.grid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, 5, 1);
@@ -149,22 +151,36 @@ class SavedPalettes {
             let paletteGrid = new Grid(tile.x, tile.y, tile.width/2, tile.height, 1, 5);
             this.grid.tiles[i].setItem(paletteGrid);
         }
+
+        for(let i = 0; i < 5; i++) {
+            this.palettes.push({index: i, palette: getPalette1000(i)});
+        }
     }
 
     resize() {
         this.grid.resize(this.grid.x, this.grid.y, width - 2 * this.grid.x, this.grid.height);
         
         for(let i = 0; i < this.grid.tiles.length; i++) {
-            this.grid.tiles[i].item.resize(this.grid.tiles[i].x, this.grid.tiles[i].y, this.grid.tiles[i].width/2, this.grid.tiles[i].height);
+            let parentTile = this.grid.tiles[i];
+            this.grid.tiles[i].item.resize(parentTile.x, parentTile.y, parentTile.width / 2, parentTile.height);
         }
+
     }
 
     show() {
-        this.grid.show();
-
         for(let i = 0; i < this.grid.tiles.length; i++) {
             let paletteGrid = this.grid.tiles[i].item;
-            paletteGrid.show();
+            let palette = this.palettes[i].palette;
+            let paletteIndex = this.palettes[i].index;
+
+            for(let j = 0; j < paletteGrid.tiles.length; j++) {
+                let colorTile =  paletteGrid.tiles[j];
+                fill(palette[j]);
+                rect(colorTile.x, colorTile.y, colorTile.width, colorTile.height);
+
+                textSize(12);
+                // text(paletteIndex, )
+            }
         }
     }
 }
