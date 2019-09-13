@@ -272,6 +272,10 @@ class SavedPalettes {
         for(let i = 0; i < this.grid.tiles.length; i++) {
             let tile = this.grid.tiles[i];
 
+            if(visiblePalettes.grid.hasSelectedTiles()) {
+                this.swap(visiblePalettes.grid.getSelectedTiles());
+            }
+
             if(tile.isMouseInside() && tile.isSelected == false) {
                 this.grid.clearSelected();
                 tile.toggleSelect();
@@ -302,13 +306,15 @@ function drawMouseCursor() {
     for(let i = 0; i < visiblePalettes.grid.tiles.length; i++) {
         let tile = visiblePalettes.grid.tiles[i];
         if(tile.isMouseInside()) {
-            noStroke();
+            strokeWeight(1);
+            stroke(0);
             fill(255,255,255,230);
-            rect(mouseX + 5, mouseY + 5, 40, 30);
+            rect(mouseX + 20, mouseY + 5, 38, 30);
 
+            noStroke();
             fill(0);
             textSize(14);
-            text(tile.item.index, mouseX + 10, mouseY + 25)
+            text(tile.item.index, mouseX + 25, mouseY + 25)
         }
     }
 }
