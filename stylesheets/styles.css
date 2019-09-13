@@ -17,7 +17,7 @@ body {
 #container {
     font-family: arial;
     margin-bottom: 40px;
-    color:#222;
+    /* color:#222; */
     max-width: 100%;
 }
 
@@ -51,6 +51,8 @@ body {
 }
 
 #posts {
+    font-family: 'Teko', sans-serif;
+    text-align: center;
     width: 500px;
     max-width: 100%;
     margin: auto;
@@ -62,9 +64,9 @@ body {
     margin-bottom: 20px;
 }
 
-#posts .palettes:hover {
-    background: rgb(165, 211, 109);
+#posts .palettes {
 }
+
 
 #posts .hypnotize:hover {
     background: rgb(0,0,0);
