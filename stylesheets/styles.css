@@ -62,6 +62,10 @@ body {
     margin-bottom: 20px;
 }
 
+#posts .palettes:hover {
+    background: rgb(165, 211, 109);
+}
+
 #posts .hypnotize:hover {
     background: rgb(0,0,0);
 }
