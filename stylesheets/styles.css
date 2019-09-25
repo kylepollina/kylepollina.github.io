@@ -50,6 +50,14 @@ body {
     padding-right: 5px;
 }
 
+#projects {
+    font-family: 'Teko', sans-serif;
+    text-align: left;
+    width: 500px;
+    max-width: 100%;
+    margin: auto;
+}
+
 #posts {
     font-family: 'Teko', sans-serif;
     text-align: center;
