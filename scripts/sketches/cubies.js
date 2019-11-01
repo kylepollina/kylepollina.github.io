@@ -5,7 +5,7 @@ var boxlen = 20;
 var palette;
 
 function setup() {
-    var canvas = createCanvas(500, 200, WEBGL);
+    var canvas = createCanvas(495, 200, WEBGL);
     canvas.parent('cubies-holder');
 
     palette = randomPalette1000();
