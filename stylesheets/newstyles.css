@@ -1,0 +1,83 @@
+/****************************
+ ** stylesheets/styles.css **
+ ***************************/
+
+html {
+    min-height: 100%;
+    margin: 0px;
+}
+
+@font-face {
+    font-family: "Pitch Italic";
+    src: url("../fonts/Pitch Test/PitchTest-SemiboldItalic.otf");
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+    background: rgb(255, 255, 255);
+    font-family: "Pitch Italic";
+    font-size: 12pt;
+}
+
+#container {
+    width: 800px;
+    margin: auto;
+}
+
+#header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #CE2029;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    color: rgb(255, 255, 255);
+}
+
+#main {
+    overflow: hidden;
+    height: 100%;
+}
+
+:root {
+    --nav-width: 220px;
+}
+
+#nav {
+    float: left;
+}
+
+#nav ul {
+    width: var(--nav-width);
+    margin: auto;
+    padding-left: 0px;
+}
+
+#content {
+    float: left;
+    width: calc(100% - var(--nav-width));
+    height: 100%;
+}
+
+#sketch {
+    margin: auto;
+}
+
+#cubies-holder {
+    width: 500px;
+    margin: auto;
+}
+
+
+#footer {
+    text-align: center;
+}
