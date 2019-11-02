@@ -2,15 +2,19 @@
  ** stylesheets/styles.css **
  ***************************/
 
+@font-face {
+    font-family: "Pitch Italic";
+    src: url("../fonts/Pitch Test/PitchTest-SemiboldItalic.otf");
+}
+
+:root {
+    --nav-width: 220px;
+}
+
 html {
     overflow-y: scroll;
     min-height: 100%;
     margin: 0px;
-}
-
-@font-face {
-    font-family: "Pitch Italic";
-    src: url("../fonts/Pitch Test/PitchTest-SemiboldItalic.otf");
 }
 
 body {
@@ -27,6 +31,9 @@ body {
 }
 
 #header {
+    top: 0;
+    position: fixed;
+    overflow: hidden;
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -45,28 +52,32 @@ hr {
 }
 
 #main {
-    overflow: hidden;
-    height: 100%;
-}
-
-:root {
-    --nav-width: 220px;
+    margin-top: 60px;
 }
 
 #nav {
+    position: fixed;
     float: left;
 }
 
 #nav ul {
     width: var(--nav-width);
-    margin: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
     padding-left: 0px;
+    line-height: 13pt;
+}
+
+#nav a {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 #content {
     float: left;
     width: calc(100% - var(--nav-width));
     height: 100%;
+    margin-left: var(--nav-width);
     padding-top: 0px;
     padding-bottom: 40px;
 }
