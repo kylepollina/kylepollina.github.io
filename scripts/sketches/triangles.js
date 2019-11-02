@@ -7,7 +7,7 @@ var splitY;
 
 function setup() {
     var canvas = createCanvas(500,500);
-    canvas.parent("triangle-holder")
+    canvas.parent("triangles-holder")
 
     splitY = 0;
     noStroke();
@@ -15,7 +15,6 @@ function setup() {
 
 
 function draw() {
-    
     if(mouseY > splitY && n < 30) {
         n += 1;
         splitY += (height - splitY) / n;

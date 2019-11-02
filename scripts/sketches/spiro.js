@@ -5,7 +5,7 @@
 var spiro;
 
 function setup() {
-    var canvas = createCanvas(800,600);    
+    var canvas = createCanvas(600,600);    
     canvas.parent("spiro-holder");
 
     spiro = new Spiro();
@@ -14,7 +14,7 @@ function setup() {
 }
 
 function draw() {
-    background(250,250,255);
+    background(255,250,250);
     spiro.level = (mouseX / 20);
     spiro.draw();
 }
@@ -32,18 +32,6 @@ function keyPressed() {
         spiro.shape_pentagon();
         spiro.set_start_pos(width/2 - 250,height/2 + 75);
     }
-
-
-    // else if(keyCode == 52) {
-    //     spiro.shape_hexagon();
-    //     spiro.set_start_pos(width/2 - 250,height/2 + 75);
-    // }
-    // else if(keyCode == 53) {
-    //     spiro.shape_7gon();
-    //     spiro.set_start_pos(width/2 - 250,height/2 + 75);
-    // }
-
-
     redraw();
 }
 

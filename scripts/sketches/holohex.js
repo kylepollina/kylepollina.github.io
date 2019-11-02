@@ -1,28 +1,28 @@
 /****************
- ** Hexagon.js **
+ ** Holohex.js **
  ***************/
 
 var t;
-var unit = 300;
+var unit = 230;
 var splits;
 
 var colors;
 
 function setup() {
-    var canvas = createCanvas(600,600);    
-    canvas.parent("hexagon-holder");
-    fullscreen(false);
+    var canvas = createCanvas(500,500);    
+    canvas.parent("holohex-holder");
 
     t = new Turtle();
 
     setupColors();
+    randomizeColors();
 
     strokeWeight(2);
     strokeCap(SQUARE);
 }
 
 function draw() {
-    background(250, 250, 255);
+    background(255, 250, 250);
     splits = floor(mouseX / 10);
     if(splits < 1){
         splits = 1;
@@ -72,11 +72,8 @@ function randomizeColors() {
     colors.s3e = floor(random(0, 255));
     colors.s3f = floor(random(-10, 10));
 
-    console.log(colors);
     redraw();
 }
-
-
 
 
 function draw_hexagon() {
@@ -97,12 +94,6 @@ function draw_hexagon() {
 function keyPressed() {
     if(keyCode == 32) {
         randomizeColors();
-    }
-}
-
-function keyReleased() {
-    if(keyCode == 48) {
-        // save();
     }
 }
 
@@ -135,17 +126,13 @@ function draw_triangle() {
         var p3 = side3[i];
 
         stroke(colors.s1a + colors.s1b * 2*i, mouseY + colors.s1d * i, 0 + colors.s1e * i);
-        // stroke('red');
         line(p1.x,p1.y,p2.x,p2.y);
         stroke(colors.s2a * mouseY, colors.s2c + mouseY/2, colors.s2d * i);
-        // stroke('green');
         line(p1.x,p1.y,p3.x,p3.y);
         stroke(colors.s3b * i, colors.s3c*2, mouseY/2 + colors.s3f * i);
-        // stroke('blue');
         line(p2.x,p2.y,p3.x,p3.y);
     }
 }
-
 
 
 /* Prevents space from doing default action */

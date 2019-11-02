@@ -9,7 +9,7 @@ var max_splits = 14;
 var is_updating;
 
 function preload() {
-    img = loadImage("images/lisa.png");
+    img = loadImage("data/lisa.png");
 }
 
 function setup() {
@@ -57,6 +57,24 @@ function keyPressed() {
 
 var going_up = true;
 
+function mousePressed() {
+    if(going_up == true && num_splits < max_splits) {
+        num_splits++;
+    }
+    if(going_up == true && num_splits == max_splits) {
+        going_up = false;
+        num_splits--;
+    }
+    if(going_up == false && num_splits > 0) {
+        num_splits--;
+    }
+    if(going_up == false && num_splits == 0) {
+        going_up = true;
+        num_splits++;
+    }
+    redraw();
+}
+
 /*  Recursively split each triangle into 2, n amount of times */
 function recursive_split(triangle, n) {
     if(n > max_splits) {
@@ -81,15 +99,16 @@ function recursive_split(triangle, n) {
     /* Find hypotenuse of given triangle */
     if(approx_equal(PI / 2, ab.angleBetween(ac), 20)) {
         /* BC is hypotenuse */
-        var halfway = new Point((b.x + c.x) / 2, (b.y + c.y) / 2);
+        var halfway = new Point(~~((b.x + c.x) / 2), ~~((b.y + c.y) / 2));
         var split1 = new Triangle(a.x,a.y, b.x,b.y, halfway.x,halfway.y);
         var split2 = new Triangle(a.x,a.y, c.x,c.y, halfway.x,halfway.y);
 
-        split1.set_avg_color(img);
-        split2.set_avg_color(img);
-
-        triangles.push(split1);
-        triangles.push(split2);
+        if(n == 1) {
+            split1.set_avg_color(img);
+            split2.set_avg_color(img);
+            triangles.push(split1);
+            triangles.push(split2);
+        }
 
         recursive_split(split1, n);
         recursive_split(split2, n);
@@ -97,30 +116,34 @@ function recursive_split(triangle, n) {
     }    
     else if(approx_equal(PI / 2, ab.angleBetween(bc), 20)) {
         /* AC is hypotenuse */
-        var halfway = new Point((a.x + c.x) / 2, (a.y + c.y) / 2);
+        var halfway = new Point(~~((a.x + c.x) / 2), ~~((a.y + c.y) / 2));
         var split1 = new Triangle(a.x,a.y, b.x,b.y, halfway.x,halfway.y);
         var split2 = new Triangle(b.x,b.y, c.x,c.y, halfway.x,halfway.y);
 
-        split1.set_avg_color(img);
-        split2.set_avg_color(img);
+        if(n == 1) {
+            split1.set_avg_color(img);
+            split2.set_avg_color(img);
+            triangles.push(split1);
+            triangles.push(split2);
 
-        triangles.push(split1);
-        triangles.push(split2);
+        }
 
         recursive_split(split1, n);
         recursive_split(split2, n);
     }
     else if(approx_equal(PI / 2, ac.angleBetween(bc), 20)) {
         /* AB is hypotenuse */
-        var halfway = new Point((a.x + b.x) / 2, (a.y + b.y) / 2);
+        var halfway = new Point(~~((a.x + b.x) / 2), ~~((a.y + b.y) / 2));
         var split1 = new Triangle(a.x,a.y, c.x,c.y, halfway.x,halfway.y);
         var split2 = new Triangle(b.x,b.y, c.x,c.y, halfway.x,halfway.y);
 
-        split1.set_avg_color(img);
-        split2.set_avg_color(img);
+        if(n == 1) {
+            split1.set_avg_color(img);
+            split2.set_avg_color(img);
+            triangles.push(split1);
+            triangles.push(split2);
 
-        triangles.push(split1);
-        triangles.push(split2);
+        }
 
         recursive_split(split1, n);
         recursive_split(split2, n);

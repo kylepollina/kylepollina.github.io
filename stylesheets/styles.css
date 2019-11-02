@@ -98,7 +98,6 @@ hr {
     width: 90%;
 }
 
-#sketch {}
 
 #sketch #gogh-holder {
     width: 500px;
@@ -110,7 +109,37 @@ hr {
     margin: auto;
 }
 
-#cubies-holder {
+#sketch #starry-holder {
+    width: 500px;
+    margin: auto;
+}
+
+#sketch #triangles-holder {
+    width: 500px;
+    margin: auto;
+}
+
+#sketch #holohex-holder {
+    width: 500px;
+    margin: auto;
+}
+
+#sketch #spiro-holder {
+    width: 600px;
+    margin: auto;
+}
+
+#sketch #lisa-holder {
+    width: 500px;
+    margin: auto;
+}
+
+#sketch #breathing-holder {
+    width: 500px;
+    margin: auto;
+}
+
+#sketch #cubies-holder {
     width: 495px;
     margin: auto;
 }

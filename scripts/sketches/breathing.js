@@ -6,7 +6,7 @@
 
 
 var main_img;
-var image_name = "images/p1.png";
+var image_name = "data/p1.png";
 var img_blocks = [];
 var block_size = 25;
 
@@ -65,7 +65,7 @@ var pic_num = 1;
 // Rotate through images
 function keyPressed() {
     if(keyCode == 32) {
-        let pictures = ["images/p1.png", "images/p2.png","images/p3.png","images/p4.png","images/p5.png","images/p6.png","images/p7.png","images/p8.png","images/p9.png",]
+        let pictures = ["data/p1.png", "data/p2.png","data/p3.png","data/p4.png","data/p5.png","data/p6.png","data/p7.png","data/p8.png","data/p9.png",]
         image_name = pictures[pic_num];
         pic_num++;
         if(pic_num == pictures.length) pic_num = 0;

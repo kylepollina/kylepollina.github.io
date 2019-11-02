@@ -7,7 +7,7 @@ var phyllotaxis;
 
 /* load image */
 function preload() {
-    starry = loadImage("images/starry.png");
+    starry = loadImage("data/starry.png");
 }
 
 function setup() {
