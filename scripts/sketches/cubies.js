@@ -5,7 +5,7 @@ var boxlen = 20;
 var palette;
 
 function setup() {
-    var canvas = createCanvas(495, 200, WEBGL);
+    var canvas = createCanvas(495, 220, WEBGL);
     canvas.parent('cubies-holder');
 
     palette = randomPalette1000();
@@ -27,7 +27,6 @@ function draw() {
             gridGraphics.rect(x, y, boxlen, boxlen);
         }
     }
-
 
     fill(255);
     noStroke();
@@ -56,6 +55,11 @@ function generateN1(x, y) {
     let n = (yindex * sin(frameCount/80) + xindex + frameCount/4);
     n = Math.floor(Math.abs(n));
     return n;
+}
+
+function mouseClicked() {
+    palette = randomPalette1000();
+    redraw();
 }
 
 /* Prevents up and down arrow from moving page up and down */

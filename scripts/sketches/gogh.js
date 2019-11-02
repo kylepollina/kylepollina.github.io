@@ -6,7 +6,7 @@ var phyllotaxis;
 
 /* load image */
 function preload() {
-    img = loadImage("images/gogh.png");
+    img = loadImage("data/gogh.png");
 }
 
 function setup() {
