@@ -1,6 +1,4 @@
-/************
- * Spiro.js *
- ***********/
+/* spiro.js */
 
 var spiro;
 

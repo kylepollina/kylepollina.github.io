@@ -10,7 +10,7 @@ function setup() {
     var canvas = createCanvas(520, 500);
     canvas.parent('diamond-holder');
 
-    palette = randomPalette1000();
+    palette = getPalette1000(250);
     setupDiamonds();
 }
 

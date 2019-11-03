@@ -1,17 +1,12 @@
+/* breathing.js */
 
-/**************************
- ** Breathing.js         **
- ** Author: Kyle Pollina **
- *************************/
-
-
-var main_img;
-var image_name = "data/p1.png";
-var img_blocks = [];
-var block_size = 25;
+var input;
+var file = "data/p1.png";
+var blocks = [];
+var blockSize = 25;
 
 function preload() {
-    main_img = loadImage(image_name);
+    input = loadImage(file);
 }
 
 function setup() {
@@ -19,61 +14,83 @@ function setup() {
     canvas.parent("breathing-holder");
     frameRate(20);
 
-    /* Create an array width/block_size * height/block_size
-    Save each x,y coordinate with a PImage of block_size into the array */
-    for(let x = 0; x < width; x += block_size) {
-        let rows = [];
-        for(let y = 0; y < height; y += block_size) {
-            // Save each x,y coordinate as well as a PImage
-            rows.push([x, y, createImage(block_size,block_size)]);
+    // setupBlocks1();
+    setupBlocks2();
+}
+
+function setupBlocks1() {
+    for(let x = 0; x < width; x += blockSize) {
+        let column = [];
+        for(let y = 0; y < height; y += blockSize) {
+            column.push({
+                "x": x,
+                "y": y,
+                "image": createImage(blockSize, blockSize)
+            });
         }
-        img_blocks.push(rows);
+        blocks.push(column);
     }
 }
 
-var n = 0;          // use for the sin/cos functions
+function setupBlocks2() {
+    for(let y = 0; y < height; y += blockSize) {
+        let row = [];
+        for(let x = 0; x < width; x += blockSize) {
+            row.push({
+                "x": x,
+                "y": y,
+                "image": createImage(blockSize, blockSize)
+            });
+        }
+        blocks.push(row);
+    }
+}
 
 function draw() {
     background(250,250,255);
 
-    for(let i = 0; i < img_blocks.length; i++) {
-        for(let j = 0; j < img_blocks[0].length; j++) {
-            let block = img_blocks[i][j];
-            let block_x = block[0];         // Top left x of the block
-            let block_y = block[1];         // Top left y of the block
-            let block_img = block[2];       // PImage of the block
+    for(let i = 0; i < blocks.length; i++) {
+        for(let j = 0; j < blocks[0].length; j++) {
+            let block = blocks[i][j];
 
-            block_img.copy(
-                main_img                            // Copy from main_img 
-                ,block_x + 10*cos(i-n/30)           // x coord to copy from main_img
-                ,block_y + 10*sin(j+n/30)           // y coord to copy from main_img
-                ,block_size + 10*sin(n/100+i/10)    // width of rect to copy from main_img
-                ,block_size + 10*cos(n/100-j/10)    // height of rect to copy from main_img
-                ,0                                  // Copy to (0,0) coordinate of block_img
+            block.image.copy(
+                input                                                // Copy from input 
+                ,block.x   + 10 * cos(i - frameCount / 30)           // x coord to copy from input
+                ,block.y   + 10 * sin(j + frameCount / 30)           // y coord to copy from input
+                ,blockSize + 10 * sin(frameCount / 100 +i / 10)      // width of rect to copy from input
+                ,blockSize + 10 * cos(frameCount / 100- j / 10)      // height of rect to copy from input
+                ,0                                                   // Copy to (0,0) coordinate of block_img
                 ,0
-                ,block_size                         // Squeeze copied rectangle from main_img 
-                ,block_size                         //  to square of block_size * block_size
+                ,blockSize                                           // Squeeze copied rectangle from input 
+                ,blockSize                                           //  to square of blockSize * blockSize
             );
-            image(block_img, block_x, block_y);     // Display new image
+            image(block.image, block.x, block.y);                    // Display new image
         }
     }
-    n++;
 }
 
 
-var pic_num = 1;
+var nfile = 1;
 // Rotate through images
 function keyPressed() {
     if(keyCode == 32) {
-        let pictures = ["data/p1.png", "data/p2.png","data/p3.png","data/p4.png","data/p5.png","data/p6.png","data/p7.png","data/p8.png","data/p9.png",]
-        image_name = pictures[pic_num];
-        pic_num++;
-        if(pic_num == pictures.length) pic_num = 0;
-        main_img = loadImage(image_name);
-        n = 0;
+        let pictures = [
+            "data/p1.png", 
+            "data/p2.png",
+            "data/p3.png",
+            "data/p4.png",
+            "data/p5.png",
+            "data/p6.png",
+            "data/p7.png",
+            "data/p8.png",
+            "data/p9.png"
+        ]
+        file = pictures[nfile];
+        nfile++;
+        if(nfile == pictures.length) nfile = 0;
+        input = loadImage(file);
     }
 }
-
 
 /* Prevents space from doing default action */
 window.addEventListener("keydown", function(e) {

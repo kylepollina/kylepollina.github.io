@@ -1,6 +1,4 @@
-/****************
- ** Holohex.js **
- ***************/
+/* holohex.js */
 
 var t;
 var unit = 230;

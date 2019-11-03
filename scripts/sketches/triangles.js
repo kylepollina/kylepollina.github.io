@@ -1,6 +1,4 @@
-/****************
- * Triangles.js *
- ***************/
+/* triangles.js */
 
 var n = 1;
 var splitY;

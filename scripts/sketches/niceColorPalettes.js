@@ -1,6 +1,4 @@
-/****************************
- ** nice_color_palettes.js **
- ***************************/
+/* niceColorPalettes.js */
 
 var defaultCanvasWidth;
 var defaultCanvasHeight;

@@ -1,6 +1,4 @@
-/*************
- ** Gogh.js **
- ************/
+/* gogh.js */
 
 var phyllotaxis;
 

@@ -1,6 +1,4 @@
-/***************
- ** Starry.js **
- **************/
+/* starry.js */
 
 var starry;
 var phyllotaxis;

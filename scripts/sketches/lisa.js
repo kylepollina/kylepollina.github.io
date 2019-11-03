@@ -1,6 +1,4 @@
-/*************
- ** Lisa.js **
- ************/
+/* lisa.js */
 
 var img;
 var triangles = [];
