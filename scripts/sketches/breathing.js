@@ -14,8 +14,8 @@ function setup() {
     canvas.parent("breathing-holder");
     frameRate(20);
 
-    // setupBlocks1();
-    setupBlocks2();
+    setupBlocks1();
+    // setupBlocks2();
 }
 
 function setupBlocks1() {
