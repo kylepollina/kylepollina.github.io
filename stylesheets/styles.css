@@ -83,6 +83,7 @@ hr {
 }
 
 #posts {
+    display: block;
     margin-left: 20px;
 }
 
