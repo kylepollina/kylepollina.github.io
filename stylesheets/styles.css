@@ -99,6 +99,11 @@ hr {
 }
 
 
+#sketch #towers-holder {
+    width: 500px;
+    margin: auto;
+}
+
 #sketch #gogh-holder {
     width: 500px;
     margin: auto;
