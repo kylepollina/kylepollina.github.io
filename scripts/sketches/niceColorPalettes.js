@@ -96,7 +96,7 @@ class PaletteBrowser {
         this.grid = new Grid(gridXpos, gridYpos, gridWidth, gridHeight, numCols, numRows);
 
         for(let i = 0; i < this.grid.tiles.length; i++) {
-            this.grid.tiles[i].setItem({index: i, palette: getPalette1000(i)});
+            this.grid.tiles[i].setItem({index: i, palette: getPalette(i)});
         }
     }
 
@@ -138,10 +138,10 @@ class PaletteBrowser {
 
             for(let i = 0; i < this.grid.tiles.length; i++) {
                 let index = this.currentPage * this.palettesPerPage + i;
-                this.grid.tiles[i].setItem({index: index, palette: getPalette1000(index)});
+                this.grid.tiles[i].setItem({index: index, palette: getPalette(index)});
             }
 
-            this.grid.clearSelected();
+            this.grid.clearSelectedTiles();
         }
     }
 
@@ -151,10 +151,10 @@ class PaletteBrowser {
 
             for(let i = 0; i < this.grid.tiles.length; i++) {
                 let index = this.currentPage * this.palettesPerPage + i;
-                this.grid.tiles[i].setItem({index: index, palette: getPalette1000(index)});
+                this.grid.tiles[i].setItem({index: index, palette: getPalette(index)});
             }
 
-            this.grid.clearSelected();
+            this.grid.clearSelectedTiles();
         }
     }
 
@@ -162,7 +162,7 @@ class PaletteBrowser {
         for(let i = 0; i < this.grid.tiles.length; i++) {
             let tile = this.grid.tiles[i];
             if(tile.isMouseInside()) {
-                this.grid.clearSelected();
+                this.grid.clearSelectedTiles();
                 tile.toggleSelect();
 
                 if(savedPalettes.grid.hasSelectedTiles()) {
@@ -191,7 +191,7 @@ class SavedPalettes {
         }
 
         for(let i = 0; i < 5; i++) {
-            this.palettes.push({index: i, palette: getPalette1000(i)});
+            this.palettes.push({index: i, palette: getPalette(i)});
         }
     }
 
@@ -261,7 +261,7 @@ class SavedPalettes {
 
             if(chosenIndices.includes(newIndex) == false) {
                 chosenIndices.push(newIndex);
-                this.palettes[i] = {index: newIndex, palette: getPalette1000(newIndex)};
+                this.palettes[i] = {index: newIndex, palette: getPalette(newIndex)};
             }
         }
     }
@@ -275,12 +275,12 @@ class SavedPalettes {
             }
 
             if(tile.isMouseInside() && tile.isSelected == false) {
-                this.grid.clearSelected();
+                this.grid.clearSelectedTiles();
                 tile.toggleSelect();
             }
 
             else if(tile.isMouseInside() && tile.isSelected == true) {
-                this.grid.clearSelected();
+                this.grid.clearSelectedTiles();
             }
         }
     }

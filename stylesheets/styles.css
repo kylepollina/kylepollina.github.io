@@ -7,6 +7,11 @@
     src: url("../fonts/Pitch Test/PitchTest-SemiboldItalic.otf");
 }
 
+@font-face {
+    font-family: "Pitch Light Italic";
+    src: url("../fonts/Pitch Test/PitchTest-Light.otf");
+}
+
 :root {
     --nav-width: 220px;
 }
@@ -83,6 +88,7 @@ hr {
 }
 
 #posts {
+    display: block;
     margin-left: 20px;
 }
 
@@ -98,6 +104,10 @@ hr {
     width: 90%;
 }
 
+#sketch #corners-holder {
+    width: 500px;
+    margin: auto;
+}
 
 #sketch #arcs-holder {
     width: 500px;

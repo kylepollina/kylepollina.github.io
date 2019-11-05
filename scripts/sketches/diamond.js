@@ -10,7 +10,7 @@ function setup() {
     var canvas = createCanvas(520, 500);
     canvas.parent('diamond-holder');
 
-    palette = getPalette1000(250);
+    palette = getPalette(250);
     setupDiamonds();
 }
 
@@ -26,6 +26,20 @@ function setupDiamonds() {
                     this.bottomPoint = 0;
                     diamonds.unshift(diamonds.pop());
                 } 
+            },
+            draw: function() {
+                fill(this.color);
+
+                beginShape();
+                vertex(left, height/2);
+                vertex(width/2, 0);
+                vertex(right, height/2);
+
+                let offset = sin(left - dist(width/2, this.bottomPoint, width/2, height/2)/20)*mouseX/20;
+                vertex(width/2 + offset, this.bottomPoint);
+
+                vertex(left, height/2);
+                endShape();
             }
         }   
 
@@ -48,20 +62,7 @@ function drawDiamonds() {
     for(let i = 0; i < diamonds.length; i++) {
         let diamond = diamonds[diamonds.length - 1 - i];
         diamond.update();
-
-        fill(diamond.color);
-
-        beginShape();
-        vertex(left, height/2);
-        vertex(width/2, 0);
-        vertex(right, height/2);
-
-        let offset = sin(left - dist(width/2, diamond.bottomPoint, width/2, height/2)/20)*mouseX/20;
-
-        vertex(width/2 + offset, diamond.bottomPoint);
-
-        vertex(left, height/2);
-        endShape();
+        diamond.draw();
     }
 }
 
@@ -83,7 +84,7 @@ function drawBackground() {
 }
 
 function mousePressed() {
-    palette = randomPalette1000();
+    palette = randomPalette();
     for(let i = 0; i < diamonds.length; i++) {
         diamonds[i].color = palette[i%5];
     }
