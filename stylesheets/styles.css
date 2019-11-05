@@ -99,6 +99,11 @@ hr {
 }
 
 
+#sketch #arcs-holder {
+    width: 500px;
+    margin: auto;
+}
+
 #sketch #towers-holder {
     width: 500px;
     margin: auto;
