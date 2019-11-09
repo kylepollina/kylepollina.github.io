@@ -1,36 +1,42 @@
 /* cubies.js */
 
-var gridGraphics;
-var boxlen = 20;
+var cubeTexture;
+var boxlen;
 var palette;
 
 function setup() {
     var canvas = createCanvas(495, 220, WEBGL);
     canvas.parent('cubies-holder');
 
-    palette = randomPalette1000();
-    gridGraphics = createGraphics(100, 100);
-    noStroke();
+    palette = randomPalette();
+    cubeTexture = createGraphics(100, 100);
+    boxlen = 20;
 
     ortho();
     noLoop();
 }
 
 function draw() {
-    for(let x = 0; x < gridGraphics.width; x+=boxlen) {
-        for(let y = 0; y < gridGraphics.height; y+=boxlen) {
+    drawCubeTexture();
+    drawCubes();
+}
+
+function drawCubeTexture() {
+    for(let x = 0; x < cubeTexture.width; x+=boxlen) {
+        for(let y = 0; y < cubeTexture.height; y+=boxlen) {
 
             let n = generateN1(x, y);
 
-            gridGraphics.fill(palette[n%5]);
-            gridGraphics.noStroke();
-            gridGraphics.rect(x, y, boxlen, boxlen);
+            cubeTexture.fill(palette[n%5]);
+            cubeTexture.noStroke();
+            cubeTexture.rect(x, y, boxlen, boxlen);
         }
     }
+}
 
-    fill(255);
+function drawCubes() {
     noStroke();
-    texture(gridGraphics);
+    texture(cubeTexture);
     rotateX(radians(45));
     rotateY(radians(45));
 
@@ -48,7 +54,6 @@ function draw() {
     }
 }
 
-
 function generateN1(x, y) {
     let xindex = x / boxlen;
     let yindex = y / boxlen;
@@ -58,7 +63,7 @@ function generateN1(x, y) {
 }
 
 function mouseClicked() {
-    palette = randomPalette1000();
+    palette = randomPalette();
     redraw();
 }
 

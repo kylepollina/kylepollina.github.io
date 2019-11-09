@@ -53,7 +53,7 @@ function setupColors() {
 }
 
 function randomizeColors() {
-    let palette = randomPalette100();
+    let palette = randomPalette();
     colors.s1a = floor(random(0, 255));
     colors.s1b = floor(random(-10, 10));
     colors.s1c = floor(random(0, 255));
