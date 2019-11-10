@@ -9,7 +9,8 @@ function setup() {
     
     palette = getPalette(253);
 
-    grid = new Grid(0, 0, width, height, 5, 5)
+    let gridlen = ~~random(5, 8);
+    grid = new Grid(0, 0, width, height, gridlen, gridlen)
 }
 
 function draw() {
@@ -56,5 +57,7 @@ function drawTiles() {
 
 function mouseClicked() {
     palette = randomPalette();
+    let gridlen = ~~random(5, 8);
+    grid = new Grid(0, 0, width, height, gridlen, gridlen)
 }
 
