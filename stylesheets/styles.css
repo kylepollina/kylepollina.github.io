@@ -104,6 +104,15 @@ hr {
     width: 90%;
 }
 
+#sketch #squares-holder {
+    width: 500px;
+    margin: auto;
+}
+
+#sketch #corners-holder {
+    width: 500px;
+    margin: auto;
+}
 
 #sketch #arcs-holder {
     width: 500px;
