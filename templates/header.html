@@ -1,0 +1,15 @@
+<head>
+  <meta charset="UTF-8">
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% if is_sketch %}../{% endif %}stylesheets/styles.css">
+  <!-- Scripts -->
+  {% if p5js %}
+  <script src="{% if is_sketch %}../{% endif %}scripts/p5/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="{% if is_sketch %}../{% endif %}scripts/p5/addons/p5.dom.js"></script>
+  <script src="{% if is_sketch %}../{% endif %}scripts/sketches/{{ sketch_name }}.js"></script>
+  {% for script in scripts %}
+  <script src="{% if is_sketch %}../{% endif %}scripts/p5-utilities/{{ script }}"></script>
+  {% endfor %}
+  {% endif %}
+  <title>{{ title }}</title>
+</head>
