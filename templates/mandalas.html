@@ -1,0 +1,10 @@
+{% extends 'body.html' %}
+{% block content %}
+
+<div id="posts">
+    {% for number in mandalas %}
+    <img src="mandalas/{{ number }}.png"></a>
+    {% endfor %}
+</div>
+
+{% endblock %}

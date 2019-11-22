@@ -137,7 +137,20 @@ def build_color_palettes():
                 ]
             )
 
-    write_file('test.html', text)
+    write_file(file_name, text)
+
+def build_mandalas():
+    file_name = 'mandalas.html'
+    template = env.get_template(file_name)
+    text = template.render(
+            file_name=file_name,
+            current_page='mandalas',
+            title='kyle pollina',
+            p5js=False,
+            mandalas=['18', '17', '16', '15', '13', '12', '11', '10', '9', '8', '7', '6', '5', '4', '3']
+            )
+    
+    write_file(file_name, text)
     
 def write_file(file_name, text):
     file = open(file_name, 'w')
@@ -149,7 +162,7 @@ if __name__ == "__main__":
     build_interactive()
     build_kinect()
     build_color_palettes()
-    # build_mandalas()
+    build_mandalas()
     # build_ukiyo_e()
     # build_grand_prix_posters()
 
