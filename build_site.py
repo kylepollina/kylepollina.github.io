@@ -7,7 +7,7 @@ env = Environment(
     lstrip_blocks=True,
 )
 
-def build_index():
+def build_index_page():
     file_name = 'index.html'
     template = env.get_template(file_name)
     text = template.render(
@@ -24,7 +24,7 @@ def build_index():
 
     write_file(file_name, text)
 
-def build_interactive():
+def build_interactive_page():
     sketches = [
             {'sketch_name': 'thrill', 'scripts': []},
             {'sketch_name': 'squares', 'scripts': [
@@ -103,7 +103,7 @@ def build_interactive_sketches(sketches):
 
         write_file(file_name, text)
 
-def build_kinect():
+def build_kinect_page():
     file_name = 'kinect.html'
     template = env.get_template(file_name)
     text = template.render(
@@ -121,7 +121,7 @@ def build_kinect():
 
     write_file(file_name, text)
 
-def build_color_palettes():
+def build_color_palettes_page():
     file_name = 'color_palettes.html'
     template = env.get_template(file_name)
     text = template.render(
@@ -140,7 +140,7 @@ def build_color_palettes():
 
     write_file(file_name, text)
 
-def build_mandalas():
+def build_mandalas_page():
     file_name = 'mandalas.html'
     template = env.get_template(file_name)
     text = template.render(
@@ -153,7 +153,7 @@ def build_mandalas():
     
     write_file(file_name, text)
 
-def build_ukiyo_e():
+def build_ukiyo_e_page():
     file_name = 'ukiyo-e.html'
     template = env.get_template(file_name)
     text = template.render(
@@ -181,10 +181,10 @@ def write_file(file_name, text):
     file.close()
 
 if __name__ == "__main__":
-    build_index()
-    build_interactive()
-    build_kinect()
-    build_color_palettes()
-    build_mandalas()
-    build_ukiyo_e()
+    build_index_page()
+    build_interactive_page()
+    build_kinect_page()
+    build_color_palettes_page()
+    build_mandalas_page()
+    build_ukiyo_e_page()
 
