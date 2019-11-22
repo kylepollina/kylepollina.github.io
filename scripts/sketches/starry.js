@@ -26,7 +26,7 @@ function mouseMoved() {
 }
 
 function draw() {
-    background(250, 250, 255);
+    background(255);
     let points = phyllotaxis.generatePoints();
     let radius = 10;
 

@@ -20,7 +20,7 @@ function setup() {
 }
 
 function draw() {
-    background(255, 250, 250);
+    background(255);
     splits = floor(mouseX / 10);
     if(splits < 1){
         splits = 1;
