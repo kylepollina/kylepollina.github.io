@@ -151,6 +151,28 @@ def build_mandalas():
             )
     
     write_file(file_name, text)
+
+def build_ukiyo_e():
+    file_name = 'ukiyo-e.html'
+    template = env.get_template(file_name)
+    text = template.render(
+            file_name=file_name,
+            current_page='ukiyo-e',
+            title='kyle pollina',
+            p5js=False,
+            hiroshige=[
+                'No. 2 Kawachi Settsu',
+                'Tagged Cranes',
+                ],
+            narumi=[
+                'Postcard of Genroku Beauty 2',
+                'Woman with umbrella',
+                'Postcard of Princess from Jogaku sekai',
+                'Female nude seated in water',
+                ]
+            )
+
+    write_file(file_name, text)
     
 def write_file(file_name, text):
     file = open(file_name, 'w')
@@ -163,6 +185,5 @@ if __name__ == "__main__":
     build_kinect()
     build_color_palettes()
     build_mandalas()
-    # build_ukiyo_e()
-    # build_grand_prix_posters()
+    build_ukiyo_e()
 

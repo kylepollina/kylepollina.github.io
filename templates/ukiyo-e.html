@@ -1,0 +1,20 @@
+{% extends 'body.html' %}
+{% block content %}
+
+<div id="posts">
+    <div style="font-size: 11pt; font-family: Pitch Light Italic">
+    I enjoy digitally recreating classic ukiyo-e Japanese Woodblock Prints. Here are some that I've done.
+    </div>
+    <hr>
+    Utagawa Hiroshige Series
+    {% for drawing in hiroshige %}
+    <img src="ukiyo-e/{{ drawing }}.png">
+    {% endfor %}
+
+    Ichijô Narumi Series
+    {% for drawing in narumi %}
+    <img src="ukiyo-e/{{ drawing }}.png">
+    {% endfor %}
+</div>
+
+{% endblock %}
