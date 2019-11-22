@@ -24,7 +24,7 @@ function setupCanvas() {
     else {
         canvas = createCanvas(windowWidth - 40, defaultCanvasHeight);
     }
-    canvas.parent("nice_color_palettes-holder");
+    canvas.parent("color_palettes-holder");
 }
 
 function setupPalettes() {
