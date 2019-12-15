@@ -108,6 +108,11 @@ hr {
     color: #CE2029;
 }
 
+#sketch #thrill-holder {
+    width: 640px;
+    margin: auto;
+}
+
 #sketch #squares-holder {
     width: 500px;
     margin: auto;

@@ -67,7 +67,7 @@ function drawDiamonds() {
 }
 
 function drawBackground() {
-    fill(255, 250, 250);
+    fill(255);
     beginShape();
     vertex(0, height/2);
     vertex(left, height/2);

@@ -47,7 +47,7 @@ function setupBlocks2() {
 }
 
 function draw() {
-    background(250,250,255);
+    background(255);
 
     for(let i = 0; i < blocks.length; i++) {
         for(let j = 0; j < blocks[0].length; j++) {

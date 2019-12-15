@@ -12,12 +12,12 @@ function setup() {
 
     noStroke();
     rectMode(CENTER);
-    background(255, 250, 250);
+    background(255);
 }
 
 function draw() {
     translate(width/2, height/2);
-    background(255, 250, 250, 5);
+    background(255);
     for(let i = numSquares; i > 1; i--) {
         let sidelen = width/40*i;
 

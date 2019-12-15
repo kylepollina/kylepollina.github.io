@@ -26,6 +26,7 @@ def build_index():
 
 def build_interactive():
     sketches = [
+            {'sketch_name': 'thrill', 'scripts': []},
             {'sketch_name': 'squares', 'scripts': [
                 'palettes.js',
                 'io.js'

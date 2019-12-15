@@ -15,7 +15,7 @@ function setup() {
 
 function draw() {
     colorMode(RGB);
-    background(255, 250, 250);
+    background(255);
     colorMode(HSB);
     let xval = (mouseX > 0) ? mouseX : 0;
 	num = round(map(xval, 0, width, 4, 25));
