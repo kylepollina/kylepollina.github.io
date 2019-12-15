@@ -104,6 +104,10 @@ hr {
     width: 90%;
 }
 
+#posts #machine_learning a {
+    color: #CE2029;
+}
+
 #sketch #squares-holder {
     width: 500px;
     margin: auto;

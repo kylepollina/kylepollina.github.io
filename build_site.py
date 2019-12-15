@@ -10,7 +10,7 @@ env = Environment(
 def build_index():
     file_name = 'index.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name, 
             current_page='home',
             title='kyle pollina',
@@ -22,7 +22,7 @@ def build_index():
                 ]
             )
 
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
 
 def build_interactive():
     sketches = [
@@ -75,7 +75,7 @@ def build_interactive_main(sketches):
 
     file_name = 'interactive.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name,
             current_page='interactive',
             title='kyle pollina',
@@ -84,13 +84,13 @@ def build_interactive_main(sketches):
             posts=sketch_names
             )
 
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
 
 def build_interactive_sketches(sketches):
     for sketch in sketches:
         file_name = 'interactive/' + sketch['sketch_name'] + '.html'
         template = env.get_template('sketch.html')
-        text = template.render(
+        file_contents = template.render(
                 file_name=file_name,
                 current_page='interactive',
                 title='kyle pollina',
@@ -100,12 +100,12 @@ def build_interactive_sketches(sketches):
                 scripts=sketch['scripts']
                 )
 
-        write_file(file_name, text)
+        write_file(file_name, file_contents)
 
 def build_kinect():
     file_name = 'kinect.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name,
             current_page='kinect',
             title='kyle pollina',
@@ -118,12 +118,12 @@ def build_kinect():
                 ]
             )
 
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
 
 def build_color_palettes():
     file_name = 'color_palettes.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name,
             current_page='color palettes',
             title='kyle pollina',
@@ -137,12 +137,12 @@ def build_color_palettes():
                 ]
             )
 
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
 
 def build_mandalas():
     file_name = 'mandalas.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name,
             current_page='mandalas',
             title='kyle pollina',
@@ -150,12 +150,12 @@ def build_mandalas():
             mandalas=['18', '17', '16', '15', '13', '12', '11', '10', '9', '8', '7', '6', '5', '4', '3']
             )
     
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
 
 def build_ukiyo_e():
     file_name = 'ukiyo-e.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name,
             current_page='ukiyo-e',
             title='kyle pollina',
@@ -172,11 +172,24 @@ def build_ukiyo_e():
                 ]
             )
 
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
+
+def build_machine_learning():
+    file_name = 'machine_learning.html'
+    template = env.get_template(file_name)
+    file_contents = template.render(
+            file_name=file_name,
+            current_page='machine learning',
+            title='kyle pollina',
+            p5js=False,
+            )
+
+    write_file(file_name, file_contents)
+
     
-def write_file(file_name, text):
+def write_file(file_name, file_contents):
     file = open(file_name, 'w')
-    file.write(text)
+    file.write(file_contents)
     file.close()
 
 if __name__ == "__main__":
@@ -186,4 +199,5 @@ if __name__ == "__main__":
     build_color_palettes()
     build_mandalas()
     build_ukiyo_e()
+    build_machine_learning()
 
