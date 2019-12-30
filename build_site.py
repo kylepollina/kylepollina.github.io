@@ -175,17 +175,33 @@ def build_ukiyo_e():
 
     write_file(file_name, file_contents)
 
-def build_machine_learning():
-    file_name = 'machine_learning.html'
+def build_data_science():
+    file_name = 'data_science.html'
     template = env.get_template(file_name)
     file_contents = template.render(
             file_name=file_name,
-            current_page='machine learning',
+            current_page='data science',
             title='kyle pollina',
             p5js=False,
             )
 
     write_file(file_name, file_contents)
+
+    build_fmri()
+    # build_climate_analysis()
+
+def build_fmri():
+    file_name = 'fmri_natural_language_processing.html'
+    template = env.get_template(file_name)
+    file_contents = template.render(
+            file_name=file_name,
+            current_page='data science',
+            title='kyle pollina',
+            is_sketch=True,
+            p5js=False,
+            )
+
+    write_file('data_science/' + file_name, file_contents)
 
     
 def write_file(file_name, file_contents):
@@ -200,5 +216,6 @@ if __name__ == "__main__":
     build_color_palettes()
     build_mandalas()
     build_ukiyo_e()
-    build_machine_learning()
+    # build_machine_learning()
+    build_data_science()
 
