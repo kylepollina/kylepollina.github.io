@@ -10,7 +10,7 @@ env = Environment(
 def build_index_page():
     file_name = 'index.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name, 
             current_page='home',
             title='kyle pollina',
@@ -22,7 +22,7 @@ def build_index_page():
                 ]
             )
 
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
 
 def build_interactive_page():
     sketches = [
@@ -76,7 +76,7 @@ def build_interactive_main(sketches):
 
     file_name = 'interactive.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name,
             current_page='interactive',
             title='kyle pollina',
@@ -85,13 +85,13 @@ def build_interactive_main(sketches):
             posts=sketch_names
             )
 
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
 
 def build_interactive_sketches(sketches):
     for sketch in sketches:
         file_name = 'interactive/' + sketch['sketch_name'] + '.html'
         template = env.get_template('sketch.html')
-        text = template.render(
+        file_contents = template.render(
                 file_name=file_name,
                 current_page='interactive',
                 title='kyle pollina',
@@ -101,12 +101,12 @@ def build_interactive_sketches(sketches):
                 scripts=sketch['scripts']
                 )
 
-        write_file(file_name, text)
+        write_file(file_name, file_contents)
 
 def build_kinect_page():
     file_name = 'kinect.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name,
             current_page='kinect',
             title='kyle pollina',
@@ -119,12 +119,12 @@ def build_kinect_page():
                 ]
             )
 
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
 
 def build_color_palettes_page():
     file_name = 'color_palettes.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name,
             current_page='color palettes',
             title='kyle pollina',
@@ -138,12 +138,12 @@ def build_color_palettes_page():
                 ]
             )
 
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
 
 def build_mandalas_page():
     file_name = 'mandalas.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name,
             current_page='mandalas',
             title='kyle pollina',
@@ -151,12 +151,12 @@ def build_mandalas_page():
             mandalas=['18', '17', '16', '15', '13', '12', '11', '10', '9', '8', '7', '6', '5', '4', '3']
             )
     
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
 
 def build_ukiyo_e_page():
     file_name = 'ukiyo-e.html'
     template = env.get_template(file_name)
-    text = template.render(
+    file_contents = template.render(
             file_name=file_name,
             current_page='ukiyo-e',
             title='kyle pollina',
@@ -173,18 +173,48 @@ def build_ukiyo_e_page():
                 ]
             )
 
-    write_file(file_name, text)
+    write_file(file_name, file_contents)
+
+def build_data_science():
+    file_name = 'data_science.html'
+    template = env.get_template(file_name)
+    file_contents = template.render(
+            file_name=file_name,
+            current_page='data science',
+            title='kyle pollina',
+            p5js=False,
+            )
+
+    write_file(file_name, file_contents)
+
+    build_fmri()
+    # build_climate_analysis()
+
+def build_fmri():
+    file_name = 'fmri_natural_language_processing.html'
+    template = env.get_template(file_name)
+    file_contents = template.render(
+            file_name=file_name,
+            current_page='data science',
+            title='kyle pollina',
+            is_sketch=True,
+            p5js=False,
+            )
+
+    write_file('data_science/' + file_name, file_contents)
+
     
-def write_file(file_name, text):
+def write_file(file_name, file_contents):
     file = open(file_name, 'w')
-    file.write(text)
+    file.write(file_contents)
     file.close()
 
 if __name__ == "__main__":
-    build_index_page()
-    build_interactive_page()
-    build_kinect_page()
-    build_color_palettes_page()
-    build_mandalas_page()
-    build_ukiyo_e_page()
-
+    build_index()
+    build_interactive()
+    build_kinect()
+    build_color_palettes()
+    build_mandalas()
+    build_ukiyo_e()
+    # build_machine_learning()
+    build_data_science()
