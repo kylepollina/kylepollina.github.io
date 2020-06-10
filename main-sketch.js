@@ -7,7 +7,7 @@ var palette;
 
 function setup() {
     var canvas = createCanvas(495, 220, WEBGL);
-    canvas.parent('cubies-holder');
+    canvas.parent('main-sketch-holder');
 
     palette = randomPalette();
     cube_texture = createGraphics(100, 100);
