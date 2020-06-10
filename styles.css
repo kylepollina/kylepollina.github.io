@@ -4,12 +4,12 @@
 
 @font-face {
     font-family: "Pitch Italic";
-    src: url("../fonts/Pitch Test/PitchTest-SemiboldItalic.otf");
+    src: url("fonts/Pitch Test/PitchTest-SemiboldItalic.otf");
 }
 
 @font-face {
     font-family: "Pitch Light Italic";
-    src: url("../fonts/Pitch Test/PitchTest-Light.otf");
+    src: url("fonts/Pitch Test/PitchTest-Light.otf");
 }
 
 :root {

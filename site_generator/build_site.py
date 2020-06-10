@@ -2,7 +2,6 @@
 Uses jinja2 to build a static website
 """
 
-from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
 env = Environment(
@@ -11,12 +10,9 @@ env = Environment(
     lstrip_blocks=True,
 )
 
-BASE_PATH = Path(__file__).absolute().parent.parent.parent
-
-
 def main():
     build_index()
-    build_interactive()
+    # build_interactive()
     build_kinect()
     build_color_palettes()
     build_mandalas()
@@ -42,24 +38,24 @@ def build_index():
     write_file(BASE_PATH / file_name, file_contents)
 
 
-def build_interactive():
-    sketches = [
-        {'sketch_name': 'thrill',    'scripts': []},
-        {'sketch_name': 'squares',   'scripts': ['palettes.js','io.js']},
-        {'sketch_name': 'corners',   'scripts': ['palettes.js','grid.js']},
-        {'sketch_name': 'arcs',      'scripts': []},
-        {'sketch_name': 'towers',    'scripts': ['grid.js']},
-        {'sketch_name': 'gogh',      'scripts': ['phyllotaxis.js','graphics.js','d3-delaunay.js']},
-        {'sketch_name': 'diamond',   'scripts': ['palettes.js']},
-        {'sketch_name': 'starry',    'scripts': ['phyllotaxis.js','graphics.js','shapes.js']},
-        {'sketch_name': 'triangles', 'scripts': []},
-        {'sketch_name': 'holohex',   'scripts': ['palettes.js','turtle.js','shapes.js']},
-        {'sketch_name': 'spiro',     'scripts': ['turtle.js','shapes.js']},
-        {'sketch_name': 'lisa',      'scripts': ['graphics.js','shapes.js']},
-        {'sketch_name': 'breathing', 'scripts': []},
-    ]
-    build_interactive_main(sketches)
-    build_interactive_sketches(sketches)
+# def build_interactive():
+#     sketches = [
+#         {'sketch_name': 'thrill',    'scripts': []},
+#         {'sketch_name': 'squares',   'scripts': ['palettes.js','io.js']},
+#         {'sketch_name': 'corners',   'scripts': ['palettes.js','grid.js']},
+#         {'sketch_name': 'arcs',      'scripts': []},
+#         {'sketch_name': 'towers',    'scripts': ['grid.js']},
+#         {'sketch_name': 'gogh',      'scripts': ['phyllotaxis.js','graphics.js','d3-delaunay.js']},
+#         {'sketch_name': 'diamond',   'scripts': ['palettes.js']},
+#         {'sketch_name': 'starry',    'scripts': ['phyllotaxis.js','graphics.js','shapes.js']},
+#         {'sketch_name': 'triangles', 'scripts': []},
+#         {'sketch_name': 'holohex',   'scripts': ['palettes.js','turtle.js','shapes.js']},
+#         {'sketch_name': 'spiro',     'scripts': ['turtle.js','shapes.js']},
+#         {'sketch_name': 'lisa',      'scripts': ['graphics.js','shapes.js']},
+#         {'sketch_name': 'breathing', 'scripts': []},
+#     ]
+#     build_interactive_main(sketches)
+#     build_interactive_sketches(sketches)
 
 
 def build_interactive_main(sketches):
