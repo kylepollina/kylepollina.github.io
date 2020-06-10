@@ -1,7 +1,8 @@
-/* cubies.js */
+/* main-sketch.js 
+   kylepollina.github.io*/
 
-var cubeTexture;
-var boxlen;
+
+var cube_texture;
 var palette;
 
 function setup() {
@@ -9,34 +10,35 @@ function setup() {
     canvas.parent('cubies-holder');
 
     palette = randomPalette();
-    cubeTexture = createGraphics(100, 100);
-    boxlen = 20;
+    cube_texture = createGraphics(100, 100);
 
     ortho();
     noLoop();
 }
 
 function draw() {
-    drawCubeTexture();
-    drawCubes();
+    draw_cube_texture();
+    draw_cubes();
 }
 
-function drawCubeTexture() {
-    for(let x = 0; x < cubeTexture.width; x+=boxlen) {
-        for(let y = 0; y < cubeTexture.height; y+=boxlen) {
+function draw_cube_texture() {
+    var boxlen = 20;
 
-            let n = generateN1(x, y);
+    for(let x = 0; x < cube_texture.width; x += boxlen) {
+        for(let y = 0; y < cube_texture.height; y += boxlen) {
 
-            cubeTexture.fill(palette[n%5]);
-            cubeTexture.noStroke();
-            cubeTexture.rect(x, y, boxlen, boxlen);
+            let n = generate_n1(x, y, boxlen);
+
+            cube_texture.fill(palette[n%5]);
+            cube_texture.noStroke();
+            cube_texture.rect(x, y, boxlen, boxlen);
         }
     }
 }
 
-function drawCubes() {
+function draw_cubes() {
     noStroke();
-    texture(cubeTexture);
+    texture(cube_texture);
     rotateX(radians(45));
     rotateY(radians(45));
 
@@ -54,7 +56,7 @@ function drawCubes() {
     }
 }
 
-function generateN1(x, y) {
+function generate_n1(x, y, boxlen) {
     let xindex = x / boxlen;
     let yindex = y / boxlen;
     let n = (yindex * sin(frameCount/80) + xindex + frameCount/4);
