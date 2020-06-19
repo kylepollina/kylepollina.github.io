@@ -15,15 +15,16 @@ class Page:
         lstrip_blocks=True,
     )
 
-    def __init__(self, directory, file_name, page, template_name, requires_p5=False, sketch_name=None, utility_scripts=[], styles=True, posts=None):
+    def __init__(self, directory, file_name, page, template_name, styles=True, requires_p5=False, sketch_name=None, utility_scripts=None, posts=None):
         self.directory = directory
         self.file_name = file_name
         self.page = page
         self.template_name = template_name
+        self.styles = styles
         self.requires_p5 = requires_p5
         self.sketch_name = sketch_name
-        self.utility_scripts = utility_scripts
-        self.styles = styles
+        self.is_sketch = is_sketch
+        self.utility_scripts = utility_scripts if utility_scripts is not None else []
         self.posts = posts
 
     def build(self):
@@ -63,8 +64,15 @@ class Page:
 
 
 def kylepollina_github_io():
-    page = Page(directory='kylepollina.github.io', file_name='index.html', page='home', template_name='kylepollina.github.io.html', requires_p5=True, sketch_name='main-sketch', utility_scripts=['palettes.js'])
-    page.build()
+    Page(
+        directory='kylepollina.github.io', 
+        file_name='index.html', 
+        page='home', 
+        template_name='kylepollina.github.io.html', 
+        requires_p5=True, 
+        sketch_name='main-sketch', 
+        utility_scripts=['palettes.js']
+    ).build()
 
 def art():
     sketches = [
@@ -85,56 +93,38 @@ def art():
 
     sketch_names = [sketch['sketch_name'] for sketch in sketches]
 
-    page = Page(directory='art', file_name='index.html', page='art', template_name='art.html', posts=sketch_names)
-    page.build()
+    Page(
+        directory='art', 
+        file_name='index.html', 
+        page='art', 
+        template_name='art.html', 
+        posts=sketch_names
+    ).build()
 
-    # file_name = 'in.html'
-    # template = env.get_template(file_name)
-    # file_contents = template.render(
-    #     file_name=file_name,
-    #     current_page='interactive',
-    #     title='kyle pollina',
-    #     p5js=False,
-    #     posts=sketch_names
-    # )
+    for sketch in sketches:
+        Page(
+            directory='art/interactive', 
+            file_name=f'{sketch["sketch_name"]}.html', 
+            page='art', 
+            template_name='sketch.html', 
+            styles=False,
+            requires_p5=True,
+            sketch_name=sketch['name'],
+            is_sketch=True,
+            utility_scripts=sketch['scripts']
+        ).build()
 
-    # write_file(BASE_PATH / file_name, file_contents)
-
-
-# def build_interactive_sketches(sketches):
-    # for sketch in sketches:
-    #     file_name = 'interactive/' + sketch['sketch_name'] + '.html'
-    #     template = env.get_template('sketch.html')
-    #     file_contents = template.render(
-    #         file_name=file_name,
-    #         current_page='interactive',
-    #         title='kyle pollina',
-    #         p5js=True,
-    #         is_sketch=True,
-    #         sketch_name=sketch['sketch_name'],
-    #         scripts=sketch['scripts']
-    #     )
-
-    #     write_file(BASE_PATH / file_name, file_contents)
-
-
-# def build_kinect():
-    # file_name = 'kinect.html'
-    # template = env.get_template(file_name)
-    # file_contents = template.render(
-    #     file_name=file_name,
-    #     current_page='kinect',
-    #     title='kyle pollina',
-    #     p5js=False,
-    #     is_sketch=False,
-    #     videos=[
-    #         {'title': 'hand painting', 'link': 'https://www.youtube.com/embed/WwX4lv0vOSY'},
-    #         {'title': 'depth towers', 'link': 'https://www.youtube.com/embed/l7ivoH3AzZU'},
-    #         {'title': 'depth finder', 'link': 'https://www.youtube.com/embed/UsiiZcQ8KB8'}
-    #     ]
-    # )
-
-    # write_file(BASE_PATH / file_name, file_contents)
+        # file_name = 'interactive/' + sketch['sketch_name'] + '.html'
+        # template = env.get_template('sketch.html')
+        # file_contents = template.render(
+        #     file_name=file_name,
+        #     current_page='interactive',
+        #     title='kyle pollina',
+        #     p5js=True,
+        #     is_sketch=True,
+        #     sketch_name=sketch['sketch_name'],
+        #     scripts=sketch['scripts']
+        # )
 
 
 # def build_color_palettes():
