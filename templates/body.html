@@ -9,13 +9,12 @@
 
     <div id='main'>
       <div id='nav'>
-        <ul><a href='https://kylepollina.github.io/'>home</a>{% if current_page == 'home' %}_{% endif %}</ul>
-        <ul><a href='https://kylepollina.github.io/interactive.html'>interactive art</a>{% if current_page == 'interactive' %}_{% endif %}</ul>
-        <ul><a href='https://kylepollina.github.io/data_science.html'>data science</a>{% if current_page == 'data science' %}_{% endif %}</ul>
-        <ul><a href='https://kylepollina.github.io/kinect.html'>kinect</a>{% if current_page == 'kinect' %}_{% endif %}</ul>
-        <ul><a href='https://kylepollina.github.io/color_palettes.html'>color palettes</a>{% if current_page == 'color palettes' %}_{% endif %}</ul>
-        <ul><a href='https://kylepollina.github.io/mandalas.html'>mandalas</a>{% if current_page == 'mandalas' %}_{% endif %}</ul>
-        <ul><a href='https://kylepollina.github.io/ukiyo-e.html'>ukiyo-e</a>{% if current_page == 'ukiyo-e' %}_{% endif %}</ul>
+        <ul><a href='https://kylepollina.github.io/'>{% if current_page == 'home' %}->{% endif %}home</a></ul>
+        <ul><a href='https://kylepollina.github.io/art'>{% if current_page == 'art' %}->{% endif %}art</a></ul>
+        <ul><a href='https://kylepollina.github.io/earthscience'>{% if current_page == 'data science' %}->{% endif %}earthscience</ul>
+        <ul><a href='https://kylepollina.github.io/color_palettes.html'>{% if current_page == 'color palettes' %}->{% endif %}color palettes</a></ul>
+        <ul><a href='https://kylepollina.github.io/mandalas.html'>{% if current_page == 'mandalas' %}->{% endif %}mandalas</a></ul>
+        <ul><a href='https://kylepollina.github.io/ukiyo-e.html'>{% if current_page == 'ukiyo-e' %}->{% endif %}ukiyo-e</a></ul>
         <hr>
         <ul><a href='https://github.com/kylepollina'>github</a></ul>
         <ul><a href='mailto:kylepollina@pm.me'>kylepollina@pm.me</a></ul>
