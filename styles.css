@@ -104,8 +104,8 @@ hr {
     width: 90%;
 }
 
-#posts #machine_learning a {
-    color: #CE2029;
+#posts .description {
+    padding-left: 40px;
 }
 
 #sketch #thrill-holder {

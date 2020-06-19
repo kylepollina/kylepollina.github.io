@@ -15,7 +15,7 @@ class Page:
         lstrip_blocks=True,
     )
 
-    def __init__(self, directory, file_name, page, template_name, styles=True, requires_p5=False, sketch_name=None, utility_scripts=None, posts=None):
+    def __init__(self, directory, file_name, page, template_name, styles=True, requires_p5=False, sketch_name=None, is_sketch=False, utility_scripts=None, posts=None):
         self.directory = directory
         self.file_name = file_name
         self.page = page
@@ -70,61 +70,19 @@ def kylepollina_github_io():
         page='home', 
         template_name='kylepollina.github.io.html', 
         requires_p5=True, 
+        is_sketch=True,
         sketch_name='main-sketch', 
         utility_scripts=['palettes.js']
     ).build()
 
-def art():
-    sketches = [
-        {'sketch_name': 'thrill',    'scripts': []},
-        {'sketch_name': 'squares',   'scripts': ['palettes.js','io.js']},
-        {'sketch_name': 'corners',   'scripts': ['palettes.js','grid.js']},
-        {'sketch_name': 'arcs',      'scripts': []},
-        {'sketch_name': 'towers',    'scripts': ['grid.js']},
-        {'sketch_name': 'gogh',      'scripts': ['phyllotaxis.js','graphics.js','d3-delaunay.js']},
-        {'sketch_name': 'diamond',   'scripts': ['palettes.js']},
-        {'sketch_name': 'starry',    'scripts': ['phyllotaxis.js','graphics.js','shapes.js']},
-        {'sketch_name': 'triangles', 'scripts': []},
-        {'sketch_name': 'holohex',   'scripts': ['palettes.js','turtle.js','shapes.js']},
-        {'sketch_name': 'spiro',     'scripts': ['turtle.js','shapes.js']},
-        {'sketch_name': 'lisa',      'scripts': ['graphics.js','shapes.js']},
-        {'sketch_name': 'breathing', 'scripts': []},
-    ]
-
-    sketch_names = [sketch['sketch_name'] for sketch in sketches]
-
+def earthscience():
     Page(
-        directory='art', 
+        directory='earthscience', 
         file_name='index.html', 
-        page='art', 
-        template_name='art.html', 
-        posts=sketch_names
+        page='earthscience', 
+        template_name='earthscience.html', 
     ).build()
 
-    for sketch in sketches:
-        Page(
-            directory='art/interactive', 
-            file_name=f'{sketch["sketch_name"]}.html', 
-            page='art', 
-            template_name='sketch.html', 
-            styles=False,
-            requires_p5=True,
-            sketch_name=sketch['name'],
-            is_sketch=True,
-            utility_scripts=sketch['scripts']
-        ).build()
-
-        # file_name = 'interactive/' + sketch['sketch_name'] + '.html'
-        # template = env.get_template('sketch.html')
-        # file_contents = template.render(
-        #     file_name=file_name,
-        #     current_page='interactive',
-        #     title='kyle pollina',
-        #     p5js=True,
-        #     is_sketch=True,
-        #     sketch_name=sketch['sketch_name'],
-        #     scripts=sketch['scripts']
-        # )
 
 
 # def build_color_palettes():
@@ -216,10 +174,56 @@ if __name__ == "__main__":
     """Build each individual site"""
     print('building kylepollina.github.io')
     kylepollina_github_io()
-    print('building art')
-    art()
+    print('building earthscience')
+    earthscience()
+
+
+
+    # print('building art')
+    # art()
     # build_kinect()
     # build_color_palettes()
     # build_mandalas()
     # build_ukiyo_e()
     # build_data_science()
+
+def art():
+    sketches = [
+        {'sketch_name': 'thrill',    'scripts': []},
+        {'sketch_name': 'squares',   'scripts': ['palettes.js','io.js']},
+        {'sketch_name': 'corners',   'scripts': ['palettes.js','grid.js']},
+        {'sketch_name': 'arcs',      'scripts': []},
+        {'sketch_name': 'towers',    'scripts': ['grid.js']},
+        {'sketch_name': 'gogh',      'scripts': ['phyllotaxis.js','graphics.js','d3-delaunay.js']},
+        {'sketch_name': 'diamond',   'scripts': ['palettes.js']},
+        {'sketch_name': 'starry',    'scripts': ['phyllotaxis.js','graphics.js','shapes.js']},
+        {'sketch_name': 'triangles', 'scripts': []},
+        {'sketch_name': 'holohex',   'scripts': ['palettes.js','turtle.js','shapes.js']},
+        {'sketch_name': 'spiro',     'scripts': ['turtle.js','shapes.js']},
+        {'sketch_name': 'lisa',      'scripts': ['graphics.js','shapes.js']},
+        {'sketch_name': 'breathing', 'scripts': []},
+    ]
+
+    sketch_names = [sketch['sketch_name'] for sketch in sketches]
+
+    Page(
+        directory='art', 
+        file_name='index.html', 
+        page='art', 
+        template_name='art.html', 
+        posts=sketch_names
+    ).build()
+
+    for sketch in sketches:
+        Page(
+            directory='art/interactive', 
+            file_name=f'{sketch["sketch_name"]}.html', 
+            page='art', 
+            template_name='sketch.html', 
+            styles=False,
+            requires_p5=True,
+            sketch_name=sketch['sketch_name'],
+            is_sketch=True,
+            utility_scripts=sketch['scripts']
+        ).build()
+
