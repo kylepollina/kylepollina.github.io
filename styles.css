@@ -94,6 +94,7 @@ hr {
 
 #posts a {
     color: #CE2029;
+    text-indent: -3em;
 }
 
 #posts a:hover {
