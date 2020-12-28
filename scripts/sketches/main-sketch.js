@@ -69,6 +69,10 @@ function mouseClicked() {
     redraw();
 }
 
+function mouseMoved() {
+    redraw();
+}
+
 /* Prevents up and down arrow from moving page up and down */
 window.addEventListener("keydown", function(e) {
     // space and arrow keys
