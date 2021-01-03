@@ -9,5 +9,9 @@
   <script src="{{ sketch_name }}.js"></script>
   {% for script in p5_utility_scripts %}<script src="../../scripts/p5-utilities/{{ script }}"></script>
   {% endfor %}
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   {% endif %}
 </head>

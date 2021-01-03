@@ -5,29 +5,34 @@ Uses jinja2 to build a static website
 import shutil
 from jinja2 import Environment, FileSystemLoader
 
-class BasePage:
-    def __init__(self, file_name, template, sketch_name, current_page):
+
+class Page:
+    def __init__(
+        self,
+        file_name,
+        template=None,
+        sketch_name=None,
+        current_page='home',
+        p5_utility_scripts=None,
+    ):
         self.file_name = file_name
         self.template = template
         self.sketch_name = sketch_name
         self.current_page = current_page
+        self.p5_utility_scripts = p5_utility_scripts
 
     def build(self):
         ...
 
 
-
-class Index(BasePage):
-    ...
-
-
 if __name__ == "__main__":
-    Index(
+    Page(
         file_name='index.html',
         template='sketch',
         sketch_name='main-sketch',
         p5_utility_scripts=['palettes.js', 'shapes.js']
     ).build()
+
 
 # class Page:
 #     env = Environment(

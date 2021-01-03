@@ -6,4 +6,19 @@
   </div>
 </div>
 
+<br>
+
+<details>
+  <summary>Source code</summary>
+
+  <pre><code class="javascript">{% raw %}{% include  '{% endraw %}{{ sketch_name }}{% raw %}.js' %}{% endraw %}</code></pre>
+
+  {% for script in p5_utility_scripts %}
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/{{ script }}">p5-utilities/{{ script }}</a>
+    </ul>
+  {% endfor %}
+
+</details>
+
 {% endblock %}
