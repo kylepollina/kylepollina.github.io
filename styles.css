@@ -31,8 +31,8 @@ hr      {color: rgb(255, 255, 255);}
 #nav a  {margin-top: 0px;  margin-bottom: 0px;}
 
 #posts              {display: block;  margin-left: 20px;}
-#posts a            {color: #CE2029;  text-indent: -3em;}
-#posts a:hover      {color: #CE2029;}
+/* #posts a            {color: #CE2029;  text-indent: -3em;} */
+/* #posts a:hover      {color: #CE2029;} */
 #posts img          {width: 90%;}
 #posts .description {padding-left: 20px;}
 
