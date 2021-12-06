@@ -1,4 +1,4 @@
-/* main-sketch.js 
+/* main-sketch.js
    kylepollina.github.io*/
 
 
@@ -12,6 +12,8 @@ function setup() {
     palette = randomPalette();
     cube_texture = createGraphics(100, 100);
 
+    background('blue')
+
     ortho();
     noLoop();
 }
@@ -23,6 +25,8 @@ function draw() {
 
 function draw_cube_texture() {
     var boxlen = 20;
+
+    translate(x=-width, y=-height/2)
 
     for(let x = 0; x < cube_texture.width; x += boxlen) {
         for(let y = 0; y < cube_texture.height; y += boxlen) {
@@ -42,17 +46,14 @@ function draw_cubes() {
     rotateX(radians(45));
     rotateY(radians(45));
 
-    translate(-2*width/3, 0, -200);
-
-    for(let i = 0; i < 5; i++) {
-        for(let j = 0; j < 10; j++) {
+    for(let i = 0; i < 3; i++) {
+        push()
+        for(let j = 0; j < 6; j++) {
             box(100);
-            translate(100, 0, 100);
-            box(100);
-            translate(0, 100, -100);
+            translate(x=100, y=0, z=100);
         }
-        translate(-1000, -1000, 0); // reset origin
-        translate(0, -100, 100);
+        pop()
+        translate(x=100, y=100)
     }
 }
 
