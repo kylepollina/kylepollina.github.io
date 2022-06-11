@@ -13,6 +13,7 @@
 
   <!-- Raw here is first pass of creating the tmp file. We want to create a jinja template
     that will import the p5js file that generated the sketch -->
+  <!-- This template basically creates a template that we add the sketch code in later -->
   <pre><code class="javascript">{% raw %}{% include  '{% endraw %}{{ sketch_name }}{% raw %}.js' %}{% endraw %}</code></pre>
 
   {% for script in p5_utility_scripts %}
