@@ -36,6 +36,7 @@ hr      {color: rgb(255, 255, 255);}
 #posts img          {width: 90%;}
 #posts .description {padding-left: 20px;}
 
+/* Different sketches have different widths */
 #sketch #thrill-holder      {width: 640px;  margin: auto;}
 #sketch #squares-holder     {width: 500px;  margin: auto;}
 #sketch #corners-holder     {width: 500px;  margin: auto;}
