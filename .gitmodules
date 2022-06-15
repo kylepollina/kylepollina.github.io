@@ -1,9 +1,0 @@
-[submodule "scripts/library/palettes"]
-	path = scripts/library/palettes
-	url = https://github.com/Jam3/nice-color-palettes.git
-[submodule "scripts/p5_utilities"]
-	path = scripts/p5_utilities
-	url = https://github.com/kylepollina/p5_utilities
-[submodule "scripts/p5-utilities"]
-	path = scripts/p5-utilities
-	url = https://github.com/kylepollina/p5-utilities.git
