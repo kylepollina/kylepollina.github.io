@@ -1,14 +1,17 @@
+<div id='nav' class="w-52">
+    <div id='internal-links'>
+        <div><a href='https://kylepollina.github.io/'>{% if page == 'home' %}↳{% endif %}home</a></div>
+        <div class="-my-2"><a href='https://kylepollina.github.io/earthscience'>{% if page == 'earthscience' %}↳{% endif %}earthscience</a></div>
+        <div class="-my-2"><a href='https://kylepollina.github.io/wildlife'>{% if page == 'wildlife' %}↳{% endif %}wildlife</a></div>
+        <div class="-my-2"><a href='https://kylepollina.github.io/art'>{% if page == 'art' %}↳{% endif %}art</a></div>
+    </div>
 
-      <div id='nav'>
-        <ul><a href='https://kylepollina.github.io/'>{% if current_page == 'home' %}↳{% endif %}home</a></ul>
-        <ul><a href='https://kylepollina.github.io/earthscience'>{% if current_page == 'earthscience' %}↳{% endif %}earthscience</ul>
-        <ul><a href='https://kylepollina.github.io/wildlife'>{% if current_page == 'wildlife' %}↳{% endif %}wildlife</ul>
-        <ul><a href='https://kylepollina.github.io/art'>{% if current_page == 'art' %}↳{% endif %}art</ul>
-        <hr>
+    <div id='external-links'>
         <ul><a href='https://github.com/kylepollina'>github</a></ul>
         <ul><a href='mailto:kylepollina@pm.me'>kylepollina@pm.me</a></ul>
+    </div>
 
-        <div id='footer'>
-          <p><a href="https://vulfpeck.com/">&copy;</a> {{year}} </p>
-        </div>
-      </div>
+    <div id='nav-footer'>
+        <p><a href="https://vulfpeck.com/">&copy;</a> {{year}} </p>
+    </div>
+</div>

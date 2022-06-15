@@ -1,0 +1,17 @@
+<head>
+  <meta charset="UTF-8">
+  <title>{{ title }}</title>
+  <!-- CSS -->
+  <!-- <link rel="stylesheet" href="https://kylepollina.github.io/styles.css"> -->
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Scripts -->
+  {% for script in scripts %}
+  <script language="javascript" type="text/javascript" src="{{script}}"></script>
+  {% endfor %}
+  {% if highlight %}
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js">hljs.initHighlightingOnLoad();</script>
+  {% endif %}
+
+</head>
