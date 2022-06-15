@@ -1,0 +1,3 @@
+[submodule "scripts/p5-utilities"]
+	path = scripts/p5-utilities
+	url = https://github.com/kylepollina/p5-utilities
