@@ -43,7 +43,8 @@ def main():
                 plugin_footnotes,
                 plugin_table,
                 plugin_url,
-            ]
+            ],
+            escape=False
         )
 
         html = markdown.parse(fm.content)
@@ -52,7 +53,12 @@ def main():
         path.parent.mkdir(parents=True, exist_ok=True)
         template = env.get_template("body.html")
         with open(path, 'w+') as f:
-            f.write(template.render(content=html))
+            f.write(
+                template.render(
+                    content=html,
+                    scripts=fm.get('scripts')
+                )
+            )
 
 
 if __name__ == "__main__":

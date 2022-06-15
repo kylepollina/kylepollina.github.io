@@ -5,17 +5,8 @@
   <link rel="stylesheet" href="https://kylepollina.github.io/styles.css">
 
   <!-- Scripts -->
-  {% if requires_p5 %}
-    <script src="{% if is_sketch %}../{% endif %}../scripts/p5/p5.min.js"></script>
-    <script language="javascript" type="text/javascript" src="{% if is_sketch %}../{% endif %}../scripts/p5/addons/p5.dom.js"></script>
-    <script src="{{ sketch_name }}.js"></script>
-    {% for script in p5_utility_scripts %}
-      <script src="../../scripts/p5-utilities/{{ script }}"></script>
-      {% if is_sketch %}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
-        <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-      {% endif %}
-    {% endfor %}
-  {% endif %}
+  {% for script in scripts %}
+    <script language="javascript" type="text/javascript" src="{{script}}"></script>
+  {% endfor %}
+
 </head>
