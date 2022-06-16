@@ -20,6 +20,8 @@ a       {text-decoration: none;  color: #CE2029;}
 a:hover {background: #CE2029; color: rgb(255, 255, 255)}
 /* hr      {color: rgb(255, 255, 255);} */
 
+h1 {font-weight: bold; font-size: xx-large;}
+
 /* #main    {margin-top: 60px;} */
 /* #footer  {text-align: center;} */
 /* #content {float: left;  width: calc(100% - var(--nav-width));  height: 100%;  margin-left: calc(var(--nav-width) + 20px);  padding-top: 0px;  padding-bottom: 40px;} */
