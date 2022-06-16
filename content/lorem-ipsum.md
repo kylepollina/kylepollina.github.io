@@ -4,7 +4,7 @@ scripts:
   - scripts/p5/addons/p5.dom.js
   - scripts/sketches/main-sketch.js
   - scripts/p5-utilities/palettes.js
-page: home
+page: writing
 ---
 
 # Opibus aris dies ictus verba vacant gemini

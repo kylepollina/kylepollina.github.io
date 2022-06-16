@@ -1,18 +1,31 @@
 
 <div id='internal-links' class="content-center">
-    <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://kylepollina.github.io/'>{% if page == 'home' %}↳{% endif %}home</a></div>
-    <div class="-mt-1.5 w-max mx-auto md:mx-0"><a href='https://kylepollina.github.io/earthscience'>{% if page == 'earthscience' %}↳{% endif %}earthscience</a></div>
-    <div class="-mt-1.5 w-max mx-auto md:mx-0"><a href='https://kylepollina.github.io/wildlife'>{% if page == 'wildlife' %}↳{% endif %}wildlife</a></div>
-    <div class="-mt-1.5 w-max mx-auto md:mx-0"><a href='https://kylepollina.github.io/art'>{% if page == 'art' %}↳{% endif %}art</a></div>
+
+    {% for page_name, url in {
+        'home': 'https://kylepollina.github.io/',
+        'writing': 'https://kylepollina.github.io/writing',
+        'research': 'https://kylepollina.github.io/research',
+    }.items() %}
+        <a href={{url}}>
+            <div class="
+                {% if page == page_name %}
+                    bg-red-600 text-red-50 
+                {% else %}
+                    text-red-600 hover:bg-red-600 hover:text-red-50
+                {% endif %}
+                ">{% if page == page_name %}↳{% endif %}{{page_name}}
+            </div>
+        </a>
+    {% endfor %}
 </div>
 
 <hr class="mt-1 -mr-10">
 
 <div id='external-links'>
-    <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://github.com/kylepollina'>github</a></div>
-    <div class="-mt-1.5 w-max mx-auto md:mx-0"><a href='mailto:kylepollina@pm.me'>kylepollina@pm.me</a></div>
+    <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://github.com/kylepollina' class="text-red-600 hover:text-red-50 hover:bg-red-600">github</a></div>
+    <div class="-mt-1.5 w-max mx-auto md:mx-0"><a href='mailto:kylepollina@pm.me' class="text-red-600 hover:text-red-50 hover:bg-red-600">kylepollina@pm.me</a></div>
 </div>
 
 <div id='nav-footer' class="flex justify-center mt-3">
-    <p><a href="https://vulfpeck.com/">&copy;</a> {{year}} </p>
+    <p><a href="https://vulfpeck.com/" class="text-red-600 hover:text-red-50 hover:bg-red-600">&copy;</a> {{year}} </p>
 </div>
