@@ -639,6 +639,10 @@ video {
   width: max-content;
 }
 
+.w-32 {
+  width: 8rem;
+}
+
 .content-center {
   align-content: center;
 }

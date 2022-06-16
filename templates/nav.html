@@ -8,12 +8,14 @@
     }.items() %}
         <a href={{url}}>
             <div class="
+                w-32 mx-auto
+                md:w-full md:mx-0
                 {% if page == page_name %}
                     bg-red-600 text-red-50 
                 {% else %}
                     text-red-600 hover:bg-red-600 hover:text-red-50
                 {% endif %}
-                ">{% if page == page_name %}↳{% endif %}{{page_name}}
+                ">{% if page == page_name %}-{% endif %}{{page_name}}
             </div>
         </a>
     {% endfor %}
