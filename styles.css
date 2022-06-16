@@ -20,8 +20,8 @@ hr {
 h1 {font-weight: bold; font-size: xx-large;}
 h2 {font-weight: bold; font-size: x-large;}
 
-em {background-color: aquamarine; text-decoration: underline;}
-strong {background-color:darkslateblue; color: whitesmoke}
+strong {background-color: rgb(178, 222, 255)}
+em {background-color: rgb(255, 178, 214); color: rgb(18, 18, 18); text-decoration: underline;}
 
 p {margin-top: 10px; margin-bottom: 10px;}
 
