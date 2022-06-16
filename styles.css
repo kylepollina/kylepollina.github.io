@@ -24,3 +24,5 @@ em {background-color: aquamarine; text-decoration: underline;}
 strong {background-color:darkslateblue; color: whitesmoke}
 
 p {margin-top: 10px; margin-bottom: 10px;}
+
+pre {overflow-x: scroll; width: 600px; background-color:aliceblue}
