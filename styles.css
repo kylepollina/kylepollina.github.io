@@ -18,7 +18,12 @@ body {font-family: "Pitch Medium Italic";  font-size: 12pt;}
 
 a       {text-decoration: none;  color: #CE2029;}
 a:hover {background: #CE2029; color: rgb(255, 255, 255)}
-/* hr      {color: rgb(255, 255, 255);} */
+
+hr {
+    height: 1px;
+    background-color: #ccc;
+    border: none;
+}
 
 h1 {font-weight: bold; font-size: xx-large;}
 

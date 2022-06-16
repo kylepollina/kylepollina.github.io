@@ -19,7 +19,7 @@ tags:
   - Typography
 ---
 
-<div id="sketch">
+<div id="sketch" class="flex justify-center">
   <div id="main-sketch-holder">
   </div>
 </div>
