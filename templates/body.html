@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 {% block body %}
 
-<body class="">
-  {% include 'header.html' %}
+<body class="
+    mt-5 md:mt-5
+    md:w-max md:m-auto 
+  ">
 
-  <div class="bg-red-300 flex justify-center">
-    {% include 'nav.html' %} 
+  <div id='header' class="flex justify-center md:justify-start">
+    {% include 'header.html' %}
+  </div>
+
+  <div class="
+      mt-3
+      md:flex
+      md:w-max
+    ">
+    <div id="nav" class="
+        w-full
+        md:w-full
+      ">
+      {% include 'nav.html' %} 
+    </div>
     
-    <div>
+    <div class="md:pl-20 md:flex-none md:max-w-[600px]">
       {{content}}
     </div>
 

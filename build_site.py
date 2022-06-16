@@ -1,5 +1,6 @@
 
 
+from datetime import datetime
 import time
 from typing import List
 
@@ -37,7 +38,7 @@ def main():
     for file in fd('./content'):
         with open(file, 'r') as f:
             fm = frontmatter.load(f)
-        
+
         # See this for example of custom plugins
         # https://github.com/AlanDecode/Maverick/tree/master/Maverick/mistune_plugins
         markdown = mistune.create_markdown(
@@ -61,7 +62,8 @@ def main():
                     content=html,
                     scripts=fm.get('scripts'),
                     highlight=fm.get('highlight', False),
-                    page=fm['page']
+                    page=fm['page'],
+                    year=datetime.now().year
                 )
             )
 
