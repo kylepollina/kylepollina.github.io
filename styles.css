@@ -7,22 +7,3 @@
 @font-face {font-family: "Pitch Light";  src: url("fonts/Pitch Test/PitchTest-Light.otf");}
 
 body {font-family: "Pitch Medium Italic";  font-size: 12pt;}
-
-/* a       {text-decoration: none;  color: #CE2029;} */
-/* a:hover {background: #CE2029; color: rgb(255, 255, 255)} */
-
-/* hr { */
-/*     height: 1px; */
-/*     background-color: #ccc; */
-/*     border: none; */
-/* } */
-
-/* h1 {font-weight: bold; font-size: xx-large;} */
-/* h2 {font-weight: bold; font-size: x-large;} */
-
-/* strong {background-color: rgb(178, 222, 255)} */
-/* em {background-color: rgb(255, 178, 214); color: rgb(18, 18, 18); text-decoration: underline;} */
-
-/* p {margin-top: 10px; margin-bottom: 10px;} */
-
-/* pre {overflow-x: scroll; background-color: #263238} */
