@@ -1070,6 +1070,10 @@ video {
   --tw-prose-invert-td-borders: #3f3f46;
 }
 
+.static {
+  position: static;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;

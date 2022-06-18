@@ -7,18 +7,10 @@
   <title></title>
   <!-- CSS -->
   <!-- <link rel="stylesheet" href="https://kylepollina.github.io/styles.css"> -->
-  <link rel="stylesheet" href="index.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../index.css">
+  <link rel="stylesheet" href="../styles.css">
 
   <!-- Scripts -->
-  
-  <script language="javascript" type="text/javascript" src="scripts/p5/p5.min.js"></script>
-  
-  <script language="javascript" type="text/javascript" src="scripts/p5/addons/p5.dom.js"></script>
-  
-  <script language="javascript" type="text/javascript" src="scripts/sketches/main-sketch.js"></script>
-  
-  <script language="javascript" type="text/javascript" src="scripts/p5-utilities/palettes.js"></script>
   
   
 
@@ -54,9 +46,9 @@
                     mx-auto
                     
                     
-                        bg-darkred text-white
+                        text-darkred hover:bg-darkred hover:text-white
                     
-                    ">-home
+                    ">home
                 </div>
             </a>
         
@@ -84,9 +76,9 @@
                     mx-auto
                     -my-1
                     
-                        text-darkred hover:bg-darkred hover:text-white
+                        bg-darkred text-white
                     
-                    ">writing
+                    ">-writing
                 </div>
             </a>
         
@@ -147,10 +139,28 @@
     prose-em:decoration-slate-600
     prose-strong:bg-slate-200
 ">
-    <div id="sketch" class="pl-10">
-  <div id="main-sketch-holder">
-  </div>
-</div>
+    <h1>Building a static site generator</h1>
+<blockquote>
+<p>Why the hell am I remaking something that has already been made before?</p>
+</blockquote>
+<p>I decided to write my own static site generator because I was frustrated that the current
+static site/blog generators were not customizable to my liking. So instead of spending a few
+hours reading the documentation I spent dozens of hours building my own implementation. ¯_(ツ)_/¯</p>
+<h3>Tools for the job</h3>
+<ul>
+<li>Python<ul>
+<li><a href="https://mistune.readthedocs.io/en/latest/">Mistune</a> - Markdown parser</li>
+<li><a href="https://svn.python.org/projects/external/Jinja-2.1.1/docs/_build/html/index.html">Jinja2</a> - Template engine</li>
+<li><a href="https://python-watchdog.readthedocs.io/en/stable/">Watchdog</a> - Continuosly watch for changed files</li>
+</ul>
+</li>
+<li><a href="https://tailwindcss.com/">Tailwindcss</a><ul>
+<li><a href="https://tailwindcss.com/docs/typography-plugin">Tailwind Typography</a> - Better CSS</li>
+</ul>
+</li>
+</ul>
+<h2>Step 1: Setting up HTML templates</h2>
+<p>The first step is to set up some HTML templates to be reused throughout the site.</p>
 
 </div>
 

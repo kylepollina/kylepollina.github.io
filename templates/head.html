@@ -3,8 +3,8 @@
   <title>{{ title }}</title>
   <!-- CSS -->
   <!-- <link rel="stylesheet" href="https://kylepollina.github.io/styles.css"> -->
-  <link rel="stylesheet" href="index.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="{% for parent in range(parents - 1) %}../{% endfor %}index.css">
+  <link rel="stylesheet" href="{% for parent in range(parents - 1) %}../{% endfor %}styles.css">
 
   <!-- Scripts -->
   {% for script in scripts %}

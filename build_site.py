@@ -64,10 +64,11 @@ def main():
             f.write(
                 template.render(
                     content=html,
-                    scripts=fm.get('scripts'),
+                    scripts=fm.get('scripts', []),
                     highlight=fm.get('highlight', False),
                     page=fm['page'],
-                    year=datetime.now().year
+                    year=datetime.now().year,
+                    parents=len(path.parents)
                 )
             )
 
