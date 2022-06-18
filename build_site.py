@@ -20,6 +20,8 @@ import os
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+from mistune_plugins.blockcode import HighlightRenderer
+
 templates = jinja2.FileSystemLoader('./templates')
 env = jinja2.Environment(loader=templates)
 
@@ -41,6 +43,7 @@ def main():
 
         # See this for example of custom plugins
         # https://github.com/AlanDecode/Maverick/tree/master/Maverick/mistune_plugins
+        renderer = HighlightRenderer(escape=False)
         markdown = mistune.create_markdown(
             plugins=[
                 plugin_strikethrough,
@@ -48,7 +51,8 @@ def main():
                 plugin_table,
                 plugin_url,
             ],
-            escape=False
+            escape=False,
+            renderer=renderer,
         )
 
         html = markdown.parse(fm.content)

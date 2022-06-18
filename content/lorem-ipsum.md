@@ -5,6 +5,7 @@ scripts:
   - scripts/sketches/main-sketch.js
   - scripts/p5-utilities/palettes.js
 page: writing
+highlight: True
 ---
 
 # Opibus aris dies ictus verba vacant gemini
@@ -65,6 +66,29 @@ et ultima voces *virgineas* minis.
         flashCold(grep, parity / boot, handle_yahoo_bar);
         icf_boot = clock;
     }
+
+--------
+
+```python
+def main():
+    for file in fd('./content'):
+        with open(file, 'r') as f:
+            fm = frontmatter.load(f)
+
+        # See this for example of custom plugins
+        # https://github.com/AlanDecode/Maverick/tree/master/Maverick/mistune_plugins
+        renderer = HighlightRenderer(escape=False)
+        markdown = mistune.create_markdown(
+            plugins=[
+                plugin_strikethrough,
+                plugin_footnotes,
+                plugin_table,
+                plugin_url,
+            ],
+            escape=False,
+            renderer=renderer,
+        )
+```
 
 Minanti genetrix **foret**, conditus non adfixa. Tutela *pervius* mirabile
 Anaxarete in nomen e tempora ipse? Quid sua est, gaudebat illa eadem dederas

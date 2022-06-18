@@ -11,7 +11,11 @@
   <script language="javascript" type="text/javascript" src="{{script}}"></script>
   {% endfor %}
   {% if highlight %}
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js">hljs.initHighlightingOnLoad();</script>
+  <!-- <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js">hljs.initHighlightingOnLoad();</script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/atom-one-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
   {% endif %}
 
 </head>

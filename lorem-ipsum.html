@@ -21,6 +21,12 @@
   <script language="javascript" type="text/javascript" src="scripts/p5-utilities/palettes.js"></script>
   
   
+  <!-- <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js">hljs.initHighlightingOnLoad();</script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/atom-one-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
 
 </head>
 
@@ -29,6 +35,7 @@
 <body class="
     mt-5 md:mt-5
     md:w-max md:m-auto 
+    md:max-w-[800px]
   ">
 
   <div id='header' class="flex justify-center md:justify-start">
@@ -42,7 +49,7 @@
     ">
     <div id="nav" class="
         w-full
-        md:w-full
+        md:w-max
       ">
       
 <div id='internal-links' class="content-center">
@@ -56,9 +63,25 @@
                 md:w-full
                 mx-auto
                 
+                
                     text-darkred hover:bg-darkred hover:text-white
                 
                 ">home
+            </div>
+        </a>
+    
+        <a href=https://kylepollina.github.io/about class="
+            w-max
+        ">
+            <div class="
+                w-max
+                md:w-full
+                mx-auto
+                -my-1
+                
+                    text-darkred hover:bg-darkred hover:text-white
+                
+                ">about
             </div>
         </a>
     
@@ -69,6 +92,7 @@
                 w-max
                 md:w-full
                 mx-auto
+                -my-1
                 
                     bg-darkred text-white
                 
@@ -83,6 +107,7 @@
                 w-max
                 md:w-full
                 mx-auto
+                -my-1
                 
                     text-darkred hover:bg-darkred hover:text-white
                 
@@ -90,10 +115,25 @@
             </div>
         </a>
     
+        <a href=https://kylepollina.github.io/interactive class="
+            w-max
+        ">
+            <div class="
+                w-max
+                md:w-full
+                mx-auto
+                -my-1
+                
+                    text-darkred hover:bg-darkred hover:text-white
+                
+                ">interactive
+            </div>
+        </a>
+    
 </div>
 
 <!-- <hr class="mt-1 -mr-10"> -->
---------------------
+---------------------
 
 <div id='external-links'>
     <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://github.com/kylepollina' class="text-darkred hover:text-white hover:bg-darkred">github</a></div>
@@ -101,11 +141,11 @@
 </div>
 
 <div id='nav-footer' class="flex justify-center mt-3">
-    <p><a href="https://vulfpeck.com/" class="text-darkred hover:text-white hover:bg-darkred">&copy;</a> 2022 </p>
+    <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-darkred hover:text-white hover:bg-darkred">&copy;</a> 2022 </p>
 </div> 
     </div>
     
-    <div class="md:pl-20 md:max-w-[600px]">
+    <div class="md:pl-5 md:w-[700px] prose">
       <h1>Opibus aris dies ictus verba vacant gemini</h1>
 <h2>In fixo centum narrantia sub thalamos furens</h2>
 <p>Lorem markdownum pallor quisquis et freta <em>ne falsa fuga</em> peregit inrita, ad
@@ -114,6 +154,7 @@ mortales, aurataque capellas. Omnibus falso. Comas quam <em>cristis in et</em> c
 media mediis licuit cunctos littera Aesone. Erat caput altera luctantia liquidum
 fauces redditur texta <strong>ea</strong> freta subiere et poscit terraeque totaque vixque
 stridore.</p>
+
 <pre><code>e = chipsetDonationware + heapSaasOasis + 4 + threading;
 if (sessionCase * dcimVerticalFooter) {
     balancingIpxPrompt.dvi_dma = scrollingUddi + url + friendly_windows_san;
@@ -136,6 +177,7 @@ modo haustos discidium ne cognata. Ut sumptam enim ova; laboribus
 invidit dextra huc latrasse; est adhuc pavidum <em>in</em>. Auro pars, aliquis elisa
 fluminis falcato data. Mors altera et matris <em>litus</em>: quosque foedabis accipit
 et ultima voces <em>virgineas</em> minis.</p>
+
 <pre><code>mask.intelligence.gateChip(menuKbps, 5);
 if (multithreadingCapacityBase + driveCommercialHard &gt;= passive + vram) {
     lpi = matrix;
@@ -160,6 +202,26 @@ if (ospf(upload_dual_gopher(download, listservAgpRam), -3,
     icf_boot = clock;
 }
 
+</code></pre>
+<hr />
+<pre><code class="language-python">def main():
+    for file in fd('./content'):
+        with open(file, 'r') as f:
+            fm = frontmatter.load(f)
+
+        # See this for example of custom plugins
+        # https://github.com/AlanDecode/Maverick/tree/master/Maverick/mistune_plugins
+        renderer = HighlightRenderer(escape=False)
+        markdown = mistune.create_markdown(
+            plugins=[
+                plugin_strikethrough,
+                plugin_footnotes,
+                plugin_table,
+                plugin_url,
+            ],
+            escape=False,
+            renderer=renderer,
+        )
 </code></pre>
 <p>Minanti genetrix <strong>foret</strong>, conditus non adfixa. Tutela <em>pervius</em> mirabile
 Anaxarete in nomen e tempora ipse? Quid sua est, gaudebat illa eadem dederas
