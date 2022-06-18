@@ -43,7 +43,7 @@ def main():
 
         # See this for example of custom plugins
         # https://github.com/AlanDecode/Maverick/tree/master/Maverick/mistune_plugins
-        renderer = HighlightRenderer(escape=False)
+        # renderer = HighlightRenderer(escape=False)
         markdown = mistune.create_markdown(
             plugins=[
                 plugin_strikethrough,
@@ -52,7 +52,7 @@ def main():
                 plugin_url,
             ],
             escape=False,
-            renderer=renderer,
+            # renderer=renderer,
         )
 
         html = markdown.parse(fm.content)

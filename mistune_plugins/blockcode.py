@@ -18,13 +18,15 @@ class HighlightRenderer(mistune.HTMLRenderer):
 
     def block_code(self, code, lang=None):
         if lang:
-            return super().block_code(code, lang)
-            # try:
-            #     lexer = get_lexer_by_name(lang, stripall=True)
-            #     formatter = html.HtmlFormatter(style=style, linenos=True)
-            #     style_defs = formatter.get_style_defs('td .code')
-            #     return '<style>' + style_defs + '</style>' + highlight(code, lexer, formatter)
-            # except Exception:
-            #     return self.fallback(code, lang)
+            # return super().block_code(code, lang)
+            try:
+                lexer = get_lexer_by_name(lang, stripall=True)
+                # formatter = html.HtmlFormatter(style=style, linenos=True)
+                formatter = html.HtmlFormatter(linenos=True, wrapcode=True, cssfile='code.css', style=style)
+                return highlight(code, lexer, formatter)
+                # style_defs = formatter.get_style_defs('td .code')
+                # return '<style>' + style_defs + '</style>' + highlight(code, lexer, formatter)
+            except Exception:
+                return self.fallback(code, lang)
         else:
             return self.fallback(code, lang)

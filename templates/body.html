@@ -11,21 +11,10 @@
     {% include 'header.html' %}
   </div>
 
-  <div class="
-      mt-3
-      md:flex
-      md:w-max
-    ">
-    <div id="nav" class="
-        w-full
-        md:w-max
-      ">
-      {% include 'nav.html' %} 
-    </div>
+  <div class="mt-3 md:flex md:w-max">
+    {% include 'nav.html' %} 
     
-    <div class="md:pl-5 md:w-[700px] prose">
-      {{content}}
-    </div>
+    {% include 'content.html' %}
 
   </div>
 
