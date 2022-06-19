@@ -1,6 +1,8 @@
 ---
 page: writing
+title: ⚡️ static ⚡️
 highlight: true
+published: false
 ---
 
 # Building a static site generator
@@ -16,8 +18,8 @@ hours reading the documentation I spent dozens of hours building my own implemen
 - Python
   - [Mistune](https://mistune.readthedocs.io/en/latest/) - Markdown parser
   - [Jinja2](https://svn.python.org/projects/external/Jinja-2.1.1/docs/_build/html/index.html) - Template engine
-  - [Watchdog](https://python-watchdog.readthedocs.io/en/stable/) - Continuosly watch for changed files
   - [Python-frontmatter](https://github.com/eyeseast/python-frontmatter) - Page metadata
+  - [Watchdog](https://python-watchdog.readthedocs.io/en/stable/) - Continuosly watch for changed files
 - [Tailwindcss](https://tailwindcss.com/)
   - [Tailwind Typography](https://tailwindcss.com/docs/typography-plugin) - Better CSS
 
@@ -253,9 +255,13 @@ basic setup for a blog a breeze.
        ],
    }
    ```
-3. Run the command `npx tailwindcss -i index.tailwind.css -o index.css --watch` to continuously build our output css to the
-   file `index.css`
-4. Somewhere in your templates add a stylesheet link to this newly created `index.css` file
+3. Run the command 
+
+      `npx tailwindcss -i index.tailwind.css -o index.css --watch`
+
+   to continuously build our output css to the file `index.css`
+
+5. Somewhere in your templates add a stylesheet link to this newly created `index.css` file
    ```html
    <head>
       <meta charset="UTF-8">

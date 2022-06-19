@@ -53,7 +53,7 @@
                 </div>
             </a>
         
-            <a href=https://kylepollina.github.io/about class="
+            <a href=https://kylepollina.github.io/about.html class="
                 w-max
             ">
                 <div class="
@@ -68,7 +68,7 @@
                 </div>
             </a>
         
-            <a href=https://kylepollina.github.io/writing class="
+            <a href=https://kylepollina.github.io/writing.html class="
                 w-max
             ">
                 <div class="
@@ -83,7 +83,7 @@
                 </div>
             </a>
         
-            <a href=https://kylepollina.github.io/research class="
+            <a href=https://kylepollina.github.io/research.html class="
                 w-max
             ">
                 <div class="
@@ -98,7 +98,7 @@
                 </div>
             </a>
         
-            <a href=https://kylepollina.github.io/interactive class="
+            <a href=https://kylepollina.github.io/interactive.html class="
                 w-max
             ">
                 <div class="
@@ -130,6 +130,7 @@
     pb-20
     md:pl-5
     prose
+    
     prose-a:text-darkred
     hover:prose-a:text-white
     hover:prose-a:bg-darkred
@@ -170,8 +171,8 @@ hours reading the documentation I spent dozens of hours building my own implemen
 <li>Python<ul>
 <li><a href="https://mistune.readthedocs.io/en/latest/">Mistune</a> - Markdown parser</li>
 <li><a href="https://svn.python.org/projects/external/Jinja-2.1.1/docs/_build/html/index.html">Jinja2</a> - Template engine</li>
-<li><a href="https://python-watchdog.readthedocs.io/en/stable/">Watchdog</a> - Continuosly watch for changed files</li>
 <li><a href="https://github.com/eyeseast/python-frontmatter">Python-frontmatter</a> - Page metadata</li>
+<li><a href="https://python-watchdog.readthedocs.io/en/stable/">Watchdog</a> - Continuosly watch for changed files</li>
 </ul>
 </li>
 <li><a href="https://tailwindcss.com/">Tailwindcss</a><ul>
@@ -367,8 +368,10 @@ and the <code>markdown/</code> dir and run the whole build step each time a file
 plugin for tailwindcss. The typography plugin sets up a lot of nice styles for converted markdown -&gt; html which makes
 basic setup for a blog a breeze.</p>
 <ol>
-<li>Download and install tailwindcss</li>
-<li>Setup your <code>tailwind.config.js</code> to look for our html and markdown files and add the typography plugin.<pre><code class="language-javascript">module.exports = {
+<li><p>Download and install tailwindcss</p>
+</li>
+<li><p>Setup your <code>tailwind.config.js</code> to look for our html and markdown files and add the typography plugin.</p>
+<pre><code class="language-javascript">module.exports = {
     content: [&quot;./**/*.html&quot;, &quot;./content/**/*.md&quot;],
     theme: {},
     plugins: [
@@ -377,9 +380,12 @@ basic setup for a blog a breeze.</p>
 }
 </code></pre>
 </li>
-<li>Run the command <code>npx tailwindcss -i index.tailwind.css -o index.css --watch</code> to continuously build our output css to the
-file <code>index.css</code></li>
-<li>Somewhere in your templates add a stylesheet link to this newly created <code>index.css</code> file<pre><code class="language-html">&lt;head&gt;
+<li><p>Run the command</p>
+<p><code>npx tailwindcss -i index.tailwind.css -o index.css --watch</code></p>
+<p>to continuously build our output css to the file <code>index.css</code></p>
+</li>
+<li><p>Somewhere in your templates add a stylesheet link to this newly created <code>index.css</code> file</p>
+<pre><code class="language-html">&lt;head&gt;
    &lt;meta charset=&quot;UTF-8&quot;&gt;
    &lt;title&gt;{{ title }}&lt;/title&gt;
    &lt;!-- CSS --&gt;
