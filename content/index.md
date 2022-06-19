@@ -19,7 +19,7 @@ tags:
   - Typography
 ---
 
-<div id="sketch" class="pl-10">
+<div id="sketch" class="pl-5">
   <div id="main-sketch-holder">
   </div>
 </div>

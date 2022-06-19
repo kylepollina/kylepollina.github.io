@@ -20,7 +20,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 MD_DIR = 'content/'
-HTML_DIR = 'src/'
+HTML_DIR = './'
 
 templates = jinja2.FileSystemLoader('./templates')
 env = jinja2.Environment(loader=templates)

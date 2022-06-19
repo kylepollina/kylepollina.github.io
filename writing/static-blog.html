@@ -21,8 +21,8 @@
 
 <body class="
     mt-5 md:mt-5
-    md:w-max md:m-auto 
-    md:max-w-[800px]
+    md:m-auto 
+    md:w-[800px]
   ">
   <div id='header' class="flex justify-center md:justify-start">
     <div id='header'>
@@ -145,7 +145,10 @@
 
     prose-pre:bg-white prose-pre:p-0
     prose-pre:rounded-sm
-    
+    md:prose-pre:w-max
+    md:prose-pre:max-w-[750px]
+    md:prose-pre:min-w-full
+
     prose-code:bg-slate-300
     prose-code:text-myblue
     prose-code:rounded-sm
@@ -176,6 +179,8 @@ hours reading the documentation I spent dozens of hours building my own implemen
 </ul>
 </li>
 </ul>
+<p>I'm not going to go into much detail regarding Tailwindcss, but I will at least show how I set it up to work for
+this project.</p>
 <h2>Templates</h2>
 <p>The first step is to set up some basic HTML templates to be reused throughout the site. I keep these all in
 a directory called <code>templates/</code></p>
@@ -186,8 +191,8 @@ a directory called <code>templates/</code></p>
 {% include 'body.html' %}
 &lt;/html&gt;
 </code></pre>
-<p>This will be the main template we'll use. Jinja allows us to include other template files in the same directory,
-which is nice to make things more modular.</p>
+<p>This will be the main template we'll use. Jinja allows us to include other template files from the same directory,
+which helps us make the site more modular.</p>
 <pre><code class="language-html">&lt;!-- templates/head.html --&gt;
 &lt;head&gt;
   &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -199,24 +204,191 @@ which is nice to make things more modular.</p>
   {% include 'header.html' %}
   &lt;div&gt;
     {% include 'nav.html' %} 
-    {% include 'content.html' %}
+    {{ content }}
   &lt;/div&gt;
 &lt;/body&gt;
 </code></pre>
 <p>etc.</p>
 <h2>Markdown -&gt; HTML</h2>
-<p>So to convert markdown to html we are going to need the <a href="https://mistune.readthedocs.io/en/latest/">Mistune</a>
-package for Python. I also use <a href="https://github.com/eyeseast/python-frontmatter">python-frontmatter</a> to
-read in metadata for each markdown file. I keep all of my markdown files in a directory called <code>content/</code></p>
-<p>Here's a simple script to read all files from the <code>content/</code> dir and convert them into HTML.</p>
-<pre><code class="language-python">def main():
-    ...
+<p>To convert markdown to html we are going to need the <a href="https://mistune.readthedocs.io/en/latest/">Mistune</a>
+package for Python. For this example we will keep all of the markdown files in a directory called <code>markdown/</code>
+and all the HTML files in a directory called <code>html/</code>.</p>
+<p>Let's start with a simple file at <code>markdown/hello-world.md</code>.</p>
+<pre><code class="language-markdown"># Hello world
+_This_ is **my** website.
+
+- [Link 1](www.google.com)
+- [Link 2](www.wikipedia.org)
+</code></pre>
+<p>Here's a Python script called <code>build_site.py</code> to read all files from the <code>markdown/</code> dir and convert them into HTML:</p>
+<pre><code class="language-python"># ./build_site.py
+from pathlib import Path
+import jinja2
+from mistune.plugins import (
+    plugin_strikethrough,
+    plugin_footnotes,
+    plugin_table,
+    plugin_url,
+)
+
+MD_DIR = 'markdown/'
+HTML_DIR = 'html/'
+TEMPLATES_DIR = 'templates/'
+
+templates = jinja2.FileSystemLoader(TEMPLATES_DIR)
+env = jinja2.Environment(loader=templates)
+
+def main():
+    # Get a list of all markdown files in the MD_DIR directory
+    md_files = list(Path(MD_DIR).rglob('*.md'))
+
+    for file in md_files:
+        with open(file, 'r') as f:
+            content = f.read()
+
+        # Create a markdown parser with the given plugins
+        markdown = mistune.create_markdown(
+            plugins=[
+                plugin_strikethrough,
+                plugin_footnotes,
+                plugin_table,
+                plugin_url,
+            ],
+            escape=False,  # Allows us to write HTML code in
+            # the markdown files without the code being escaped
+        )
+        # Parse the markdown text into html
+        html = markdown.parse(content)
+        # Make a new filepath for the new html file we will create
+        html_file = Path(str(file).replace(MD_DIR, HTML_DIR).replace('.md', '.html'))
+        html_file.parent.mkdir(parents=True, exist_ok=True)
+
+        # Create a new template object with the base.html template
+        template = env.get_template(&quot;base.html&quot;)
+        page_text = template.render(
+            title='my title',
+            content=html
+        )
+
+        with open(html_file, 'w+') as f:
+            f.write(page_text)
 
 if __name__ == &quot;__main__&quot;:
-  main()
+    main()
 </code></pre>
+<p>Read more about <code>mistune.create_markdown()</code> here: <a href="">TODO LINK</a></p>
 <h2>Frontmatter</h2>
+<p>I use <a href="https://github.com/eyeseast/python-frontmatter">python-frontmatter</a> to read in metadata for each markdown file.
+Let's add some metadata to our <code>hello-world.md</code> file.</p>
+<pre><code class="language-markdown">---
+title: My Hello world page
+---
+# Hello world
+_This_ is **my** website.
+
+- [Link 1](www.google.com)
+- [Link 2](www.wikipedia.org)
+</code></pre>
+<p>Now we can access this data using the <code>frontmatter</code> package. Change the <code>main()</code> function to read the frontmatter data
+into a dictionary.</p>
+<pre><code class="language-python">import frontmatter
+...
+
+def main():
+    # Get a list of all markdown files in the MD_DIR directory
+    md_files = list(Path(MD_DIR).rglob('*.md'))
+
+    for file in md_files:
+        with open(file, 'r') as f:
+            # Load the frontmatter data into the dictionary `fm`
+            fm = frontmatter.load(f)
+            content = fm.content
+
+        ...
+
+        # Create a new template object with the base.html template
+        template = env.get_template(&quot;base.html&quot;)
+        page_text = template.render(
+            # We can now access the title metadata from the markdown
+            # frontmatter and plug it into our template
+            title=fm.get('title'),
+            content=html
+        )
+
+        with open(html_file, 'w+') as f:
+            f.write(page_text)
+
+</code></pre>
+<h2>Automatic reloading</h2>
+<p>In order to have automatic reloading whenever a markdown file or template file is changed, we
+can use the <code>watchdog</code> package to observe any changes to files and run the <code>main()</code> function
+for each event.</p>
+<pre><code class="language-python">
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+...
+
+class MyHandler(FileSystemEventHandler):
+    def on_modified(self,  event):
+        if TEMPLATES_DIR in event.src_path or MD_DIR in event.src_path:
+            print(f'event type: {event.event_type} path : {event.src_path}')  
+            main()
+
+    def on_created(self,  event):
+        if TEMPLATES_DIR in event.src_path or MD_DIR in event.src_path:
+            print(f'event type: {event.event_type} path : {event.src_path}')  
+            main()
+
+    def on_deleted(self,  event):
+        if TEMPLATES_DIR in event.src_path or MD_DIR in event.src_path:
+            print(f'event type: {event.event_type} path : {event.src_path}')  
+            main()
+
+
+if __name__ == &quot;__main__&quot;:
+    main()
+    event_handler = MyHandler()
+    observer = Observer()
+    observer.schedule(event_handler,  path='.',  recursive=True)
+    observer.start()
+
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+
+    observer.join()
+</code></pre>
+<p>Now, whenever we run <code>python build_site.py</code> it will continuously check for changes in the <code>templates/</code> dir
+and the <code>markdown/</code> dir and run the whole build step each time a file changes.</p>
 <h2>TailwindCSS for styling</h2>
+<p>This site uses <a href="https://tailwindcss.com/">Tailwindcss</a> and the <a href="https://tailwindcss.com/docs/typography-plugin">Typography</a>
+plugin for tailwindcss. The typography plugin sets up a lot of nice styles for converted markdown -&gt; html which makes
+basic setup for a blog a breeze.</p>
+<ol>
+<li>Download and install tailwindcss</li>
+<li>Setup your <code>tailwind.config.js</code> to look for our html and markdown files and add the typography plugin.<pre><code class="language-javascript">module.exports = {
+    content: [&quot;./**/*.html&quot;, &quot;./content/**/*.md&quot;],
+    theme: {},
+    plugins: [
+      require('@tailwindcss/typography'),
+    ],
+}
+</code></pre>
+</li>
+<li>Run the command <code>npx tailwindcss -i index.tailwind.css -o index.css --watch</code> to continuously build our output css to the
+file <code>index.css</code></li>
+<li>Somewhere in your templates add a stylesheet link to this newly created <code>index.css</code> file<pre><code class="language-html">&lt;head&gt;
+   &lt;meta charset=&quot;UTF-8&quot;&gt;
+   &lt;title&gt;{{ title }}&lt;/title&gt;
+   &lt;!-- CSS --&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;index.css&quot;&gt;
+&lt;/head&gt;
+</code></pre>
+</li>
+</ol>
+<p>Now we will be able to use tailwindcss classes in our templates and have them applied to every page that is being built.</p>
 
 </div>
   </div>

@@ -1077,6 +1077,22 @@ video {
   padding-bottom: 5rem;
 }
 
+.pl-5 {
+  padding-left: 1.25rem;
+}
+
+.pl-2 {
+  padding-left: 0.5rem;
+}
+
+.pl-1 {
+  padding-left: 0.25rem;
+}
+
+.pl-0 {
+  padding-left: 0px;
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1170,26 +1186,6 @@ video {
   content: var(--tw-content);
 }
 
-.prose-pre\:w-full :is(:where(pre):not(:where([class~="not-prose"] *))) {
-  width: 100%;
-}
-
-.prose-pre\:w-\[600px\] :is(:where(pre):not(:where([class~="not-prose"] *))) {
-  width: 600px;
-}
-
-.prose-pre\:w-\[900px\] :is(:where(pre):not(:where([class~="not-prose"] *))) {
-  width: 900px;
-}
-
-.prose-pre\:w-\[800px\] :is(:where(pre):not(:where([class~="not-prose"] *))) {
-  width: 800px;
-}
-
-.prose-pre\:w-\[700px\] :is(:where(pre):not(:where([class~="not-prose"] *))) {
-  width: 700px;
-}
-
 .prose-pre\:rounded-sm :is(:where(pre):not(:where([class~="not-prose"] *))) {
   border-radius: 0.125rem;
 }
@@ -1201,10 +1197,6 @@ video {
 
 .prose-pre\:p-0 :is(:where(pre):not(:where([class~="not-prose"] *))) {
   padding: 0px;
-}
-
-.prose-pre\:pr-5 :is(:where(pre):not(:where([class~="not-prose"] *))) {
-  padding-right: 1.25rem;
 }
 
 .prose-ul\:my-0 :is(:where(ul):not(:where([class~="not-prose"] *))) {
@@ -1245,6 +1237,10 @@ video {
     width: 100%;
   }
 
+  .md\:w-\[800px\] {
+    width: 800px;
+  }
+
   .md\:max-w-\[800px\] {
     max-width: 800px;
   }
@@ -1257,14 +1253,6 @@ video {
     padding-left: 1.25rem;
   }
 
-  .md\:prose-pre\:w-\[700px\] :is(:where(pre):not(:where([class~="not-prose"] *))) {
-    width: 700px;
-  }
-
-  .md\:prose-pre\:w-full :is(:where(pre):not(:where([class~="not-prose"] *))) {
-    width: 100%;
-  }
-
   .md\:prose-pre\:w-max :is(:where(pre):not(:where([class~="not-prose"] *))) {
     width: -webkit-max-content;
     width: -moz-max-content;
@@ -1273,10 +1261,6 @@ video {
 
   .md\:prose-pre\:min-w-full :is(:where(pre):not(:where([class~="not-prose"] *))) {
     min-width: 100%;
-  }
-
-  .md\:prose-pre\:max-w-\[700px\] :is(:where(pre):not(:where([class~="not-prose"] *))) {
-    max-width: 700px;
   }
 
   .md\:prose-pre\:max-w-\[750px\] :is(:where(pre):not(:where([class~="not-prose"] *))) {
