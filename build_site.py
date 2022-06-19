@@ -10,7 +10,8 @@ from mistune.plugins import (
     plugin_strikethrough,
     plugin_footnotes,
     plugin_table,
-    plugin_url
+    plugin_url,
+    plugin_task_lists,
 )
 
 import frontmatter
@@ -50,6 +51,7 @@ def main():
                 plugin_footnotes,
                 plugin_table,
                 plugin_url,
+                plugin_task_lists,
             ],
             escape=False,
             # renderer=renderer,
@@ -59,7 +61,7 @@ def main():
         # Save file
         path = Path(file.replace('content/', '').replace('.md', '.html'))
         path.parent.mkdir(parents=True, exist_ok=True)
-        template = env.get_template("body.html")
+        template = env.get_template("base.html")
         with open(path, 'w+') as f:
             f.write(
                 template.render(

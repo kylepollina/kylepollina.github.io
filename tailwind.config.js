@@ -4,7 +4,8 @@ module.exports = {
       extend: {
         colors: {
           'darkred': '#CE2029',
-          'lightblue': 'rgb(102,172,228)'
+          'lightblue': 'rgb(102,172,228)',
+          'myblue': 'rgb(40,122,177)'
         }
       },
     },

@@ -1,23 +1,13 @@
-{% extends 'base.html' %}
-{% block body %}
-
 <body class="
     mt-5 md:mt-5
     md:w-max md:m-auto 
     md:max-w-[800px]
   ">
-
   <div id='header' class="flex justify-center md:justify-start">
     {% include 'header.html' %}
   </div>
-
   <div class="mt-3 md:flex md:w-max">
     {% include 'nav.html' %} 
-    
     {% include 'content.html' %}
-
   </div>
-
 </body>
-
-{% endblock %}
