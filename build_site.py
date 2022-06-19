@@ -2,7 +2,6 @@
 
 from datetime import datetime
 import time
-from typing import List
 
 import mistune
 from pathlib import Path
@@ -16,29 +15,20 @@ from mistune.plugins import (
 
 import frontmatter
 import jinja2
-import os
 
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-from mistune_plugins.blockcode import HighlightRenderer
+MD_DIR = 'content/'
+HTML_DIR = 'src/'
 
 templates = jinja2.FileSystemLoader('./templates')
 env = jinja2.Environment(loader=templates)
 
 
-def fd(path: str) -> List[str]:
-    # return [f'{dir}/{file}' for file in files for dir, _, files in os.walk(os.path.expanduser(path))]
-
-    all_files = []
-    for dir, _, files in os.walk(os.path.expanduser(path)):
-        for file in files:
-            all_files.append(f'{dir}/{file}')
-
-    return all_files
-
 def main():
-    for file in fd('./content'):
+    md_files = list(Path(MD_DIR).rglob('*.md'))
+    for file in md_files:
         with open(file, 'r') as f:
             fm = frontmatter.load(f)
 
@@ -59,10 +49,10 @@ def main():
 
         html = markdown.parse(fm.content)
         # Save file
-        path = Path(file.replace('content/', '').replace('.md', '.html'))
-        path.parent.mkdir(parents=True, exist_ok=True)
+        html_file = Path(str(file).replace(MD_DIR, HTML_DIR).replace('.md', '.html'))
+        html_file.parent.mkdir(parents=True, exist_ok=True)
         template = env.get_template("base.html")
-        with open(path, 'w+') as f:
+        with open(html_file, 'w+') as f:
             f.write(
                 template.render(
                     content=html,
@@ -70,7 +60,7 @@ def main():
                     highlight=fm.get('highlight', False),
                     page=fm['page'],
                     year=datetime.now().year,
-                    parents=len(path.parents)
+                    parents=len(html_file.parents)
                 )
             )
 
