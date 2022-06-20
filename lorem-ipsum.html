@@ -62,6 +62,11 @@
                     
                         text-theme1bg
                         hover:text-white hover:bg-theme1bg
+
+                        dark:bg-theme1bg
+                        dark:text-white
+                        dark:hover:border-r-4
+                        dark:hover:border-white
                     
                     ">home
                 </div>
@@ -78,6 +83,11 @@
                     
                         text-theme2bg
                         hover:text-white hover:bg-theme2bg
+
+                        dark:bg-theme2bg
+                        dark:text-white
+                        dark:hover:border-r-4
+                        dark:hover:border-white
                     
                     ">about
                 </div>
@@ -93,6 +103,9 @@
                     mx-auto
                     
                         text-white bg-theme3bg
+                        
+                        dark:border-white
+                        dark:border-r-4
                     
                     ">-writing
                 </div>
@@ -109,6 +122,11 @@
                     
                         text-theme4bg
                         hover:text-white hover:bg-theme4bg
+
+                        dark:bg-theme4bg
+                        dark:text-white
+                        dark:hover:border-r-4
+                        dark:hover:border-white
                     
                     ">research
                 </div>
@@ -125,6 +143,11 @@
                     
                         text-theme5bg
                         hover:text-white hover:bg-theme5bg
+
+                        dark:bg-theme5bg
+                        dark:text-white
+                        dark:hover:border-r-4
+                        dark:hover:border-white
                     
                     ">interactive
                 </div>
@@ -132,7 +155,7 @@
         
     </div>
 
-    <span class="flex justify-center">---------------------</span>
+    <span class="flex justify-center dark:text-white">---------------------</span>
 
     <div id='external-links'>
         <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://github.com/kylepollina' class="text-theme3bg hover:text-white hover:bg-theme3bg">github</a></div>
@@ -140,14 +163,22 @@
     </div>
 
     <div id='nav-footer' class="flex justify-center mt-3">
-        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-theme3bg hover:text-white hover:bg-theme3bg">&copy;</a> 2022 </p>
+        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-theme3bg hover:text-white hover:bg-theme3bg">&copy;</a> <span class="dark:text-white">2022</span> </p>
     </div>
 </div> 
     <div class="
     pb-20
     md:pl-5
     prose
-    
+
+    dark:text-slate-300
+    dark:prose-h1:text-slate-300
+    dark:prose-h2:text-slate-300
+    dark:prose-h3:text-slate-300
+    dark:prose-h4:text-slate-300
+    dark:prose-h5:text-slate-300
+    dark:prose-blockquote:text-slate-300
+
     prose-a:text-theme3bg
     hover:prose-a:text-white
     hover:prose-a:bg-theme3bg
@@ -162,13 +193,14 @@
     prose-li:my-0
 
     prose-pre:rounded-sm
-    prose-pre:bg-white prose-pre:p-0
+    prose-pre:bg-none prose-pre:p-0
     md:prose-pre:w-max
     md:prose-pre:max-w-[750px]
     md:prose-pre:min-w-full
     prose-pre:font-mono-regular
 
     prose-code:bg-slate-300
+    dark:prose-code:bg-slate-700
     prose-code:text-theme3bg
     prose-code:rounded-sm
     prose-code:shadow-inner

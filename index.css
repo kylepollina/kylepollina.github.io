@@ -1488,6 +1488,10 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.prose-pre\:bg-none :is(:where(pre):not(:where([class~="not-prose"] *))) {
+  background-image: none;
+}
+
 .prose-pre\:p-0 :is(:where(pre):not(:where([class~="not-prose"] *))) {
   padding: 0px;
 }
@@ -1507,14 +1511,182 @@ video {
 }
 
 @media (prefers-color-scheme: dark) {
+  .dark\:w-max {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+
+  .dark\:border-2 {
+    border-width: 2px;
+  }
+
+  .dark\:border-r-8 {
+    border-right-width: 8px;
+  }
+
+  .dark\:border-r-2 {
+    border-right-width: 2px;
+  }
+
+  .dark\:border-r-4 {
+    border-right-width: 4px;
+  }
+
+  .dark\:border-white {
+    --tw-border-opacity: 1;
+    border-color: rgb(255 255 255 / var(--tw-border-opacity));
+  }
+
+  .dark\:border-slate-50 {
+    --tw-border-opacity: 1;
+    border-color: rgb(248 250 252 / var(--tw-border-opacity));
+  }
+
+  .dark\:border-slate-100 {
+    --tw-border-opacity: 1;
+    border-color: rgb(241 245 249 / var(--tw-border-opacity));
+  }
+
+  .dark\:border-slate-400 {
+    --tw-border-opacity: 1;
+    border-color: rgb(148 163 184 / var(--tw-border-opacity));
+  }
+
+  .dark\:border-slate-300 {
+    --tw-border-opacity: 1;
+    border-color: rgb(203 213 225 / var(--tw-border-opacity));
+  }
+
+  .dark\:border-slate-200 {
+    --tw-border-opacity: 1;
+    border-color: rgb(226 232 240 / var(--tw-border-opacity));
+  }
+
   .dark\:bg-darkbg {
     --tw-bg-opacity: 1;
     background-color: rgb(14 23 36 / var(--tw-bg-opacity));
   }
 
+  .dark\:bg-theme2bg {
+    --tw-bg-opacity: 1;
+    background-color: rgb(34 91 126 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-theme3bg {
+    --tw-bg-opacity: 1;
+    background-color: rgb(76 135 133 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-theme4bg {
+    --tw-bg-opacity: 1;
+    background-color: rgb(211 156 73 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-theme5bg {
+    --tw-bg-opacity: 1;
+    background-color: rgb(230 82 68 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-theme1bg {
+    --tw-bg-opacity: 1;
+    background-color: rgb(196 46 96 / var(--tw-bg-opacity));
+  }
+
   .dark\:text-white {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+
+  .dark\:text-slate-300 {
+    --tw-text-opacity: 1;
+    color: rgb(203 213 225 / var(--tw-text-opacity));
+  }
+
+  .dark\:underline {
+    -webkit-text-decoration-line: underline;
+            text-decoration-line: underline;
+  }
+
+  .dark\:hover\:border-2:hover {
+    border-width: 2px;
+  }
+
+  .dark\:hover\:border-l-2:hover {
+    border-left-width: 2px;
+  }
+
+  .dark\:hover\:border-r-2:hover {
+    border-right-width: 2px;
+  }
+
+  .dark\:hover\:border-r-4:hover {
+    border-right-width: 4px;
+  }
+
+  .dark\:hover\:border-slate-500:hover {
+    --tw-border-opacity: 1;
+    border-color: rgb(100 116 139 / var(--tw-border-opacity));
+  }
+
+  .dark\:hover\:border-slate-300:hover {
+    --tw-border-opacity: 1;
+    border-color: rgb(203 213 225 / var(--tw-border-opacity));
+  }
+
+  .dark\:hover\:border-slate-200:hover {
+    --tw-border-opacity: 1;
+    border-color: rgb(226 232 240 / var(--tw-border-opacity));
+  }
+
+  .dark\:hover\:border-white:hover {
+    --tw-border-opacity: 1;
+    border-color: rgb(255 255 255 / var(--tw-border-opacity));
+  }
+
+  .dark\:hover\:underline:hover {
+    -webkit-text-decoration-line: underline;
+            text-decoration-line: underline;
+  }
+
+  .dark\:prose-h1\:text-white :is(:where(h1):not(:where([class~="not-prose"] *))) {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+
+  .dark\:prose-h1\:text-slate-300 :is(:where(h1):not(:where([class~="not-prose"] *))) {
+    --tw-text-opacity: 1;
+    color: rgb(203 213 225 / var(--tw-text-opacity));
+  }
+
+  .dark\:prose-h2\:text-slate-300 :is(:where(h2):not(:where([class~="not-prose"] *))) {
+    --tw-text-opacity: 1;
+    color: rgb(203 213 225 / var(--tw-text-opacity));
+  }
+
+  .dark\:prose-h3\:text-slate-300 :is(:where(h3):not(:where([class~="not-prose"] *))) {
+    --tw-text-opacity: 1;
+    color: rgb(203 213 225 / var(--tw-text-opacity));
+  }
+
+  .dark\:prose-h4\:text-slate-300 :is(:where(h4):not(:where([class~="not-prose"] *))) {
+    --tw-text-opacity: 1;
+    color: rgb(203 213 225 / var(--tw-text-opacity));
+  }
+
+  .dark\:prose-blockquote\:text-white :is(:where(blockquote):not(:where([class~="not-prose"] *))) {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+  }
+
+  .dark\:prose-blockquote\:text-slate-300 :is(:where(blockquote):not(:where([class~="not-prose"] *))) {
+    --tw-text-opacity: 1;
+    color: rgb(203 213 225 / var(--tw-text-opacity));
+  }
+
+  .dark\:prose-code\:bg-slate-700 :is(:where(code):not(:where([class~="not-prose"] *))) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(51 65 85 / var(--tw-bg-opacity));
   }
 }
 

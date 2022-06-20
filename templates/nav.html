@@ -16,9 +16,17 @@
                     mx-auto
                     {% if page == page_name %}
                         text-white bg-{{ bg }}
+                        
+                        dark:border-white
+                        dark:border-r-4
                     {% else %}
                         text-{{ bg }}
                         hover:text-white hover:bg-{{ bg }}
+
+                        dark:bg-{{bg}}
+                        dark:text-white
+                        dark:hover:border-r-4
+                        dark:hover:border-white
                     {% endif %}
                     ">{% if page == page_name %}-{% endif %}{{page_name}}
                 </div>
@@ -26,7 +34,7 @@
         {% endfor %}
     </div>
 
-    <span class="flex justify-center">---------------------</span>
+    <span class="flex justify-center dark:text-white">---------------------</span>
 
     <div id='external-links'>
         <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://github.com/kylepollina' class="text-{{link_bg}} hover:text-white hover:bg-{{link_bg}}">github</a></div>
@@ -34,6 +42,6 @@
     </div>
 
     <div id='nav-footer' class="flex justify-center mt-3">
-        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-{{link_bg}} hover:text-white hover:bg-{{link_bg}}">&copy;</a> {{year}} </p>
+        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-{{link_bg}} hover:text-white hover:bg-{{link_bg}}">&copy;</a> <span class="dark:text-white">{{year}}</span> </p>
     </div>
 </div>
