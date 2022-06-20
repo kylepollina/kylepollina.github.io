@@ -53,11 +53,11 @@ def main():
         html_file.parent.mkdir(parents=True, exist_ok=True)
         template = env.get_template("base.html")
         nav_info = {
-            'home': ['https://kylepollina.github.io/', 'theme1bg', 'theme1fg'],
-            'about': ['https://kylepollina.github.io/about.html', 'theme2bg', 'theme2fg'],
-            'writing': ['https://kylepollina.github.io/writing.html', 'theme3bg', 'theme3fg'],
-            'research': ['https://kylepollina.github.io/research.html', 'theme4bg', 'theme4fg'],
-            'interactive': ['https://kylepollina.github.io/interactive.html', 'theme5bg', 'theme5fg'],
+            'home': ['https://kylepollina.github.io/', 'theme1bg'],
+            'about': ['https://kylepollina.github.io/about.html', 'theme2bg'],
+            'writing': ['https://kylepollina.github.io/writing.html', 'theme3bg'],
+            'research': ['https://kylepollina.github.io/research.html', 'theme4bg'],
+            'interactive': ['https://kylepollina.github.io/interactive.html', 'theme5bg'],
         }
         page = fm['page']
         with open(html_file, 'w+') as f:
@@ -68,7 +68,6 @@ def main():
                     highlight=fm.get('highlight', False),
                     page=page,
                     nav_info=nav_info,
-                    link_fg=nav_info[page][-1],
                     link_bg=nav_info[page][-2],
                     year=datetime.now().year,
                     parents=len(html_file.parents)

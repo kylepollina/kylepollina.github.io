@@ -19,9 +19,14 @@
     mt-5 md:mt-5
     md:m-auto 
     md:w-[800px]
+    font-mono-italic
+    selection:bg-theme3bg
+    selection:text-white
+    
+    dark:bg-darkbg
   ">
   <div id='header' class="flex justify-center md:justify-start">
-    <div id='header'>
+    <div id='header' class="dark:text-white">
     kylepollina.github.io 
 </div>
   </div>
@@ -31,83 +36,83 @@
     w-full
     md:w-max
 ">
-    <div id='internal-links' class="content-center">
+    <div id='internal-links'>
 
         
             <a href=https://kylepollina.github.io/ class="
-                w-max
+                w-full
+                leading-snug
             ">
                 <div class="
                     w-max
                     md:w-full
                     mx-auto
                     
-                    
-                        text-theme1bg bg-theme1fg
-                        hover:text-theme1fg hover:bg-theme1bg
+                        text-theme1bg
+                        hover:text-white hover:bg-theme1bg
                     
                     ">home
                 </div>
             </a>
         
             <a href=https://kylepollina.github.io/about.html class="
-                w-max
+                w-full
+                leading-snug
             ">
                 <div class="
                     w-max
                     md:w-full
                     mx-auto
-                    -my-1
                     
-                        text-theme2bg bg-theme2fg
-                        hover:text-theme2fg hover:bg-theme2bg
+                        text-theme2bg
+                        hover:text-white hover:bg-theme2bg
                     
                     ">about
                 </div>
             </a>
         
             <a href=https://kylepollina.github.io/writing.html class="
-                w-max
+                w-full
+                leading-snug
             ">
                 <div class="
                     w-max
                     md:w-full
                     mx-auto
-                    -my-1
                     
-                        text-theme3fg bg-theme3bg
+                        text-white bg-theme3bg
                     
                     ">-writing
                 </div>
             </a>
         
             <a href=https://kylepollina.github.io/research.html class="
-                w-max
+                w-full
+                leading-snug
             ">
                 <div class="
                     w-max
                     md:w-full
                     mx-auto
-                    -my-1
                     
-                        text-theme4bg bg-theme4fg
-                        hover:text-theme4fg hover:bg-theme4bg
+                        text-theme4bg
+                        hover:text-white hover:bg-theme4bg
                     
                     ">research
                 </div>
             </a>
         
             <a href=https://kylepollina.github.io/interactive.html class="
-                w-max
+                w-full
+                leading-snug
             ">
                 <div class="
                     w-max
                     md:w-full
                     mx-auto
-                    -my-1
                     
-                        text-theme5bg bg-theme5fg
-                        hover:text-theme5fg hover:bg-theme5bg
+                        text-theme5bg
+                        hover:text-white hover:bg-theme5bg
                     
                     ">interactive
                 </div>
@@ -123,7 +128,7 @@
     </div>
 
     <div id='nav-footer' class="flex justify-center mt-3">
-        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-darkred hover:text-white hover:bg-darkred">&copy;</a> 2022 </p>
+        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-theme3bg hover:text-white hover:bg-theme3bg">&copy;</a> 2022 </p>
     </div>
 </div> 
     <div class="
@@ -131,35 +136,36 @@
     md:pl-5
     prose
     
-    prose-a:text-darkred
+    prose-a:text-theme3bg
     hover:prose-a:text-white
-    hover:prose-a:bg-darkred
+    hover:prose-a:bg-theme3bg
 
     prose-em:underline
-    prose-em:decoration-slate-600
-    prose-em:bg-slate-200
-
+    prose-em:not-italic
+    prose-em:font-mono-regular
+    
     prose-strong:bg-slate-200
 
     prose-ul:my-0
     prose-li:my-0
 
-    prose-pre:bg-white prose-pre:p-0
     prose-pre:rounded-sm
+    prose-pre:bg-white prose-pre:p-0
     md:prose-pre:w-max
     md:prose-pre:max-w-[750px]
     md:prose-pre:min-w-full
+    prose-pre:font-mono-regular
 
     prose-code:bg-slate-300
-    prose-code:text-myblue
+    prose-code:text-theme3bg
     prose-code:rounded-sm
     prose-code:shadow-inner
     prose-code:p-1
     prose-code:before:content-['']
     prose-code:after:content-['']
-    prose-code:font-medium
+    prose-code:font-light
 ">
-    <h1>Smart devices should still function as dumb devices</h1>
+<h1>Smart devices should still function as dumb devices</h1>
 <p>I recurringly get frustrated that I can't manually set the date and time on my <a href="https://www.kickstarter.com/projects/getpebble/pebble-time-awesome-smartwatch-no-compromises">Pebble Time Smartwatch</a>.
 The only way to change the time for this watch is to connect it to your phone via blutooth and the Pebble app.
 Unfortunately, support never lasts forever and Pebble discontinued it's app and removed it from the iPhone and Android stores.

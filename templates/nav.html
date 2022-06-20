@@ -3,22 +3,22 @@
     w-full
     md:w-max
 ">
-    <div id='internal-links' class="content-center">
+    <div id='internal-links'>
 
         {% for page_name, (url, bg, fg) in nav_info.items() %}
             <a href={{url}} class="
-                w-max
+                w-full
+                leading-snug
             ">
                 <div class="
                     w-max
                     md:w-full
                     mx-auto
-                    {% if page_name != 'home' %}-my-1{% endif %}
                     {% if page == page_name %}
-                        text-{{ fg }} bg-{{ bg }}
+                        text-white bg-{{ bg }}
                     {% else %}
-                        text-{{ bg }} bg-{{ fg }}
-                        hover:text-{{ fg }} hover:bg-{{ bg }}
+                        text-{{ bg }}
+                        hover:text-white hover:bg-{{ bg }}
                     {% endif %}
                     ">{% if page == page_name %}-{% endif %}{{page_name}}
                 </div>
@@ -34,6 +34,6 @@
     </div>
 
     <div id='nav-footer' class="flex justify-center mt-3">
-        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-darkred hover:text-white hover:bg-darkred">&copy;</a> {{year}} </p>
+        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-{{link_bg}} hover:text-white hover:bg-{{link_bg}}">&copy;</a> {{year}} </p>
     </div>
 </div>

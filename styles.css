@@ -2,8 +2,9 @@
 /* │ styles.css │ */
 /* └────────────┘ */
 
-@font-face {font-family: "Pitch Italic";  src: url("fonts/Pitch Test/PitchTest-SemiboldItalic.otf");}
-@font-face {font-family: "Pitch Medium Italic";  src: url("fonts/Pitch Test/PitchTest-MediumItalic.otf");}
-@font-face {font-family: "Pitch Light";  src: url("fonts/Pitch Test/PitchTest-Light.otf");}
+@font-face {font-family: "IBM Plex Mono Italic";  src: url("fonts/IBMPlex/IBMPlexMono-Italic.otf");}
+@font-face {font-family: "IBM Plex Mono Regular";  src: url("fonts/IBMPlex/IBMPlexMono-Regular.otf");}
 
-body {font-family: "Pitch Medium Italic";  font-size: 12pt;}
+/* body {font-family: "IBM Plex Mono Italic";  font-size: 12pt;} */
+
+/* em {font-family: "IBM Plex Mono Regular"} */

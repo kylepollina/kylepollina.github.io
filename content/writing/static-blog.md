@@ -11,7 +11,7 @@ published: false
 
 I decided to write my own static site generator because I was frustrated that the current
 static site/blog generators were not customizable to my liking. So instead of spending a few
-hours reading the documentation I spent dozens of hours building my own implementation. _C'est la vie_.
+hours reading the documentation I spent dozens of hours building my own implementation. C'est la vie.
 
 ### Tools for the job
 
