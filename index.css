@@ -1064,6 +1064,11 @@ video {
   border-radius: 0.125rem;
 }
 
+.bg-theme2bg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 91 126 / var(--tw-bg-opacity));
+}
+
 .bg-darkred {
   --tw-bg-opacity: 1;
   background-color: rgb(206 32 41 / var(--tw-bg-opacity));
@@ -1084,9 +1089,49 @@ video {
   background-color: rgb(203 213 225 / var(--tw-bg-opacity));
 }
 
-.bg-blue-300 {
+.bg-theme1bg {
   --tw-bg-opacity: 1;
-  background-color: rgb(147 197 253 / var(--tw-bg-opacity));
+  background-color: rgb(196 46 96 / var(--tw-bg-opacity));
+}
+
+.bg-theme3bg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(76 135 133 / var(--tw-bg-opacity));
+}
+
+.bg-theme2fg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-theme3fg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-theme4fg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-theme4bg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(211 156 73 / var(--tw-bg-opacity));
+}
+
+.bg-theme5fg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-theme5bg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(230 82 68 / var(--tw-bg-opacity));
+}
+
+.bg-theme1fg {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .p-1 {
@@ -1101,6 +1146,31 @@ video {
   padding-left: 1.25rem;
 }
 
+.text-theme1bg {
+  --tw-text-opacity: 1;
+  color: rgb(196 46 96 / var(--tw-text-opacity));
+}
+
+.text-theme2fg {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-theme3bg {
+  --tw-text-opacity: 1;
+  color: rgb(76 135 133 / var(--tw-text-opacity));
+}
+
+.text-theme4bg {
+  --tw-text-opacity: 1;
+  color: rgb(211 156 73 / var(--tw-text-opacity));
+}
+
+.text-theme5bg {
+  --tw-text-opacity: 1;
+  color: rgb(230 82 68 / var(--tw-text-opacity));
+}
+
 .text-darkred {
   --tw-text-opacity: 1;
   color: rgb(206 32 41 / var(--tw-text-opacity));
@@ -1111,9 +1181,69 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-theme1fg {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-theme2bg {
+  --tw-text-opacity: 1;
+  color: rgb(34 91 126 / var(--tw-text-opacity));
+}
+
+.text-theme3fg {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:bg-theme1bg:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(196 46 96 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-theme3bg:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(76 135 133 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-theme4bg:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(211 156 73 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-theme5bg:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(230 82 68 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-darkred:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(206 32 41 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-theme2bg:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 91 126 / var(--tw-bg-opacity));
+}
+
+.hover\:text-theme1fg:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-theme3fg:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-theme4fg:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.hover\:text-theme5fg:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .hover\:text-white:hover {
@@ -1121,24 +1251,9 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.prose-p\:-my-1 :is(:where(p):not(:where([class~="not-prose"] *))) {
-  margin-top: -0.25rem;
-  margin-bottom: -0.25rem;
-}
-
-.prose-p\:-my-2 :is(:where(p):not(:where([class~="not-prose"] *))) {
-  margin-top: -0.5rem;
-  margin-bottom: -0.5rem;
-}
-
-.prose-p\:-my-4 :is(:where(p):not(:where([class~="not-prose"] *))) {
-  margin-top: -1rem;
-  margin-bottom: -1rem;
-}
-
-.prose-p\:-my-0 :is(:where(p):not(:where([class~="not-prose"] *))) {
-  margin-top: -0px;
-  margin-bottom: -0px;
+.hover\:text-theme2fg:hover {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .prose-a\:text-darkred :is(:where(a):not(:where([class~="not-prose"] *))) {

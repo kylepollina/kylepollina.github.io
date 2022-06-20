@@ -5,13 +5,7 @@
 ">
     <div id='internal-links' class="content-center">
 
-        {% for page_name, url in {
-            'home': 'https://kylepollina.github.io/',
-            'about': 'https://kylepollina.github.io/about.html',
-            'writing': 'https://kylepollina.github.io/writing.html',
-            'research': 'https://kylepollina.github.io/research.html',
-            'interactive': 'https://kylepollina.github.io/interactive.html',
-        }.items() %}
+        {% for page_name, (url, bg, fg) in nav_info.items() %}
             <a href={{url}} class="
                 w-max
             ">
@@ -21,9 +15,10 @@
                     mx-auto
                     {% if page_name != 'home' %}-my-1{% endif %}
                     {% if page == page_name %}
-                        bg-darkred text-white
+                        text-{{ fg }} bg-{{ bg }}
                     {% else %}
-                        text-darkred hover:bg-darkred hover:text-white
+                        text-{{ bg }} bg-{{ fg }}
+                        hover:text-{{ fg }} hover:bg-{{ bg }}
                     {% endif %}
                     ">{% if page == page_name %}-{% endif %}{{page_name}}
                 </div>
@@ -34,8 +29,8 @@
     <span class="flex justify-center">---------------------</span>
 
     <div id='external-links'>
-        <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://github.com/kylepollina' class="text-darkred hover:text-white hover:bg-darkred">github</a></div>
-        <div class="-mt-1.5 w-max mx-auto md:mx-0"><a href='mailto:kylepollina@pm.me' class="text-darkred hover:text-white hover:bg-darkred">kylepollina@pm.me</a></div>
+        <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://github.com/kylepollina' class="text-{{link_bg}} hover:text-white hover:bg-{{link_bg}}">github</a></div>
+        <div class="-mt-1 w-max mx-auto md:mx-0"><a href='mailto:kylepollina@pm.me' class="text-{{link_bg}} hover:text-white hover:bg-{{link_bg}}">kylepollina@pm.me</a></div>
     </div>
 
     <div id='nav-footer' class="flex justify-center mt-3">
