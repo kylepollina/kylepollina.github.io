@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <!-- CSS -->
   <!-- <link rel="stylesheet" href="https://kylepollina.github.io/styles.css"> -->
   <link rel="stylesheet" href="index.css">
@@ -28,10 +29,10 @@
     md:m-auto 
     md:w-[800px]
     font-mono-italic
-    selection:bg-theme1bg
+    selection:bg-[#C42E60]
     selection:text-white
     
-    dark:bg-darkbg
+    dark:bg-zinc-900
   ">
   <div id='header' class="flex justify-center md:justify-start">
     <div id='header' class="dark:text-white">
@@ -56,10 +57,11 @@
                     md:w-full
                     mx-auto
                     
-                        text-white bg-theme1bg
+                        text-white bg-[#C42E60]
                         
                         dark:border-white
                         dark:border-r-4
+                        dark:hover:underline
                     
                     ">-home
                 </div>
@@ -74,13 +76,14 @@
                     md:w-full
                     mx-auto
                     
-                        text-theme2bg
-                        hover:text-white hover:bg-theme2bg
+                        text-[#225B7E]
+                        hover:text-white hover:bg-[#225B7E]
 
-                        dark:bg-theme2bg
+                        dark:bg-[#225B7E]
                         dark:text-white
                         dark:hover:border-r-4
                         dark:hover:border-white
+                        dark:hover:underline
                     
                     ">about
                 </div>
@@ -95,13 +98,14 @@
                     md:w-full
                     mx-auto
                     
-                        text-theme3bg
-                        hover:text-white hover:bg-theme3bg
+                        text-[#4C8785]
+                        hover:text-white hover:bg-[#4C8785]
 
-                        dark:bg-theme3bg
+                        dark:bg-[#4C8785]
                         dark:text-white
                         dark:hover:border-r-4
                         dark:hover:border-white
+                        dark:hover:underline
                     
                     ">writing
                 </div>
@@ -116,13 +120,14 @@
                     md:w-full
                     mx-auto
                     
-                        text-theme4bg
-                        hover:text-white hover:bg-theme4bg
+                        text-[#D39C49]
+                        hover:text-white hover:bg-[#D39C49]
 
-                        dark:bg-theme4bg
+                        dark:bg-[#D39C49]
                         dark:text-white
                         dark:hover:border-r-4
                         dark:hover:border-white
+                        dark:hover:underline
                     
                     ">research
                 </div>
@@ -137,13 +142,14 @@
                     md:w-full
                     mx-auto
                     
-                        text-theme5bg
-                        hover:text-white hover:bg-theme5bg
+                        text-[#E65244]
+                        hover:text-white hover:bg-[#E65244]
 
-                        dark:bg-theme5bg
+                        dark:bg-[#E65244]
                         dark:text-white
                         dark:hover:border-r-4
                         dark:hover:border-white
+                        dark:hover:underline
                     
                     ">interactive
                 </div>
@@ -154,37 +160,30 @@
     <span class="flex justify-center dark:text-white">---------------------</span>
 
     <div id='external-links'>
-        <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://github.com/kylepollina' class="text-theme1bg hover:text-white hover:bg-theme1bg">github</a></div>
-        <div class="-mt-1 w-max mx-auto md:mx-0"><a href='mailto:kylepollina@pm.me' class="text-theme1bg hover:text-white hover:bg-theme1bg">kylepollina@pm.me</a></div>
+        <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://github.com/kylepollina' class="text-[#C42E60] hover:text-white hover:bg-[#C42E60]">github</a></div>
+        <div class="-mt-1 w-max mx-auto md:mx-0"><a href='mailto:kylepollina@pm.me' class="text-[#C42E60] hover:text-white hover:bg-[#C42E60]">kylepollina@pm.me</a></div>
     </div>
 
     <div id='nav-footer' class="flex justify-center mt-3">
-        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-theme1bg hover:text-white hover:bg-theme1bg">&copy;</a> <span class="dark:text-white">2022</span> </p>
+        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-[#C42E60] hover:text-white hover:bg-[#C42E60]">&copy;</a> <span class="dark:text-white">2022</span> </p>
     </div>
 </div> 
     <div class="
     pb-20
     md:pl-5
+
     prose
+    prose-h4:font-light
+    prose-h4:font-mono-regular
 
-    dark:text-slate-300
-    dark:prose-h1:text-slate-300
-    dark:prose-h2:text-slate-300
-    dark:prose-h3:text-slate-300
-    dark:prose-h4:text-slate-300
-    dark:prose-h5:text-slate-300
-    dark:prose-blockquote:text-slate-300
-
-    prose-a:text-theme1bg
+    prose-a:text-[#C42E60]
     hover:prose-a:text-white
-    hover:prose-a:bg-theme1bg
+    hover:prose-a:bg-[#C42E60]
 
     prose-em:underline
     prose-em:not-italic
     prose-em:font-mono-regular
     
-    prose-strong:bg-slate-200
-
     prose-ul:my-0
     prose-li:my-0
 
@@ -196,14 +195,23 @@
     prose-pre:font-mono-regular
 
     prose-code:bg-slate-300
-    dark:prose-code:bg-slate-700
-    prose-code:text-theme1bg
+    prose-code:text-[#C42E60]
     prose-code:rounded-sm
     prose-code:shadow-inner
     prose-code:p-1
     prose-code:before:content-['']
     prose-code:after:content-['']
     prose-code:font-light
+    dark:prose-code:bg-slate-700
+
+    dark:text-slate-300
+    dark:prose-h1:text-slate-300
+    dark:prose-h2:text-slate-300
+    dark:prose-h3:text-slate-300
+    dark:prose-h4:text-slate-300
+    dark:prose-blockquote:text-slate-300
+
+
 ">
 <div id="sketch" class="pl-5">
   <div id="main-sketch-holder">

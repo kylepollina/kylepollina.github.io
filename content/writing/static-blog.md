@@ -1,8 +1,9 @@
 ---
 page: writing
-title: ⚡️ static ⚡️
+title: Building a static site generator
 highlight: true
-published: false
+published: false 
+date: Jun 20 2022
 ---
 
 # Building a static site generator
@@ -157,7 +158,7 @@ _This_ is **my** website.
 - [Link 2](www.wikipedia.org)
 ```
 
-Now we can access this data using the `frontmatter` package. Change the `main()` function to read the frontmatter data
+Now we can access this data using the frontmatter package. Change the `main()` function to read the frontmatter data
 into a dictionary.
 
 ```python
@@ -172,6 +173,8 @@ def main():
         with open(file, 'r') as f:
             # Load the frontmatter data into the dictionary `fm`
             fm = frontmatter.load(f)
+            # fm.content is the rest of the text of the file after
+            # the frontmatter section
             content = fm.content
         
         ...
@@ -187,7 +190,6 @@ def main():
 
         with open(html_file, 'w+') as f:
             f.write(page_text)
-        
 ```
 
 ## Automatic reloading
@@ -197,7 +199,6 @@ can use the `watchdog` package to observe any changes to files and run the `main
 for each event.
 
 ```python
-
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 ...

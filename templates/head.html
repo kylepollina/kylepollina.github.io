@@ -1,6 +1,7 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ title }}</title>
+  <link rel="icon" type="image/png" href="{% for parent in range(parents - 1) %}../{% endfor %}favicon.png">
   <!-- CSS -->
   <!-- <link rel="stylesheet" href="https://kylepollina.github.io/styles.css"> -->
   <link rel="stylesheet" href="{% for parent in range(parents - 1) %}../{% endfor %}index.css">
