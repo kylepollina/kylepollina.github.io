@@ -1,7 +1,6 @@
 
 
 from datetime import datetime
-from textwrap import dedent
 import time
 
 import mistune
@@ -94,9 +93,9 @@ def convert_md_to_html():
             'home': ['https://kylepollina.github.io/', f'[{themes[current_theme][0]}]'],
             'about': ['https://kylepollina.github.io/about.html', f'[{themes[current_theme][1]}]'],
             # 'tools': ['', '[#894bb8]'],
-            'writing': ['https://kylepollina.github.io/writing.html', f'[{themes[current_theme][2]}]'],
-            'research': ['https://kylepollina.github.io/research.html', f'[{themes[current_theme][3]}]'],
-            'interactive': ['https://kylepollina.github.io/interactive.html', f'[{themes[current_theme][4]}]'],
+            'writing': ['https://kylepollina.github.io/writing', f'[{themes[current_theme][2]}]'],
+            'research': ['https://kylepollina.github.io/research', f'[{themes[current_theme][3]}]'],
+            'interactive': ['https://kylepollina.github.io/interactive', f'[{themes[current_theme][4]}]'],
         }
         page = fm['page']
         with open(html_file, 'w+') as f:
