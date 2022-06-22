@@ -1,0 +1,9 @@
+{
+    "file_name": "spiro.html",
+    "sketch_name": "spiro",
+    "is_sketch": true,
+    "title": "zig",
+    "current_page": "art",
+    "requires_p5": "true",
+    "p5_utility_scripts": ["turtle.js"]
+}

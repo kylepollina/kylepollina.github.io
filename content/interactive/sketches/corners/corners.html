@@ -1,0 +1,154 @@
+<!-- corners.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>right angles</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://kylepollina.github.io/styles.css">
+  <!-- Scripts -->
+  <script src="../../scripts/p5/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../../scripts/p5/addons/p5.dom.js"></script>
+  <script src="corners.js"></script>
+  <script src="../../scripts/p5-utilities/palettes.js"></script>
+  
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+  <script src="../../scripts/p5-utilities/grid.js"></script>
+  
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+  
+  
+</head>
+
+
+
+
+<body>
+  <div id='container'>
+    <div id='header'>
+      kylepollina.github.io
+    </div>
+
+    <div id='main'>
+      <div id='nav'>
+        <ul><a href='https://kylepollina.github.io/'>home</a></ul>
+        <ul><a href='https://kylepollina.github.io/earthscience'>earthscience</ul>
+        <ul><a href='https://kylepollina.github.io/wildlife'>wildlife</ul>
+        <ul><a href='https://kylepollina.github.io/art'>↳art</ul>
+        <hr>
+        <ul><a href='https://github.com/kylepollina'>github</a></ul>
+        <ul><a href='mailto:kylepollina@pm.me'>kylepollina@pm.me</a></ul>
+
+        <div id='footer'>
+          <p><a href="https://vulfpeck.com/">&copy;</a> 2019</p>
+        </div>
+      </div>
+
+      <div id='content'>
+        
+
+<div id="sketch">
+  <div id="corners-holder">
+  </div>
+</div>
+
+<br>
+
+<details>
+  <summary><a>Source code</a></summary>
+
+  <pre><code class="javascript">/* fullscreen.js */
+
+var grid;
+var palette;
+
+function setup() {
+    var canvas = createCanvas(500, 500);
+    canvas.parent('corners-holder');
+    
+    palette = getPalette(253);
+
+    let gridlen = ~~random(5, 8);
+    grid = new Grid(0, 0, width, height, gridlen, gridlen)
+}
+
+function draw() {
+    background(255, 250, 250); 
+    drawTiles();
+}
+
+function drawTiles() {
+    for(let i = 0; i < grid.tiles.length; i++) {
+        let tile = grid.tiles[i];
+
+        for(let x = tile.x; x < tile.x + tile.width; x += tile.width / 3) {
+            for(let y = tile.y; y < tile.y + tile.height; y += tile.height / 3) {
+
+                let topLeft  = {"x": x, "y": y};
+                let topRight = {"x": x + tile.width / 3, "y": y};
+                let botLeft  = {"x": x, "y": y + tile.height / 3};
+                let botRight = {"x": x + tile.width / 3, "y": y + tile.height / 3}
+
+                let color = palette[i%5];
+                noStroke();
+                fill(color);
+
+                if(x < mouseX) {
+                    if(y < mouseY) {
+                        triangle(topLeft.x, topLeft.y, topRight.x, topRight.y, botLeft.x, botLeft.y);
+                    }
+                    else {
+                        triangle(topLeft.x, topLeft.y, topRight.x, topRight.y, botRight.x, botRight.y);
+                    }
+                }
+                else {
+                    if(y < mouseY) {
+                        triangle(topLeft.x, topLeft.y, botLeft.x, botLeft.y, botRight.x, botRight.y);
+                    }
+                    else {
+                        triangle(topRight.x, topRight.y, botLeft.x, botLeft.y, botRight.x, botRight.y);
+                    }
+                }
+            }
+        }
+    }
+}
+
+function mouseClicked() {
+    palette = randomPalette();
+    let gridlen = ~~random(5, 8);
+    grid = new Grid(0, 0, width, height, gridlen, gridlen)
+}
+
+</code></pre>
+
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/palettes.js">p5-utilities/palettes.js</a>
+    </ul>
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/grid.js">p5-utilities/grid.js</a>
+    </ul>
+  
+
+</details>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+</html>

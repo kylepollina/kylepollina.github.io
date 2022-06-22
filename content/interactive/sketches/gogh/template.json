@@ -1,0 +1,9 @@
+{
+    "file_name": "gogh.html",
+    "sketch_name": "gogh",
+    "is_sketch": true,
+    "title": "color me",
+    "current_page": "art",
+    "requires_p5": "true",
+    "p5_utility_scripts": ["phyllotaxis.js", "d3-delaunay.js", "graphics.js"]
+}

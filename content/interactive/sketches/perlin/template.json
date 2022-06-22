@@ -1,0 +1,9 @@
+{
+    "file_name": "perlin.html",
+    "sketch_name": "perlin",
+    "is_sketch": true,
+    "title": "",
+    "current_page": "art",
+    "requires_p5": "true",
+    "p5_utility_scripts": ["grid.js"]
+}

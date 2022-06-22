@@ -1,0 +1,103 @@
+<!-- thrill.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>thrill of the arts!</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://kylepollina.github.io/styles.css">
+  <!-- Scripts -->
+  <script src="../../scripts/p5/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../../scripts/p5/addons/p5.dom.js"></script>
+  <script src="thrill.js"></script>
+  
+  
+</head>
+
+
+
+
+<body>
+  <div id='container'>
+    <div id='header'>
+      kylepollina.github.io
+    </div>
+
+    <div id='main'>
+      <div id='nav'>
+        <ul><a href='https://kylepollina.github.io/'>home</a></ul>
+        <ul><a href='https://kylepollina.github.io/earthscience'>earthscience</ul>
+        <ul><a href='https://kylepollina.github.io/wildlife'>wildlife</ul>
+        <ul><a href='https://kylepollina.github.io/art'>↳art</ul>
+        <hr>
+        <ul><a href='https://github.com/kylepollina'>github</a></ul>
+        <ul><a href='mailto:kylepollina@pm.me'>kylepollina@pm.me</a></ul>
+
+        <div id='footer'>
+          <p><a href="https://vulfpeck.com/">&copy;</a> 2019</p>
+        </div>
+      </div>
+
+      <div id='content'>
+        
+
+<div id="sketch">
+  <div id="thrill-holder">
+  </div>
+</div>
+
+<br>
+
+<details>
+  <summary><a>Source code</a></summary>
+
+  <pre><code class="javascript">/* thrill.js */
+
+function setup() {
+    var canvas = createCanvas(640, 640);
+    canvas.parent('thrill-holder');
+}
+
+function draw() {
+    background(255);    
+    stroke("#CE2029");
+    fill("#CE2029");
+
+    textSize(28);
+    strokeWeight(1);
+    text("VULFPECK", 10, 32);
+    text("THRILL OF THE ARTS", 10, 70);
+
+    strokeWeight(1.5);
+
+    for(let i = 0; i < 33; i++) {
+        let margin = 20;
+        let spacing = 13;
+
+        let x1 = margin;
+        let y1 = height - spacing - i * spacing;
+        let x2 = mouseX;
+        let y2 = y1 - 2.5 * i;
+        let x3 = width - margin;
+        let y3 = y1;
+
+        line(x1, y1, x2, y2);
+        line(x2, y2, x3, y3);
+    }
+}
+</code></pre>
+
+  
+
+</details>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+</html>

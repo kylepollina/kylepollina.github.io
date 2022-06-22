@@ -11,7 +11,6 @@ page: research
 
 #### Arlington Heights
 - [Dupage Bird Club Visual Checklist](https://kylepollina.github.io/wildlife/dbc-checklist/)
-- [Fall survey 2020](./biology-logs/arlington-heights/fall-survey.html)
 - [Summer survey 2020](./biology-logs/arlington-heights/summer-survey.html)
 
 ### Earthscience Research

@@ -1,0 +1,114 @@
+<!-- triangles.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>quantum walk</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://kylepollina.github.io/styles.css">
+  <!-- Scripts -->
+  <script src="../../scripts/p5/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../../scripts/p5/addons/p5.dom.js"></script>
+  <script src="triangles.js"></script>
+  
+  
+</head>
+
+
+
+
+<body>
+  <div id='container'>
+    <div id='header'>
+      kylepollina.github.io
+    </div>
+
+    <div id='main'>
+      <div id='nav'>
+        <ul><a href='https://kylepollina.github.io/'>home</a></ul>
+        <ul><a href='https://kylepollina.github.io/earthscience'>earthscience</ul>
+        <ul><a href='https://kylepollina.github.io/wildlife'>wildlife</ul>
+        <ul><a href='https://kylepollina.github.io/art'>↳art</ul>
+        <hr>
+        <ul><a href='https://github.com/kylepollina'>github</a></ul>
+        <ul><a href='mailto:kylepollina@pm.me'>kylepollina@pm.me</a></ul>
+
+        <div id='footer'>
+          <p><a href="https://vulfpeck.com/">&copy;</a> 2019</p>
+        </div>
+      </div>
+
+      <div id='content'>
+        
+
+<div id="sketch">
+  <div id="triangles-holder">
+  </div>
+</div>
+
+<br>
+
+<details>
+  <summary><a>Source code</a></summary>
+
+  <pre><code class="javascript">/* triangles.js */
+
+var n = 1;
+var splitY;
+
+function setup() {
+    var canvas = createCanvas(500,500);
+    canvas.parent("triangles-holder")
+
+    splitY = 0;
+    noStroke();
+}
+
+
+function draw() {
+    if(mouseY > splitY && n < 30) {
+        n += 1;
+        splitY += (height - splitY) / n;
+    }
+
+    else if(mouseY < height - (height / (n - 1)) && n > 1) {
+        n -= 1;
+        splitY = height - (height / n);
+    }
+
+    for(var i = 1; i <= n; i++) {
+        for(var j = 1; j <= i; j++) {
+            draw_triangles(width - j * (width / i), height - i * (height / n), width / i, height / n);
+        }
+    }
+}
+
+function draw_triangles(x,y,w,h) {
+    /* green triangle */
+    fill(0,100,100);
+    triangle(x,y, x,y+h, x+(w/2),y+h);
+
+    /* white triangle */
+    fill(255);
+    triangle(x,y, x+w,y, x+(w/2),y+h);
+    
+    /* black triangle */
+    fill(0);
+    triangle(x+(w/2),y+h, x+w,y+h, x+w,y);
+}
+</code></pre>
+
+  
+
+</details>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+</html>

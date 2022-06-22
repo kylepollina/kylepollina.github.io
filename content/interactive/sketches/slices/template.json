@@ -1,0 +1,9 @@
+{
+    "file_name": "slices.html",
+    "sketch_name": "slices",
+    "is_sketch": true,
+    "title": "",
+    "current_page": "art",
+    "requires_p5": "true",
+    "p5_utility_scripts": ["turtle.js"]
+}

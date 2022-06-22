@@ -1,0 +1,9 @@
+{
+    "file_name": "diamond.html",
+    "sketch_name": "diamond",
+    "is_sketch": true,
+    "title": "girls best friend",
+    "current_page": "art",
+    "requires_p5": "true",
+    "p5_utility_scripts": ["palettes.js"]
+}

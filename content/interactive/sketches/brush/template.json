@@ -1,0 +1,9 @@
+{
+    "file_name": "brush.html",
+    "sketch_name": "brush",
+    "is_sketch": true,
+    "title": "",
+    "current_page": "art",
+    "requires_p5": "true",
+    "p5_utility_scripts": ["palettes.js", "phyllotaxis.js", "shapes.js"]
+}

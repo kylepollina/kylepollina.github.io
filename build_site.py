@@ -1,6 +1,7 @@
 
 
 from datetime import datetime
+import importlib
 import time
 
 import mistune
@@ -33,7 +34,20 @@ themes = [
 current_theme = 0
 
 def main():
+    build_md_files()
     convert_md_to_html()
+
+
+def build_md_files():
+    py_files = list(Path(MD_DIR).rglob('*.py'))
+
+    for file in py_files:
+        module_path = str(file).replace('/', '.').replace('.py', '')
+        module = importlib.import_module(module_path)
+        try:
+            module.build()
+        except Exception:
+            print(f'error running builder for {file}')
 
 
 def build_index_file(file):

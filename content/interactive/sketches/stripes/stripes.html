@@ -1,0 +1,182 @@
+<!-- stripes.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://kylepollina.github.io/styles.css">
+  <!-- Scripts -->
+  <script src="../../scripts/p5/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../../scripts/p5/addons/p5.dom.js"></script>
+  <script src="stripes.js"></script>
+  <script src="../../scripts/p5-utilities/palettes.js"></script>
+  
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+  <script src="../../scripts/p5-utilities/graphics.js"></script>
+  
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+  <script src="../../scripts/p5-utilities/stripes.js"></script>
+  
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+  
+  
+</head>
+
+
+
+
+<body>
+  <div id='container'>
+    <div id='header'>
+      kylepollina.github.io
+    </div>
+
+    <div id='main'>
+      <div id='nav'>
+        <ul><a href='https://kylepollina.github.io/'>home</a></ul>
+        <ul><a href='https://kylepollina.github.io/earthscience'>earthscience</ul>
+        <ul><a href='https://kylepollina.github.io/wildlife'>wildlife</ul>
+        <ul><a href='https://kylepollina.github.io/art'>↳art</ul>
+        <hr>
+        <ul><a href='https://github.com/kylepollina'>github</a></ul>
+        <ul><a href='mailto:kylepollina@pm.me'>kylepollina@pm.me</a></ul>
+
+        <div id='footer'>
+          <p><a href="https://vulfpeck.com/">&copy;</a> 2019</p>
+        </div>
+      </div>
+
+      <div id='content'>
+        
+
+<div id="sketch">
+  <div id="stripes-holder">
+  </div>
+</div>
+
+<br>
+
+<details>
+  <summary><a>Source code</a></summary>
+
+  <pre><code class="javascript">/****************
+ ** Stripes.js **
+ ***************/
+
+var s1;
+var s2;
+var g1;
+var g2;
+var bggrad;
+
+var col1;
+var col2;
+var col3;
+var col4;
+var col5;
+
+var palette;
+
+function setup() {
+    var canvas = createCanvas(700, 700);
+    canvas.parent('stripes-holder');
+
+    palette = randomPalette100();
+    
+    col1 = palette[0];
+    col2 = palette[1];
+    col3 = palette[2];
+    col4 = palette[3];
+    col5 = palette[4];
+    
+    s1 = new StripeBox((width-400)/2, (height-600)/2, 300, 500, col1, col2, 45);
+    s1.border = 200;
+    s2 = new StripeBox((width-400), (height-550), 300, 500, col3, col4, 45);
+    s2.border = 200;
+    g1 = new StripeGradient((s1.x + s2.x)/2, (s1.y+s2.y)/2, 300, 500, col2, col5, 30);
+    bggrad = new StripeGradient(0, 0, width, height, col3, col4, 20);
+    
+    noLoop();
+}
+
+function draw() {
+    background(255);
+    bggrad.show();
+    s1.show();
+    g1.show();
+    s2.show();
+}
+
+function keyReleased() {
+    if(keyCode == 32) {
+        save();
+    }
+    if(keyCode == 49) {
+        palette = randomPalette1000();
+        randomizeColors();
+        redraw();
+    }
+    if(keyCode == 48) {
+        randomizeColors();
+        redraw();
+    }
+}
+
+function randomizeColors() {
+    col1 = palette[floor(random(palette.length))];
+    col2 = palette[floor(random(palette.length))];
+    col3 = palette[floor(random(palette.length))];
+    col4 = palette[floor(random(palette.length))];
+    col5 = palette[floor(random(palette.length))];
+    s1.col1 = col1;
+    s1.col2 = col2;
+    s2.col1 = col3;
+    s2.col2 = col4;
+    g1.col1 = col2;
+    g1.col2 = col5;
+    bggrad.col1 = col3;
+    bggrad.col2 = col4;
+}
+
+
+</code></pre>
+
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/palettes.js">p5-utilities/palettes.js</a>
+    </ul>
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/graphics.js">p5-utilities/graphics.js</a>
+    </ul>
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/stripes.js">p5-utilities/stripes.js</a>
+    </ul>
+  
+
+</details>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+</html>

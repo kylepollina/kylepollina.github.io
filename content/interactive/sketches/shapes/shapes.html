@@ -1,0 +1,181 @@
+<!-- shapes.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://kylepollina.github.io/styles.css">
+  <!-- Scripts -->
+  <script src="../../scripts/p5/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../../scripts/p5/addons/p5.dom.js"></script>
+  <script src="shapes.js"></script>
+  <script src="../../scripts/p5-utilities/palettes.js"></script>
+  
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+  
+  
+</head>
+
+
+
+
+<body>
+  <div id='container'>
+    <div id='header'>
+      kylepollina.github.io
+    </div>
+
+    <div id='main'>
+      <div id='nav'>
+        <ul><a href='https://kylepollina.github.io/'>home</a></ul>
+        <ul><a href='https://kylepollina.github.io/earthscience'>earthscience</ul>
+        <ul><a href='https://kylepollina.github.io/wildlife'>wildlife</ul>
+        <ul><a href='https://kylepollina.github.io/art'>↳art</ul>
+        <hr>
+        <ul><a href='https://github.com/kylepollina'>github</a></ul>
+        <ul><a href='mailto:kylepollina@pm.me'>kylepollina@pm.me</a></ul>
+
+        <div id='footer'>
+          <p><a href="https://vulfpeck.com/">&copy;</a> 2019</p>
+        </div>
+      </div>
+
+      <div id='content'>
+        
+
+<div id="sketch">
+  <div id="shapes-holder">
+  </div>
+</div>
+
+<br>
+
+<details>
+  <summary><a>Source code</a></summary>
+
+  <pre><code class="javascript">/* shapes.js */
+
+var shape;
+var shapes = [];
+var palette;
+
+function setup() {
+    var canvas = createCanvas(640, 640);
+    canvas.parent('shapes-holder');
+
+    shape = null;
+
+    palette = randomPalette100();
+}
+
+function draw() {
+    background(255);   
+
+    if(shape != null) 
+        shape.liveShow();
+
+    for(let i = 0; i < shapes.length; i++) {
+        shapes[i].show();
+    }
+}
+
+function mouseClicked() {
+    if(shape == null) {
+        shape = new Shape(mouseX, mouseY);
+    }
+    else {
+        shape.addPoint(mouseX, mouseY);
+        if(shape.isComplete()) {
+            shapes.push(shape);
+            shape = null;
+            console.log("adding shape");
+        }
+    }
+}
+
+class Shape {
+    constructor(x1, y1) {
+        let numSides = ~~random(3, 5);
+        this.points = [];
+
+        if(numSides == 3) {
+            this.shape = "TRIANGLE";
+            this.numSides = numSides;
+            console.log("new triangle");
+        }
+        else if(numSides == 4) {
+            this.shape = "SQUARE";
+            this.numSides = numSides;
+            console.log("new square");
+        }
+
+        for(let i = 0; i < this.numSides; i++) {
+            this.points.push({"x": x1, "y": y1})
+        }
+
+        this.color = palette[~~random(5)]
+    }
+
+    addPoint(x, y) {
+        this.points.push({"x": x, "y": y});
+    }
+
+    isComplete() {
+        if(this.points.length == this.numSides)
+            return true;
+        else return false;
+    }
+
+    show() {
+        noStroke();
+        fill(this.color);
+        beginShape();
+        for(let i = 0; i < this.points.length; i++) {
+            let point = this.points[i];
+            vertex(point.x, point.y);
+        }
+        endShape(CLOSE);
+    }
+    
+    liveShow() {
+        noStroke();
+        fill(0);
+        for(let i = 0; i < this.points.length; i++) {
+            let point = this.points[i];
+            ellipse(point.x, point.y, 3, 3);
+        }
+    }
+}
+
+/* Prevents up and down arrow from moving page up and down */
+window.addEventListener('keydown', function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
+</code></pre>
+
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/palettes.js">p5-utilities/palettes.js</a>
+    </ul>
+  
+
+</details>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+</html>

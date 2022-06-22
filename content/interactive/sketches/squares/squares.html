@@ -1,0 +1,142 @@
+<!-- squares.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>sharp</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://kylepollina.github.io/styles.css">
+  <!-- Scripts -->
+  <script src="../../scripts/p5/p5.min.js"></script>
+  <script language="javascript" type="text/javascript" src="../../scripts/p5/addons/p5.dom.js"></script>
+  <script src="squares.js"></script>
+  <script src="../../scripts/p5-utilities/palettes.js"></script>
+  
+  <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/styles/default.min.css">
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.5.0/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+  
+  
+</head>
+
+
+
+
+<body>
+  <div id='container'>
+    <div id='header'>
+      kylepollina.github.io
+    </div>
+
+    <div id='main'>
+      <div id='nav'>
+        <ul><a href='https://kylepollina.github.io/'>home</a></ul>
+        <ul><a href='https://kylepollina.github.io/earthscience'>earthscience</ul>
+        <ul><a href='https://kylepollina.github.io/wildlife'>wildlife</ul>
+        <ul><a href='https://kylepollina.github.io/art'>↳art</ul>
+        <hr>
+        <ul><a href='https://github.com/kylepollina'>github</a></ul>
+        <ul><a href='mailto:kylepollina@pm.me'>kylepollina@pm.me</a></ul>
+
+        <div id='footer'>
+          <p><a href="https://vulfpeck.com/">&copy;</a> 2019</p>
+        </div>
+      </div>
+
+      <div id='content'>
+        
+
+<div id="sketch">
+  <div id="squares-holder">
+  </div>
+</div>
+
+<br>
+
+<details>
+  <summary><a>Source code</a></summary>
+
+  <pre><code class="javascript">/* squares.js */
+
+var palette;
+var numSquares;
+var shrink;
+
+function setup() {
+    var canvas = createCanvas(600, 600);
+    canvas.parent('squares-holder');
+
+    numSquares = 30;
+    palette = randomPalette();
+
+    shrink = 0;
+
+    noStroke();
+    rectMode(CENTER);
+    background(255);
+}
+
+function draw() {
+    translate(width/2, height/2);
+    background(255);
+    for(let i = numSquares; i > 1; i--) {
+        let sidelen = width/40*i - shrink;
+
+        if (sidelen < 0) { sidelen = 0 }
+
+        if(i % 2 == 0) fill(0);
+        else fill(255);
+
+        let modifier = 1 + mouseX / 1000;
+        // let modifier;
+        // if (mouseX < width/2) { modifier = mouseX / 1000 }
+        // else { modifier = width/2 / 1000 }
+
+        push();
+        let sign = i % 2 == 0 ? 1 : -1;
+        rotate(sign * sin(frameCount/1000)*i * modifier);
+        // rotate(sign * sin(frameCount/100)*i * modifier);
+        rect(0, 0, sidelen, sidelen);
+        pop();
+    } 
+
+    if (mouseIsPressed) {
+        shrink++;
+    }
+    else if (shrink > 0) {
+        shrink--;
+    }
+}
+
+function mouseHeld() {
+    shrink += 2;
+}
+
+function keyPressed() {
+    if(keyCode == 32) {
+        palette = randomPalette();
+    }
+}
+
+</code></pre>
+
+  
+    <ul>
+      <a href="https://github.com/kylepollina/p5-utilities/blob/master/palettes.js">p5-utilities/palettes.js</a>
+    </ul>
+  
+
+</details>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+
+
+</html>
