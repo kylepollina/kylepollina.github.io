@@ -1,25 +1,24 @@
 
 
-from datetime import datetime
 import importlib
 import time
-
-import mistune
+from datetime import datetime
 from pathlib import Path
-from mistune.plugins import (
-    plugin_strikethrough,
-    plugin_footnotes,
-    plugin_table,
-    plugin_url,
-    plugin_task_lists,
-)
-import dateparser
 
 import frontmatter
 import jinja2
-
-from watchdog.observers import Observer
+import mistune
+from mistune.plugins import (
+    plugin_footnotes,
+    plugin_strikethrough,
+    plugin_table,
+    plugin_task_lists,
+    plugin_url,
+)
 from watchdog.events import FileSystemEventHandler
+from watchdog.observers import Observer
+
+from logger import logger
 
 MD_DIR = 'content/'
 HTML_DIR = './'
@@ -34,6 +33,7 @@ themes = [
 current_theme = 0
 
 def main():
+    logger.info("Building site")
     build_md_files()
     convert_md_to_html()
 
@@ -47,41 +47,14 @@ def build_md_files():
         try:
             module.build()
         except Exception:
-            print(f'error running builder for {file}')
+            logger.exception('Error running builder', extra={'file': file})
 
-
-def build_index_file(file):
-    dirpath = file.parent
-
-    md_files = list(dirpath.rglob('*.md'))
-
-    content = f"## {file.parent.name}\n\n"
-    pages = []
-
-    for md_file in md_files:
-        with open(md_file, 'r') as f:
-            fm = frontmatter.load(f)
-
-        if fm.get('published') is True:
-            date = dateparser.parse(fm['date']) if 'date' in fm else None
-            pages.append(
-                {
-                    'date': date,
-                    'line': f"- [{fm['title']}]({md_file.relative_to(dirpath).with_suffix('.html')}) {date.strftime('%b %d %Y') if date else ''}"
-                }
-            )
-
-    content += '\n'.join([page_info['line'] for page_info in sorted(pages, key=lambda page: (page['date'] is None, page['date']), reverse=True)])
-
-    return content
 
 def convert_md_to_html():
     md_files = list(Path(MD_DIR).rglob('*.md'))
     for file in md_files:
         with open(file, 'r') as f:
             fm = frontmatter.load(f)
-            if fm.get('build_index') is True:
-                fm.content += "\n\n" + build_index_file(file)
 
         # See this for example of custom plugins
         # https://github.com/AlanDecode/Maverick/tree/master/Maverick/mistune_plugins
@@ -129,17 +102,17 @@ def convert_md_to_html():
 
 class MyHandler(FileSystemEventHandler):
     def on_modified(self,  event):
-        if 'templates/' in event.src_path or 'content/' in event.src_path:
+        if 'templates/' in event.src_path or ('content/' in event.src_path and 'index.md' not in event.src_path):
             print(f'event type: {event.event_type} path : {event.src_path}')
             main()
 
     def on_created(self,  event):
-        if 'templates/' in event.src_path or 'content/' in event.src_path:
+        if 'templates/' in event.src_path or ('content/' in event.src_path and 'index.md' not in event.src_path):
             print(f'event type: {event.event_type} path : {event.src_path}')
             main()
 
     def on_deleted(self,  event):
-        if 'templates/' in event.src_path or 'content/' in event.src_path:
+        if 'templates/' in event.src_path or ('content/' in event.src_path and 'index.md' not in event.src_path):
             print(f'event type: {event.event_type} path : {event.src_path}')
             main()
 
