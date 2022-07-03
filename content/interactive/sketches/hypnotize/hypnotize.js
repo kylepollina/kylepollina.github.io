@@ -8,14 +8,15 @@ var step = 20;      // Change in circle radii
 var speed = 2;      // Speed of rotation
 var n = 0;          // use for sin/cos
 var bg = 0;
+var showing = "worm"
 
 function setup() {
-    var canvas = createCanvas(820,600);
+    var canvas = createCanvas(500, 500);
     canvas.parent("hypnotize-holder");
     
     for(let i = 0; i < 40 && 400-step*i > 0; i++) {
-        spiral.push(new Point(width/4, height/2));
-        worm.push(new Point(3*width/4, height/2));
+        spiral.push(new Point(width/2, height/2));
+        worm.push(new Point(width / 2, height/2));
     }
 
     noStroke();
@@ -48,6 +49,14 @@ function keyPressed() {
         bg++;
         bg = bg % 4;
     }
+    if (keyCode == 39 || keyCode == 37) {
+        if (showing == "spiral") {
+            showing = "worm";
+        }
+        else if (showing == "worm") {
+            showing = "spiral";
+        }
+    }
 }
 
 function hypnotize() {
@@ -78,7 +87,7 @@ function hypnotize() {
             else fill(5,5,0);
         }
 
-        ellipse(xSpiral, ySpiral, rad);
+        if (showing == "spiral") ellipse(xSpiral, ySpiral, rad);
 
         if(bg == 0 || bg == 1) {
             if(i%2 == 0) fill(5,5,0);
@@ -89,6 +98,6 @@ function hypnotize() {
             else fill(5,5,0);
         }
 
-        ellipse(xWorm, ySpiral, rad);
+        if (showing == "worm") ellipse(xWorm, ySpiral, rad);
     }
 }

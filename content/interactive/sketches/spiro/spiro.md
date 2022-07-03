@@ -14,3 +14,5 @@ scripts:
   <div id="spiro-holder">
   </div>
 </div>
+
+Use the arrow keys to play around.

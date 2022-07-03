@@ -1,4 +1,3 @@
-
 ---
 page: interactive
 title: sleepy
@@ -15,3 +14,5 @@ scripts:
   <div id="hypnotize-holder">
   </div>
 </div>
+
+Press the arrow keys and spacebar to play around.

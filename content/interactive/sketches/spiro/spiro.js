@@ -18,19 +18,30 @@ function draw() {
 }
 
 function keyPressed() {
-    if(keyCode == 49) { 
-        spiro.shape_triangle();
-        spiro.set_start_pos(width/2,height/2+250);
+    if (keyCode == 37 || keyCode == 39) {
+        if (spiro.shape == "pentagon") {
+            spiro.shape_triangle();
+            spiro.set_start_pos(width/2,height/2+250);
+        }
+        else if (spiro.shape == "triangle") {
+            spiro.shape_square();
+            spiro.set_start_pos((width-400)/2, height - 100);
+        }
+        else if (spiro.shape == "square") {
+            spiro.shape_pentagon();
+            spiro.set_start_pos(width/2 - 250,height/2 + 75);
+        }
     }
-    else if(keyCode == 50) {
-        spiro.shape_square();
-        spiro.set_start_pos((width-400)/2, height - 100);
+    else if (keyCode == 38) {
+        spiro.angle += 1;
+        spiro.len -= 4
     }
-    else if(keyCode == 51) {
-        spiro.shape_pentagon();
-        spiro.set_start_pos(width/2 - 250,height/2 + 75);
+    else if (keyCode == 40) {
+        spiro.angle -= 1;
+        spiro.len += 4
     }
     redraw();
+
 }
 
 function mouseMoved() {
@@ -100,3 +111,11 @@ class Spiro {
 }
 
 
+
+/* Prevents up and down arrow from moving page up and down */
+window.addEventListener("keydown", function(e) {
+    // space and arrow keys
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
