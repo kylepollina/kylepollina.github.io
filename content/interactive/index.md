@@ -3,6 +3,9 @@ title: interactive
 page: interactive
 ---
 ## interactive
+
+some art I made at uni using [p5.js](https://p5js.org/)
+
 - [diamond](sketches/diamond/diamond.html)
 - [hallway](sketches/hallway/hallway.html)
 - [starry](sketches/starry/starry.html)

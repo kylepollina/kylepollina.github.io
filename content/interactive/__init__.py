@@ -12,6 +12,8 @@ def build():
         "page: interactive\n"
         "---\n"
         "## interactive\n"
+        "\n"
+        "some art I made at uni using [p5.js](https://p5js.org/)\n\n"
     )
     sketch_md_files = list(Path(HERE / 'sketches').rglob("*.md"))
     # content += "<ul>"
