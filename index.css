@@ -1033,14 +1033,6 @@ video {
   display: block;
 }
 
-.inline-block {
-  display: inline-block;
-}
-
-.inline {
-  display: inline;
-}
-
 .flex {
   display: flex;
 }
@@ -1578,6 +1570,11 @@ video {
   }
 
   .dark\:prose-blockquote\:text-slate-300 :is(:where(blockquote):not(:where([class~="not-prose"] *))) {
+    --tw-text-opacity: 1;
+    color: rgb(203 213 225 / var(--tw-text-opacity));
+  }
+
+  .dark\:prose-strong\:text-slate-300 :is(:where(strong):not(:where([class~="not-prose"] *))) {
     --tw-text-opacity: 1;
     color: rgb(203 213 225 / var(--tw-text-opacity));
   }

@@ -1,12 +1,14 @@
 /* towers.js */
 
 var input;
-var file = "towers.png";
+var file = "./towers.png";
 var blocks = [];
 var blockSize = 15;
 
+
 function preload() {
     input = loadImage(file);
+    input.crossOrigin = 'Anonymous';
 }
 
 function setup() {

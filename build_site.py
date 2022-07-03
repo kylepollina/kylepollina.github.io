@@ -19,6 +19,9 @@ from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
 from logger import logger
+from rich.traceback import install
+
+install(show_locals=True)
 
 MD_DIR = 'content/'
 HTML_DIR = './'
@@ -95,7 +98,8 @@ def convert_md_to_html():
                     nav_info=nav_info,
                     link_bg=nav_info[page][-1],
                     year=datetime.now().year,
-                    parents=len(html_file.parents)
+                    parents=len(html_file.parents),
+                    page_date=fm.get('date', '')
                 )
             )
 

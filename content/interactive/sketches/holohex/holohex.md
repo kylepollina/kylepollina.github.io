@@ -7,9 +7,9 @@ published: true
 scripts:
   - ../../../scripts/p5/p5.min.js
   - ../../../scripts/p5/addons/p5.dom.js
-  - ../../../scripts/p5_utilities/palettes.js
-  - ../../../scripts/p5_utilities/turtle.js
-  - ../../../scripts/p5_utilities/shapes.js
+  - ../../../scripts/p5-utilities/palettes.js
+  - ../../../scripts/p5-utilities/turtle.js
+  - ../../../scripts/p5-utilities/shapes.js
   - ../../../content/interactive/sketches/holohex/holohex.js
 ---
 
