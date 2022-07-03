@@ -1,4 +1,5 @@
 
+import dateparser
 
 import importlib
 import time
@@ -88,6 +89,7 @@ def convert_md_to_html():
             'interactive': ['https://kylepollina.github.io/interactive', f'[{themes[current_theme][4]}]'],
         }
         page = fm['page']
+        date = dateparser.parse(fm['date']).strftime("%b %d %Y") if 'date' in fm else ''
         with open(html_file, 'w+') as f:
             f.write(
                 template.render(
@@ -99,7 +101,7 @@ def convert_md_to_html():
                     link_bg=nav_info[page][-1],
                     year=datetime.now().year,
                     parents=len(html_file.parents),
-                    page_date=fm.get('date', '')
+                    page_date=date
                 )
             )
 

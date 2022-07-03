@@ -15,10 +15,10 @@ static site/blog generators were not customizable to my liking. So instead of sp
 hours reading the documentation I spent dozens of hours building my own implementation. C'est la vie.
 
 
-UPDATE: I was initially in the process of writing up a nice overview of how I built my own
-static site generator but realized I didn't care enough to spend my time writing it.
-Also I think if anyone wants to build a static site generator then you should figure it out for
-yourself. It's a great learning experience and will teach you more than I could from a dumb
+__> Update:__ I was initially in the process of writing up a nice overview of how I built my own
+static site generator but realized I really don't care enough to waste my time doing that.
+Also I think if anyone wants to build a static site generator then they should figure it out for
+themselves. It's a great learning experience and will teach you more than I could from a dumb
 blog post.
 
 But I'll at least give you links to the tools I use:

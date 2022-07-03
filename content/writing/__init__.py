@@ -1,5 +1,4 @@
 
-from operator import index
 from pathlib import Path
 from textwrap import dedent
 import frontmatter

@@ -1013,6 +1013,31 @@ video {
   margin-right: auto;
 }
 
+.-my-10 {
+  margin-top: -2.5rem;
+  margin-bottom: -2.5rem;
+}
+
+.-my-5 {
+  margin-top: -1.25rem;
+  margin-bottom: -1.25rem;
+}
+
+.-my-0 {
+  margin-top: -0px;
+  margin-bottom: -0px;
+}
+
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -1100,12 +1125,29 @@ video {
   padding: 5px;
 }
 
+.py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 .pb-20 {
   padding-bottom: 5rem;
 }
 
 .pl-5 {
   padding-left: 1.25rem;
+}
+
+.pb-0 {
+  padding-bottom: 0px;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pb-5 {
+  padding-bottom: 1.25rem;
 }
 
 .font-mono-italic {
@@ -1290,6 +1332,16 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.hover\:translate-x-10:hover {
+  --tw-translate-x: 2.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:translate-y-10:hover {
+  --tw-translate-y: 2.5rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .hover\:bg-\[\#C42E60\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(196 46 96 / var(--tw-bg-opacity));
@@ -1313,6 +1365,10 @@ video {
 .hover\:bg-\[\#225B7E\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(34 91 126 / var(--tw-bg-opacity));
+}
+
+.hover\:pb-10:hover {
+  padding-bottom: 2.5rem;
 }
 
 .hover\:text-white:hover {
@@ -1383,9 +1439,43 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.prose-strong\:bg-\[\#225B7E\] :is(:where(strong):not(:where([class~="not-prose"] *))) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 91 126 / var(--tw-bg-opacity));
+}
+
+.prose-strong\:bg-\[\#C42E60\] :is(:where(strong):not(:where([class~="not-prose"] *))) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(196 46 96 / var(--tw-bg-opacity));
+}
+
+.prose-strong\:bg-\[\#E65244\] :is(:where(strong):not(:where([class~="not-prose"] *))) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(230 82 68 / var(--tw-bg-opacity));
+}
+
+.prose-strong\:bg-\[\#D39C49\] :is(:where(strong):not(:where([class~="not-prose"] *))) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(211 156 73 / var(--tw-bg-opacity));
+}
+
+.prose-strong\:bg-\[\#4C8785\] :is(:where(strong):not(:where([class~="not-prose"] *))) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(76 135 133 / var(--tw-bg-opacity));
+}
+
 .prose-strong\:bg-slate-200 :is(:where(strong):not(:where([class~="not-prose"] *))) {
   --tw-bg-opacity: 1;
   background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.prose-strong\:font-medium :is(:where(strong):not(:where([class~="not-prose"] *))) {
+  font-weight: 500;
+}
+
+.prose-strong\:text-white :is(:where(strong):not(:where([class~="not-prose"] *))) {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .prose-em\:font-mono-regular :is(:where(em):not(:where([class~="not-prose"] *))) {
