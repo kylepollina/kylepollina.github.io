@@ -1,9 +1,0 @@
-{
-    "file_name": "squares.html",
-    "sketch_name": "squares",
-    "is_sketch": true,
-    "title": "sharp",
-    "current_page": "art",
-    "requires_p5": "true",
-    "p5_utility_scripts": ["palettes.js"]
-}
