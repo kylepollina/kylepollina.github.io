@@ -34,11 +34,11 @@ function keyPressed() {
     }
     else if (keyCode == 38) {
         spiro.angle += 1;
-        spiro.len -= 4
+        spiro.len -= 1
     }
     else if (keyCode == 40) {
         spiro.angle -= 1;
-        spiro.len += 4
+        spiro.len += 1
     }
     redraw();
 
