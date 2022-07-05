@@ -31,10 +31,10 @@ def build():
 
     content += dedent(
         """
-        I also played around with kinect cameras, here are a few little projects
+        I also played around with kinect cameras, exploring how to read depth information from them and display it in fun ways.
 
         <iframe width="560" height="315" src="https://www.youtube.com/embed/WwX4lv0vOSY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+        <br>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/l7ivoH3AzZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         """
     )

@@ -7,7 +7,8 @@ page: research
 ### Bio Logging
 
 #### Seattle
-- [Flora of Seattle]()
+- [Flora of Seattle](./seattle/../biology-logs/seattle/flora-of-seattle.html)
+- [Birds of Seattle](./seattle/../biology-logs/seattle/birds-of-seattle.html)
 
 #### Arlington Heights
 - [Dupage Bird Club Visual Checklist](https://kylepollina.github.io/wildlife/dbc-checklist/)

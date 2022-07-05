@@ -11,12 +11,12 @@ date: July 2 2022
 > Why the hell am I remaking something that has already been made before?
 
 I wrote my own static site generator because I was frustrated that the current
-static site/blog generators were not customizable to my liking. So instead of spending a few
-hours reading the documentation I spent dozens of hours building my own implementation. C'est la vie.
+tools were not customizable to my liking. So instead of spending a few hours reading
+the documentation I spent dozens of hours building my own implementation. C'est la vie.
 
 
-__> Update:__ I was initially in the process of writing up a nice overview of how I built my own
-static site generator but realized I really don't care enough to waste my time doing that.
+__> Update:__ I was initially in the process of writing up a nice overview on the details of how I
+built this, but realized I really don't care enough to waste my time doing that.
 Also I think if anyone wants to build a static site generator then they should figure it out for
 themselves. It's a great learning experience and will teach you more than I could from a dumb
 blog post.

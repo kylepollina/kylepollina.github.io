@@ -108,6 +108,7 @@ def convert_md_to_html():
 
 class MyHandler(FileSystemEventHandler):
     def on_modified(self,  event):
+        # TODO this fails for the research index.md page. Maybe only do this if there is an init file in that path
         if 'templates/' in event.src_path or ('content/' in event.src_path and 'index.md' not in event.src_path):
             print(f'event type: {event.event_type} path : {event.src_path}')
             main()
