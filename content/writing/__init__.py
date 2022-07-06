@@ -28,7 +28,8 @@ def build():
             fm = frontmatter.load(f)
 
         if fm.get('published') is True:
-            date = dateparser.parse(fm['date']).strftime("%b %d %Y") if 'date' in fm else None
+            # date = dateparser.parse(fm['date']).strftime("%b %d %Y") if 'date' in fm else None
+            date = dateparser.parse(fm['date']) if 'date' in fm else None
             display = f"- [{fm['title']}]"
             link = f"({md_file.relative_to(HERE).with_suffix('.html')})"
             pages.append(
@@ -38,9 +39,9 @@ def build():
                 }
             )
 
-    pages = sorted(pages, key=lambda page_info: (page_info['date'], None))
+    pages = sorted(pages, key=lambda page_info: (page_info['date'], None), reverse=True)
     index_page_content += "\n".join(
-        [f"{page['line']} {page['date']}" for page in pages]
+        [f"{page['line']} {page['date'].strftime('%b %d %Y') if page['date'] is not None else ''}" for page in pages]
     )
 
     with open(HERE / 'index.md', 'w+') as f:
