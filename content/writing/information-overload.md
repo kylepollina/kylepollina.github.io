@@ -13,5 +13,4 @@ information can cause information overload and information overload
 is like a drug overdose. I am currently experiencing this drug overdose
 and I need to cut out parts of my life that cause this.
 
-Hackernews is first, I've learned great things from there but farewell for now,
 I need my focus back. I need my boredom back too.
