@@ -1,11 +1,11 @@
 ---
 page: writing
-title: ass logic
+title: ass economics
 published: true
 date: 07-06-2022
 ---
 
-# Ass logic
+# Ass economics
 
 Whenever doing something you can either half-ass it or whole-ass it. Half-assing something is
 really tempting because you save yourself one half-ass worth of time in the short term to spend
