@@ -2,6 +2,9 @@
 # https://www.fnal.gov/cgi-bin/ecology/wildlife/bigbar?Greater+White-fronted+Goose
 
 import pandas as pd
+from pathlib import Path
+
+HERE = Path(__file__).parent
 
 
 html_start = """
@@ -121,10 +124,10 @@ def build_page(bird_data: pd.DataFrame, output_file: str, all_bird_page: bool = 
 
         html += "<details><summary>More Information</summary>"
         html += "<ul>"
-        
+
         if bird == 'Bald Eagle':
             html += "<li><a href='https://wizardpins.com/blogs/education/all-about-bald-eagles'> All About Bald Eagles!</a> <br>(Suggested by Chelsea, Sarah, Jarod, and Erin. Thank you!!) </li>"
-        
+
         html += "<li><a href='{}'> eBird - {}</a></li>".format(row['ebird'], bird)
         html += "<li><a href='{}'> Wikipedia - {}</a></li>".format(row['wikipedia'], bird)
         html += "<li><a href='{}'>All About Birds - {}</a></li>".format(row['allaboutbirds'], bird)
@@ -149,8 +152,8 @@ def build_page(bird_data: pd.DataFrame, output_file: str, all_bird_page: bool = 
         f.write(html)
 
 
-if __name__ == "__main__":
-    df = pd.read_csv('bird_data.csv', index_col='bird')
+def _build():
+    df = pd.read_csv(HERE / 'bird_data.csv', index_col='bird')
 
     for season in ['winter', 'early spring', 'late spring', 'summer', 'post breeding', 'early fall', 'late fall']:
         winter_birds = df.dropna(subset=[season])  # Only drop NA rows in the current season
@@ -162,3 +165,7 @@ if __name__ == "__main__":
         build_page(winter_birds[winter_birds[season] == '6 - extremely rare'], '{}/extremely-rare.html'.format(season.replace(' ', '-')))
 
     build_page(df, 'all.html', all_bird_page=True)
+
+
+if __name__ == "__main__":
+    _build()
