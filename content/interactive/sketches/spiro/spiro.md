@@ -1,6 +1,6 @@
 ---
 page: interactive
-title: zig
+title: spiro
 published: true
 
 scripts:

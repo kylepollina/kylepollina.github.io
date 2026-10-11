@@ -6,3 +6,20 @@ function randomPalette1000() {
     console.log("Palette index: " + index);
     return allPalettes[index];
 }
+
+function mixedPaletteSizeN(n) {
+    let mixed = [];
+    for(let i = 0; i < n; i++) {
+        let palette = randomPalette();
+        mixed.push(palette[~~random(5)]);
+    }
+    console.log("Mixed palette: " + mixed);
+    return mixed;
+}
+
+/* Only for sketches that load turtle.js before this file */
+if(typeof Turtle !== 'undefined') {
+    Turtle.prototype.clearStack = function() {
+        this.stack = [];
+    };
+}

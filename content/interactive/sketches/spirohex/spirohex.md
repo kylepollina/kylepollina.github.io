@@ -7,6 +7,7 @@ scripts:
   - ../../../scripts/p5/p5.min.js
   - ../../../scripts/p5-utilities/palettes.js
   - ../../../scripts/p5-utilities/turtle.js
+  - ../../../scripts/sketches/compat.js
   - ../../../content/interactive/sketches/spirohex/spirohex.js
 ---
 

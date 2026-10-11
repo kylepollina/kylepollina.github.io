@@ -2,7 +2,7 @@
 ---
 page: interactive
 title: fences
-published: true
+published: false
 
 scripts:
   - ../../../scripts/p5/p5.min.js

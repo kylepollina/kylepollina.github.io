@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "build:css": "tailwindcss -i index.tailwind.css -o index.css",
-    "watch:css": "tailwindcss -i index.tailwind.css -o index.css --watch"
+    "watch:css": "tailwindcss -i index.tailwind.css -o index.css --watch",
+    "serve": "python3 serve.py 8500"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.2",

@@ -1,7 +1,7 @@
 ---
 page: interactive
 title: zigzag2
-published: true
+published: false
 
 scripts:
   - ../../../scripts/p5/p5.min.js

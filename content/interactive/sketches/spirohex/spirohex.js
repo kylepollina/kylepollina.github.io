@@ -35,9 +35,19 @@ function draw() {
 function drawTriangle() {
     t.setHeading(0);
     t.right(60);
-    t.moveTo(width/2, 0);
+    t.moveTo(0, 0);
     drawSpiro();
+
+    /* The spiral's shape changes with the mouse, so center its bounding box each frame */
+    let xs = t.stack.map(s => s.x);
+    let ys = t.stack.map(s => s.y);
+    let cx = (min(xs) + max(xs)) / 2;
+    let cy = (min(ys) + max(ys)) / 2;
+
+    push();
+    translate(width/2 - cx, height/2 - cy);
     drawColors();
+    pop();
     t.clearStack();
 }
 

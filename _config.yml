@@ -5,6 +5,7 @@ exclude:
   - README.md
   - templates/
   - build_site.py
+  - serve.py
   - logger.py
   - requirements.txt
   - package.json

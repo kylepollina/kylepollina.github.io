@@ -24,6 +24,18 @@
         }
     });
 
+    // In the gallery, spacebar does nothing: it would otherwise reach the sketch you last clicked
+    // (re-rolling palettes, pausing, etc.) or scroll the page. Capture phase on window runs before
+    // p5's own key listeners. The standalone sketch pages still get spacebar.
+    ['keydown', 'keypress', 'keyup'].forEach(function (type) {
+        window.addEventListener(type, function (e) {
+            if (e.key === ' ' || e.code === 'Space') {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+            }
+        }, true);
+    });
+
     window.addEventListener('load', function () {
         // With no root, the observer measures against the top-level page's viewport, even from inside an iframe
         new IntersectionObserver(function (entries) {

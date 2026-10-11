@@ -19,10 +19,10 @@ env/bin/python build_site.py --watch   # rebuild on changes to content/ or templ
 npm run build:css                      # regenerate index.css (after adding new Tailwind classes)
 ```
 
-Preview with a local server so relative links behave like they do on GitHub Pages:
+Preview with a local server so relative links behave like they do on GitHub Pages. Opening the files directly (`file://`) breaks the image sketches: browsers block reading pixels of images from disk.
 
 ```sh
-python3 -m http.server 8000           # then open http://localhost:8000
+npm run serve                         # serve.py on http://localhost:8500, with browser caching off
 ```
 
 ## Layout

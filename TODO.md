@@ -29,14 +29,19 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
 
 - [x] Unhide all sketches: all 38 are now listed on the interactive page, alphabetically
 - [x] Check each sketch runs (headless Chrome, Oct 2026): 31 of 38 render without errors
+- Image sketches (breathing, gogh, lisa, lotus, towers, starry) can't run from `file://`: browsers won't let a page read pixels of images opened from disk. Preview with `npm run serve`
+- Spacebar is swallowed inside gallery iframes (`embed.js`); standalone sketch pages still get it
 - [ ] Fix the 7 that don't:
   - [ ] `nike_vhs`: loads `nike_classic.png` and `swoosh.png`, which were never committed
   - [ ] `sun`, `prisma`: load a `gradient.png` that was never committed
   - [ ] `opentype_test`: needs the opentype.js library and a Futura font file, neither in the repo
-  - [ ] `spirohex`: draws, but calls `mixedPaletteSizeN()`, which no longer exists in p5-utilities
-  - [ ] `stripes`: draws, but `p5-utilities/stripes.js` calls a missing `graphicMask()`
-  - [ ] `perlin`: draws, but calls `outerGrid.innerGrid()`, which no longer exists in `grid.js`
-- [ ] Give sketches real names on the interactive page (it lists folder names like `color_palletes`, `zigzag2`)
+  - [x] `spirohex`: `mixedPaletteSizeN()` and `Turtle.clearStack()` added to `scripts/sketches/compat.js`
+  - [ ] `stripes`: draws, but `p5-utilities/stripes.js` calls a missing `graphicMask()` (hidden for now anyway)
+  - [x] `perlin`: replaced the unfinished draw loop (and the missing `innerGrid()`) with the commented-out noise flow field
+  - [x] `shapes`: clicks never completed a shape (constructor pre-filled every corner); fixed, with a hint and a live outline
+  - [x] `lisa` ("so chic"): popped "Cannot split further" alerts. p5 1.x made `angleBetween()` signed, so right angles weren't detected; now compares `Math.abs()`. Tiny triangles that missed every pixel now take their center pixel's color
+- [x] Give sketches real names on the interactive page: gallery uses frontmatter `title`; fixed the copy-paste ones (cubies was "so chic", spiro was "zig")
+- Hidden from the interactive page (`published: false`, pages still built): color_palettes, fences, shapes, slices, smile, stripes, zigzag, zigzag2
 - [ ] p5 1.4.1 is pinned; the newer p5 2.x has breaking changes, so upgrade deliberately or not at all
 - [ ] Sketch JS is served out of `content/`; move it next to the built pages, or into `scripts/sketches/`. That would also let `content/` be excluded from the Jekyll pass
 - [ ] `interactive/` holds ~8MB of PNG/JPG previews (some 500–750KB); compress them or convert to WebP

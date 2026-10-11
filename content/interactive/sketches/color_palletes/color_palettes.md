@@ -1,7 +1,7 @@
 ---
 page: interactive
 title: color palettes
-published: true
+published: false
 
 scripts:
   - ../../../scripts/p5/p5.min.js

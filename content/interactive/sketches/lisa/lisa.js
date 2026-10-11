@@ -76,7 +76,7 @@ function recursive_split(triangle, n) {
 
 
     /* Find hypotenuse of given triangle */
-    if(approx_equal(PI / 2, ab.angleBetween(ac), 20)) {
+    if(approx_equal(PI / 2, Math.abs(ab.angleBetween(ac)), 20)) {
         /* BC is hypotenuse */
         var halfway = new Point(~~((b.x + c.x) / 2), ~~((b.y + c.y) / 2));
         var split1 = new Triangle(a.x,a.y, b.x,b.y, halfway.x,halfway.y);
@@ -93,7 +93,7 @@ function recursive_split(triangle, n) {
         recursive_split(split2, n);
 
     }    
-    else if(approx_equal(PI / 2, ab.angleBetween(bc), 20)) {
+    else if(approx_equal(PI / 2, Math.abs(ab.angleBetween(bc)), 20)) {
         /* AC is hypotenuse */
         var halfway = new Point(~~((a.x + c.x) / 2), ~~((a.y + c.y) / 2));
         var split1 = new Triangle(a.x,a.y, b.x,b.y, halfway.x,halfway.y);
@@ -110,7 +110,7 @@ function recursive_split(triangle, n) {
         recursive_split(split1, n);
         recursive_split(split2, n);
     }
-    else if(approx_equal(PI / 2, ac.angleBetween(bc), 20)) {
+    else if(approx_equal(PI / 2, Math.abs(ac.angleBetween(bc)), 20)) {
         /* AB is hypotenuse */
         var halfway = new Point(~~((a.x + b.x) / 2), ~~((a.y + b.y) / 2));
         var split1 = new Triangle(a.x,a.y, c.x,c.y, halfway.x,halfway.y);
@@ -189,6 +189,17 @@ class Triangle {
                     total++;
                 }
             }
+        }
+
+        /* Tiny triangles can miss every pixel; use the pixel at their center instead */
+        if(total == 0) {
+            var cx = ~~((this.x1 + this.x2 + this.x3) / 3);
+            var cy = ~~((this.y1 + this.y2 + this.y3) / 3);
+            var index = (cx + cy * img.width) * 4;
+            r_tot = image.pixels[index];
+            g_tot = image.pixels[index + 1];
+            b_tot = image.pixels[index + 2];
+            total = 1;
         }
 
         var r_avg = r_tot / total;

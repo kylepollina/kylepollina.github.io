@@ -1,6 +1,6 @@
 ---
 page: interactive
-title: so chic
+title: cubies
 published: true
 
 scripts:

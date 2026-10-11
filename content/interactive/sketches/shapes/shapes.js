@@ -22,6 +22,14 @@ function draw() {
     for(let i = 0; i < shapes.length; i++) {
         shapes[i].show();
     }
+
+    if(shape == null && shapes.length == 0) {
+        noStroke();
+        fill(150);
+        textAlign(CENTER, CENTER);
+        textSize(20);
+        text("click to place corners", width / 2, height / 2);
+    }
 }
 
 function mouseClicked() {
@@ -54,9 +62,7 @@ class Shape {
             console.log("new square");
         }
 
-        for(let i = 0; i < this.numSides; i++) {
-            this.points.push({"x": x1, "y": y1})
-        }
+        this.points.push({"x": x1, "y": y1});
 
         this.color = palette[~~random(5)]
     }
@@ -83,6 +89,17 @@ class Shape {
     }
     
     liveShow() {
+        // Outline of the shape so far, following the mouse to the next corner
+        noFill();
+        stroke(this.color);
+        beginShape();
+        for(let i = 0; i < this.points.length; i++) {
+            let point = this.points[i];
+            vertex(point.x, point.y);
+        }
+        vertex(mouseX, mouseY);
+        endShape();
+
         noStroke();
         fill(0);
         for(let i = 0; i < this.points.length; i++) {
