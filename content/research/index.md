@@ -7,11 +7,11 @@ page: research
 ### Bio Logging
 
 #### Seattle
-- [Flora of Seattle](./seattle/../biology-logs/seattle/flora-of-seattle.html)
-- [Birds of Seattle](./seattle/../biology-logs/seattle/birds-of-seattle.html)
+- [Flora of Seattle](./biology-logs/seattle/flora-of-seattle.html)
+- [Birds of Seattle](./biology-logs/seattle/birds-of-seattle.html)
 
 #### Arlington Heights
-- [Dupage Bird Club Visual Checklist](https://kylepollina.github.io/wildlife/dbc-checklist/)
+- [Dupage Bird Club Visual Checklist](../biology-logs/dbc-checklist/index.html)
 - [Summer survey 2020](./biology-logs/arlington-heights/summer-survey.html)
 
 ### Earthscience Research

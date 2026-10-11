@@ -14,7 +14,7 @@ html_start = """
 
     <!-- CSS -->
 
-    <link rel="stylesheet" href="https://kylepollina.github.io/styles.css">
+    <link rel="stylesheet" href="{base}../../styles.css">
     <!-- Fonts -->
 
     <title></title>
@@ -25,8 +25,8 @@ html_start = """
         <div id="birds">
           <h1>DuPage Birding Club Visual Checklist</h1>
           View the checklist: <a href="https://dupagebirding.org/wp-content/uploads/2020/06/2020_DuPage_Checklist-Combined-3.pdf">DuPage Birding Club Checklist</a><br>
-          Download the dataset: <a href="dbc_checklist.csv">Checklist download</a><br>
-          <a href="https://kylepollina.github.io/wildlife/dbc-checklist/">Main page</a>
+          Download the dataset: <a href="{base}dbc_checklist.csv">Checklist download</a><br>
+          <a href="{base}index.html">Main page</a>
 """
 
 html_end = """
@@ -40,19 +40,18 @@ html_end = """
 
 def build_page(bird_data: pd.DataFrame, output_file: str, all_bird_page: bool = False):
     """ Build the html page """
-    html = html_start
+    # Relative path back to the dbc-checklist directory, so links work locally and on GitHub Pages
+    base = "../" * output_file.count("/")
+    html = html_start.replace("{base}", base)
 
-    if all_bird_page:
-        html = html.replace('../../https://kylepollina.github.io/styles.css', '../styles.css')
-
-    else:
+    if not all_bird_page:
         season, abundance = output_file.split('/')
         abundance = abundance.replace('.html', '')
 
         html += f'<u><h1>{season}</h1></u>'
 
         for s in ['winter', 'early-spring', 'late-spring', 'summer', 'post-breeding', 'early-fall', 'late-fall']:
-            html += "<a href='https://kylepollina.github.io/wildlife/dbc-checklist/{}/abundant.html'>".format(s)
+            html += "<a href='{}{}/abundant.html'>".format(base, s)
             html += "{}</a>".format(s.replace('-', ' '))
             if s != 'late-fall':
                 html += " - "
@@ -60,7 +59,7 @@ def build_page(bird_data: pd.DataFrame, output_file: str, all_bird_page: bool = 
         html += "<u><h3>{}</h3></u>".format(abundance.replace('-', ' '))
 
         for abd in ['abundant', 'common', 'fairly-common', 'uncommon', 'rare', 'extremely-rare']:
-            html += "<a href='https://kylepollina.github.io/wildlife/dbc-checklist/{}/{}.html'>".format(season, abd)
+            html += "<a href='{}{}/{}.html'>".format(base, season, abd)
             html += "{}</a>".format(abd.replace('-', ' '))
             if abd != 'extremely-rare':
                 html += " - "

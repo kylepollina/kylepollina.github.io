@@ -6,7 +6,6 @@ published: true
 
 scripts:
   - ../../../scripts/p5/p5.min.js
-  - ../../../scripts/p5/addons/p5.dom.js
   - ../../../content/interactive/sketches/triangles/triangles.js
 ---
 
