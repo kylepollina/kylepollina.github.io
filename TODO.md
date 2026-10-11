@@ -7,6 +7,13 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
 - [ ] **Move writing to Bear Blog.** Link to your existing Bear Blog sites from here, and migrate the old posts. 8 posts in `content/writing/`, all now listed; `wikipedia-catches-up` is just a title with no body
 - [ ] **Refresh the p5.js art.** Build a new way to show sketches that can't break the main site, e.g. each sketch isolated in its own iframe/page with a gallery of preview thumbnails
 - [ ] **Add a 3D wigglegrams page** to show off that project
+- [ ] **AI-driven interactive environmental science.** Move on from the Jupyter notebooks (linked from research via nbviewer, source in `kylepollina/earthscience`) to something interactive that can live on this site. Options to look at:
+  - [ ] marimo: reactive Python notebooks stored as plain `.py` files; can export to WASM/HTML that runs in the browser with no server (works on GitHub Pages); built-in AI assistant
+  - [ ] Quarto: publishes notebooks as polished pages; interactivity via Observable JS or Pyodide
+  - [ ] Observable Framework: static data apps/dashboards in JS; data loaders can be written in Python
+  - [ ] JupyterLite: full Jupyter running in the browser via Pyodide, static hosting
+  - [ ] Geospatial tooling to pair with any of these: leafmap / geemap (Google Earth Engine)
+  - [ ] Decide where AI fits: an assistant while authoring (marimo AI, Jupyter AI, Claude Code) vs. in the published page itself (natural-language queries over the data)
 - [ ] Rework the site into a more complete portfolio
 
 ## Pages
