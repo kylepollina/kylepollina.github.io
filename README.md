@@ -29,6 +29,7 @@ python3 -m http.server 8000           # then open http://localhost:8000
 
 - `content/` — Markdown sources. Frontmatter sets `page` (nav section), `title`, `scripts`, `date`, `published`
 - `content/*/__init__.py` — builders that regenerate a section's `index.md` (writing, interactive)
+- The interactive builder also writes a bare `<sketch>-embed.html` next to each sketch page; the gallery loads those in iframes. Frontmatter `gallery: false` keeps a sketch out of it
 - `templates/` — Jinja templates
 - `interactive/`, `writing/`, `research/` — built HTML plus static assets
 - `scripts/` — p5.js, shared sketch helpers, and the `p5-utilities` submodule

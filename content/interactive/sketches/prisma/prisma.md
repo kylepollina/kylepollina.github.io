@@ -2,6 +2,7 @@
 page: interactive
 title: prisma
 published: true
+gallery: false
 
 scripts:
   - ../../../scripts/p5/p5.min.js

@@ -5,7 +5,9 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
 ## Big projects
 
 - [ ] **Move writing to Bear Blog.** Link to your existing Bear Blog sites from here, and migrate the old posts. 8 posts in `content/writing/`, all now listed; `wikipedia-catches-up` is just a title with no body
-- [ ] **Refresh the p5.js art.** Build a new way to show sketches that can't break the main site, e.g. each sketch isolated in its own iframe/page with a gallery of preview thumbnails
+- [x] **Refresh the p5.js art.** The interactive page is now a live gallery: each sketch runs in its own iframe (`*-embed.html`), loaded only near the viewport, paused off-screen, drawn at 1x pixel density (`scripts/sketches/gallery.js`, `embed.js`)
+  - [ ] Sketches with `gallery: false` (nike_vhs, sun, prisma, opentype_test) are listed below the gallery; remove the flag once each is fixed
+  - [ ] Check the gallery on a real phone (touch input inside iframes, scrolling past canvases)
 - [ ] **Add a 3D wigglegrams page** to show off that project
 - [ ] **AI-driven interactive environmental science.** Move on from the Jupyter notebooks (linked from research via nbviewer, source in `kylepollina/earthscience`) to something interactive that can live on this site. Options to look at:
   - [ ] marimo: reactive Python notebooks stored as plain `.py` files; can export to WASM/HTML that runs in the browser with no server (works on GitHub Pages); built-in AI assistant
