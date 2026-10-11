@@ -1,0 +1,37 @@
+# kylepollina.github.io
+
+Personal site, served by GitHub Pages from `master`. Pages are written in Markdown under `content/` and built into HTML committed alongside them.
+
+## Setup
+
+```sh
+git submodule update --init          # scripts/p5-utilities
+python3 -m venv env
+env/bin/pip install -r requirements.txt
+npm install                          # Tailwind, only needed for CSS changes
+```
+
+## Build
+
+```sh
+env/bin/python build_site.py           # build once
+env/bin/python build_site.py --watch   # rebuild on changes to content/ or templates/
+npm run build:css                      # regenerate index.css (after adding new Tailwind classes)
+```
+
+Preview with a local server so relative links behave like they do on GitHub Pages:
+
+```sh
+python3 -m http.server 8000           # then open http://localhost:8000
+```
+
+## Layout
+
+- `content/` — Markdown sources. Frontmatter sets `page` (nav section), `title`, `scripts`, `date`, `published`
+- `content/*/__init__.py` — builders that regenerate a section's `index.md` (writing, interactive)
+- `templates/` — Jinja templates
+- `interactive/`, `writing/`, `research/` — built HTML plus static assets
+- `scripts/` — p5.js, shared sketch helpers, and the `p5-utilities` submodule
+- `biology-logs/dbc-checklist/` — bird checklist, built separately by `generate_checklist.py` (needs pandas)
+
+After building, commit the generated HTML along with the source changes.

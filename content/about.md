@@ -4,9 +4,9 @@ page: about
 
 ## About
 
-My name is Kyle Pollina and I [photograph wildlife](https://www.instagram.com/kylepollina/), garden a bit, and sometimes write programs but I'd rather be outside 🏔 Co-Founder of [Miglia.co](https://www.miglia.co/) 🏎🏎🏎
+My name is Kyle Pollina and I [photograph wildlife](https://www.instagram.com/kylepollina/), garden a bit, and sometimes write programs but I'd rather be outside 🏔
 
-Based in Seattle, Washington
+Based in Chicago, Illinois
 
 Font: [IBM Plex Mono Italic](https://github.com/IBM/plex/)
 

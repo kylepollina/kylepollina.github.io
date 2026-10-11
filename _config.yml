@@ -1,0 +1,15 @@
+# GitHub Pages (Jekyll) settings. The site itself is built by build_site.py.
+# content/ can't be excluded yet: sketch pages load their JS from it.
+exclude:
+  - TODO.md
+  - README.md
+  - templates/
+  - build_site.py
+  - logger.py
+  - requirements.txt
+  - package.json
+  - package-lock.json
+  - tailwind.config.js
+  - index.tailwind.css
+  - node_modules/
+  - env/

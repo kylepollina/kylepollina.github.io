@@ -24,7 +24,6 @@ Temperature:
 | **Mean**     | 21.69 | 70.88  |
 
 
-[Climate data (Download CSV)](data/climate.csv)
 
 ### Links
 
@@ -182,10 +181,6 @@ Huge honker. Famalies starting to move south as the summer nears its end.
 | :---------- | :---- |
 |  2020-08-22 | 8     |
 
-<video width="640" height="480" controls>
-   <source src="field-work/videos/cangoo-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 [Canada Goose Status & Trends - eBird.org](https://ebird.org/science/status-and-trends/cangoo)
 
 
@@ -217,10 +212,6 @@ Common bird with a great whistle.
 - [https://en.wikipedia.org/wiki/Northern_cardinal](https://en.wikipedia.org/wiki/Northern_cardinal)
 
 **eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/videos/norcar-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/176241/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>
 
@@ -239,10 +230,6 @@ around now in August. Many different songs and calls.
 - [https://en.wikipedia.org/wiki/American_robin](https://en.wikipedia.org/wiki/American_robin)
 
 **eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/videos/amerob-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/94261/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>
 
@@ -261,10 +248,6 @@ Seen mostly in the early evenings.
 - [https://en.wikipedia.org/wiki/American_goldfinch](https://en.wikipedia.org/wiki/American_goldfinch)
 
 **eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/videos/amegfi-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/94300/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>
 
@@ -319,10 +302,6 @@ Member of the [Icterid](https://en.wikipedia.org/wiki/Icterid) family of blackbi
 | 2020-08-29 | 1     | M   | Northbrook IL
 
 **eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/videos/balori-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/113501/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>
 
@@ -357,10 +336,6 @@ Males have red feathers on the top of their heads, females do not.
 
 
 **eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/videos/dowwoo-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/94232/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>
 
@@ -383,10 +358,6 @@ as a red-tailed hawk since they are the most common it seems, but I am not sure.
 - [https://en.wikipedia.org/wiki/Red-tailed_hawk](https://en.wikipedia.org/wiki/Red-tailed_hawk)
 
 **eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/videos/rethaw-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/31533301/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>
 
@@ -411,10 +382,6 @@ Wades on the shallow end of the bog, feeds on small fish. Quiet and lonesome.
 |  2020-07-12 | 1     | Mallards Bog
 
 **eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/videos/grbher3-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/92488041/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>
 
@@ -447,10 +414,6 @@ Incredibly complicated tones, sounds like telephone bells. Members of the [Icter
 By August, the birds seem to have left from Mallards Bog
 
 **eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/videos/rewbla-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/110263341/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>
 
@@ -478,10 +441,6 @@ families living together
 | Mallards Bog | 24+
 
 **eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/videos/mallar3-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/88306211/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>
 
@@ -505,10 +464,6 @@ Sapphire blue bird. Mysterious and elusive in my neighborhood...
 | 2020-07-06 | 1     | Golf Club
 
 **eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/videos/blujay-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
-
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/173749/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>
 

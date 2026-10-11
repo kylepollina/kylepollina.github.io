@@ -2,7 +2,7 @@
 page: writing
 title: dumb smart devices
 published: true
-date: July 2 2022
+date: 2022-07-02
 ---
 
 # Smart devices should still function as dumb devices

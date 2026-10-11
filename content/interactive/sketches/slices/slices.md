@@ -1,7 +1,7 @@
 ---
 page: interactive
 title: slices
-published: false
+published: true
 
 scripts:
   - ../../../scripts/p5/p5.min.js

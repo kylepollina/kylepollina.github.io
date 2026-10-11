@@ -2,7 +2,7 @@
 page: writing
 title: information overload
 published: true
-date: 07-05-2022
+date: 2022-07-05
 ---
 
 # Information overload

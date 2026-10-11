@@ -1,9 +1,5 @@
 .DS_Store
-/*.DS_Store
-/env/*
-
-session.vim
-mandalas/
-ukiyo-e/
+/env/
 __pycache__
 node_modules
+.vscode/

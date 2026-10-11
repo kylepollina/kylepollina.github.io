@@ -1,7 +1,7 @@
 ---
 page: interactive
 title: so chic
-published: False
+published: true
 
 scripts:
   - ../../../scripts/p5/p5.min.js

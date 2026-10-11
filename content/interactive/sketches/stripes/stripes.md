@@ -1,7 +1,7 @@
 ---
 page: interactive
 title: stripes
-published: False
+published: true
 
 scripts:
   - ../../../scripts/p5/p5.min.js

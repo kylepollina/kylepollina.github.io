@@ -16,7 +16,7 @@ def build():
         "\n"
         "some art I made at uni using [p5.js](https://p5js.org/)\n\n"
     )
-    sketch_md_files = list(Path(HERE / 'sketches').rglob("*.md"))
+    sketch_md_files = sorted(Path(HERE / 'sketches').rglob("*.md"), key=lambda p: p.stem)
     # content += "<ul>"
     for sketch in sketch_md_files:
         with open(sketch, 'r') as f:

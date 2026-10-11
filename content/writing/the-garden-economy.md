@@ -1,8 +1,8 @@
 ---
 page: writing
 title: the garden economy
-published: false
-date: 07-08-2022
+published: true
+date: 2022-07-08
 ---
 
 # The garden economy

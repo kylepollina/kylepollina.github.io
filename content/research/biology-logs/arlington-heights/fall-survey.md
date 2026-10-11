@@ -31,10 +31,7 @@ Ecological survey for Arlington Heights Illinois. All images taken off wikipedia
 - [https://ebird.org/species/bkcchi](https://ebird.org/species/bkcchi)
 - [https://en.wikipedia.org/wiki/Black-capped_chickadee](https://en.wikipedia.org/wiki/Black-capped_chickadee)
 
-**eBird Abundance Map**
-<video width="640" height="480" controls>
-   <source src="field-work/bkcchi-abundance-map-weekly-2019-en.mp4" type="video/mp4">
-</video>
+[eBird Abundance Map](https://ebird.org/science/status-and-trends/bkcchi)
 
 **eBird Recording**
 <iframe width="640" height="360" src="https://macaulaylibrary.org/asset/54840711/embed/640" frameborder="0" allowfullscreen style="width:640px;"></iframe>

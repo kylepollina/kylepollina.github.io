@@ -2,8 +2,8 @@
 page: writing
 title: building a static site generator
 highlight: true
-published: True 
-date: July 2 2022
+published: true
+date: 2022-07-02
 ---
 
 # Building a static site generator

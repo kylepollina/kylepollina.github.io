@@ -13,6 +13,7 @@ page: research
 #### Arlington Heights
 - [Dupage Bird Club Visual Checklist](../biology-logs/dbc-checklist/index.html)
 - [Summer survey 2020](./biology-logs/arlington-heights/summer-survey.html)
+- [Fall survey 2022](./biology-logs/arlington-heights/fall-survey.html)
 
 ### Earthscience Research
 

@@ -1,7 +1,7 @@
 ---
 page: interactive
 title: lotus
-published: false
+published: true
 
 scripts:
   - ../../../scripts/p5/p5.min.js

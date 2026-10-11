@@ -2,7 +2,7 @@
 page: writing
 title: why write
 published: true
-date: june 19 2022
+date: 2022-06-19
 ---
 
 # Why write

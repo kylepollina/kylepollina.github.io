@@ -14,7 +14,6 @@ html_start = """
 
     <!-- CSS -->
 
-    <link rel="stylesheet" href="{base}../../styles.css">
     <!-- Fonts -->
 
     <title></title>

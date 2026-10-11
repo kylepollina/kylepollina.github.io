@@ -29,7 +29,7 @@ def build():
 
         if fm.get('published') is True:
             # date = dateparser.parse(fm['date']).strftime("%b %d %Y") if 'date' in fm else None
-            date = dateparser.parse(fm['date']) if 'date' in fm else None
+            date = dateparser.parse(str(fm['date'])) if 'date' in fm else None
             display = f"- [{fm['title']}]"
             link = f"({md_file.relative_to(HERE).with_suffix('.html')})"
             pages.append(

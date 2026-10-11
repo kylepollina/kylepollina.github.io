@@ -2,7 +2,7 @@
 page: writing
 title: ass economics
 published: true
-date: 07-06-2022
+date: 2022-07-06
 ---
 
 # Ass economics

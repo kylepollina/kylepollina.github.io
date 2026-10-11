@@ -1,3 +1,4 @@
+import argparse
 import importlib
 import time
 from datetime import datetime
@@ -88,12 +89,15 @@ def convert_md_to_html():
             "interactive": [f"{root}interactive/index.html", f"[{themes[current_theme][4]}]"],
         }
         page = fm["page"]
-        date = dateparser.parse(fm["date"]).strftime("%b %d %Y") if "date" in fm else ""
+        name = fm.get("title", page)
+        title = "kyle pollina" if page == "home" else f"{name} · kyle pollina"
+        date = dateparser.parse(str(fm["date"])).strftime("%b %d %Y") if "date" in fm else ""
         with open(html_file, "w+") as f:
             f.write(
                 template.render(
                     content=html,
                     scripts=fm.get("scripts", []),
+                    title=title,
                     highlight=fm.get("highlight", False),
                     page=page,
                     nav_info=nav_info,
@@ -124,7 +128,14 @@ class MyHandler(FileSystemEventHandler):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Build the site from content/")
+    parser.add_argument("--watch", action="store_true", help="rebuild when content/ or templates/ change")
+    args = parser.parse_args()
+
     main()
+    if not args.watch:
+        raise SystemExit
+
     event_handler = MyHandler()
     observer = Observer()
     observer.schedule(event_handler, path=".", recursive=True)
