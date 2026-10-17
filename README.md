@@ -29,7 +29,7 @@ npm run serve                         # serve.py on http://localhost:8500, with 
 
 - `content/` — Markdown sources. Frontmatter sets `page` (nav section), `title`, `scripts`, `date`, `published`
 - `content/*/__init__.py` — builders that regenerate a section's `index.md` (writing, interactive)
-- The interactive builder also writes a bare `<sketch>-embed.html` next to each sketch page; the gallery loads those in iframes. Frontmatter `gallery: false` keeps a sketch out of it
+- The interactive gallery shows a still (`<sketch>-thumb.webp`) per sketch, linking to its live page; make them with `scripts/make_thumbs.sh <names>`. A sketch with no thumb is linked in a text list instead. The builder also writes a bare `<sketch>-embed.html` next to each page; the home page loads those in an iframe
 - `templates/` — Jinja templates
 - `interactive/`, `writing/`, `research/` — built HTML plus static assets
 - `scripts/` — p5.js, shared sketch helpers, and the `p5-utilities` submodule
