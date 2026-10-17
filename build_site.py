@@ -32,6 +32,8 @@ themes = [
     ["#027B7F", "#FFA588", "#D62957", "#BF1E62", "#572E4F"],
 ]
 current_theme = 0
+# Sections built but left out of the nav (and excluded from GitHub Pages in _config.yml). Remove a name to bring it back
+HIDDEN_PAGES = {"research"}
 
 
 def main():
@@ -100,7 +102,7 @@ def convert_md_to_html():
                     title=title,
                     highlight=fm.get("highlight", False),
                     page=page,
-                    nav_info=nav_info,
+                    nav_info={k: v for k, v in nav_info.items() if k not in HIDDEN_PAGES},
                     link_bg=nav_info[page][-1],
                     year=datetime.now().year,
                     root=root,

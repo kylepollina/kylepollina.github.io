@@ -21,6 +21,7 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
 ## Pages
 
 - [x] Earthscience section hidden from the research index (Oct 2026). To bring it back: remove the `<!-- EARTHSCIENCE-HIDDEN ... -->` wrapper around it in `content/research/index.md` and rebuild. The standalone `earthscience/` page was deleted; recover it with `git show HEAD:content/research/earthscience/index.md` if wanted
+- [x] Research section hidden (Oct 2026): out of the nav (`HIDDEN_PAGES` in `build_site.py`) and unpublished (`research/` and `biology-logs/` in `_config.yml` `exclude`); content and built pages are kept. To bring it back: remove "research" from `HIDDEN_PAGES`, remove both `exclude` lines, rebuild
 - [ ] Review the research pages
 - [x] About: remove Miglia.co, change location to Chicago
 - [ ] About: check the Instagram link and `kylepollina@pm.me` are still current

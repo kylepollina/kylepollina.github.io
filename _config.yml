@@ -1,6 +1,8 @@
 # GitHub Pages (Jekyll) settings. The site itself is built by build_site.py.
 # content/ can't be excluded yet: sketch pages load their JS from it.
 exclude:
+  - research/  # hidden for now; see HIDDEN_PAGES in build_site.py
+  - biology-logs/
   - TODO.md
   - README.md
   - templates/
