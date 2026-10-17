@@ -1,7 +1,7 @@
 
 ---
 page: interactive
-title: sharp
+title: squares
 published: true
 
 scripts:

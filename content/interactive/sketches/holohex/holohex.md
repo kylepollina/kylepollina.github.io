@@ -1,7 +1,7 @@
 
 ---
 page: interactive
-title: everything small is a small version of something big
+title: holohex
 published: true
 
 scripts:

@@ -1,7 +1,7 @@
 
 ---
 page: interactive
-title: faces
+title: cube faces
 published: true
 
 scripts:

@@ -7,9 +7,9 @@ var imgNum = 0
 
 /* load image */
 function preload() {
-    images[0] = loadImage("gogh1.png")
-    images[1] = loadImage("gogh2.jpg")
-    images[2] = loadImage("gogh3.jpg")
+    images[0] = loadImage("gogh1.webp")
+    images[1] = loadImage("gogh2.webp")
+    images[2] = loadImage("gogh3.webp")
 }
 
 function mouseClicked() {

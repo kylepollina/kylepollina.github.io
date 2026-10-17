@@ -1,7 +1,7 @@
 
 ---
 page: interactive
-title: color me
+title: van gogh
 published: true
 
 scripts:

@@ -1,7 +1,7 @@
 
 ---
 page: interactive
-title: quiet
+title: starry night
 published: true
 
 scripts:

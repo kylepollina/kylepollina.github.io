@@ -1,7 +1,7 @@
 
 ---
 page: interactive
-title: quantum walk
+title: triangles
 published: true
 
 scripts:

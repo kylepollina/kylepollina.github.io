@@ -7,7 +7,7 @@ var max_splits = 14;
 var is_updating;
 
 function preload() {
-    img = loadImage("lisa.png");
+    img = loadImage("lisa.webp");
 }
 
 function setup() {

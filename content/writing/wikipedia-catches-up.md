@@ -1,7 +1,7 @@
 ---
 page: writing
 title: what happens when wikipedia catches up?
-published: true
+published: false
 date: 2022-06-20
 ---
 

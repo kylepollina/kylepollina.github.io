@@ -1,7 +1,7 @@
 /* towers.js */
 
 var input;
-var file = "./towers.png";
+var file = "./towers.webp";
 var blocks = [];
 var blockSize = 15;
 

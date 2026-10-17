@@ -1,7 +1,7 @@
 
 ---
 page: interactive
-title: watch it move
+title: breathing
 published: true
 
 scripts:

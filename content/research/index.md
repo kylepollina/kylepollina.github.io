@@ -15,6 +15,7 @@ page: research
 - [Summer survey 2020](./biology-logs/arlington-heights/summer-survey.html)
 - [Fall survey 2022](./biology-logs/arlington-heights/fall-survey.html)
 
+<!-- EARTHSCIENCE-HIDDEN: remove this comment wrapper to bring the section back
 ### Earthscience Research
 
 #### Jupyter Notebooks
@@ -28,3 +29,4 @@ page: research
 
 - [Datasets and other resources](https://github.com/kylepollina/earthscience/blob/master/research/resources.md)
 - [topo2geo](https://github.com/kylepollina/topo2geo) - CLI for converting topoJSON to geoJSON
+-->

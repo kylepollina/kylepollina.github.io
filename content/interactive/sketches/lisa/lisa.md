@@ -1,6 +1,6 @@
 ---
 page: interactive
-title: so chic
+title: mona lisa
 published: true
 
 scripts:

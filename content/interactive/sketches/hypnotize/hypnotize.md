@@ -1,6 +1,6 @@
 ---
 page: interactive
-title: sleepy
+title: hypnotize
 published: true
 
 scripts:

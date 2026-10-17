@@ -1,7 +1,7 @@
 
 ---
 page: interactive
-title: girls best friend
+title: diamond
 published: true
 
 scripts:

@@ -20,10 +20,11 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
 
 ## Pages
 
+- [x] Earthscience section hidden from the research index (Oct 2026). To bring it back: remove the `<!-- EARTHSCIENCE-HIDDEN ... -->` wrapper around it in `content/research/index.md` and rebuild. The standalone `earthscience/` page was deleted; recover it with `git show HEAD:content/research/earthscience/index.md` if wanted
 - [ ] Review the research pages
 - [x] About: remove Miglia.co, change location to Chicago
 - [ ] About: check the Instagram link and `kylepollina@pm.me` are still current
-- [ ] Home page sketch is a fixed 495px wide and causes horizontal scrolling on phones; size it to its container
+- [x] Home page now loads a random sketch in an iframe (weighted list in `content/index.md`, cubies most often); the iframe is `max-width:100%`, so check it on a phone
 
 ## Interactive sketches
 
