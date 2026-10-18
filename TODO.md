@@ -6,7 +6,6 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
 
 - [ ] **Move writing to Bear Blog.** Link to your existing Bear Blog sites from here, and migrate the old posts. 8 posts in `content/writing/`, all now listed; `wikipedia-catches-up` is just a title with no body
 - [x] **Refresh the p5.js art.** The interactive page is a gallery of still images (`*-thumb.webp`, made by `scripts/make_thumbs.sh`) linking to each live sketch; it was too slow with every sketch running in an iframe
-  - [ ] Sketches with `gallery: false` (nike_vhs, sun, prisma, opentype_test) are listed below the gallery; remove the flag once each is fixed
 - [ ] **Add a 3D wigglegrams page** to show off that project
 - [ ] **AI-driven interactive environmental science.** Move on from the Jupyter notebooks (linked from research via nbviewer, source in `kylepollina/earthscience`) to something interactive that can live on this site. Options to look at:
   - [ ] marimo: reactive Python notebooks stored as plain `.py` files; can export to WASM/HTML that runs in the browser with no server (works on GitHub Pages); built-in AI assistant
@@ -31,11 +30,7 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
 - [x] Unhide all sketches: all 38 are now listed on the interactive page, alphabetically
 - [x] Check each sketch runs (headless Chrome, Oct 2026): 31 of 38 render without errors
 - Image sketches (breathing, gogh, lisa, lotus, towers, starry) can't run from `file://`: browsers won't let a page read pixels of images opened from disk. Preview with `npm run serve`
-- [ ] Fix the 7 that don't:
-  - [ ] `nike_vhs`: loads `nike_classic.png` and `swoosh.png`, which were never committed
-  - [ ] `sun`, `prisma`: load a `gradient.png` that was never committed
-  - [ ] `opentype_test`: needs the opentype.js library and a Futura font file, neither in the repo
-  - [x] `spirohex`: `mixedPaletteSizeN()` and `Turtle.clearStack()` added to `scripts/sketches/compat.js`
+- Removed (Oct 2026) as not good enough: spirohex, brush, wall, nike_vhs, opentype_test, prisma, sun
   - [ ] `stripes`: draws, but `p5-utilities/stripes.js` calls a missing `graphicMask()` (hidden for now anyway)
   - [x] `perlin`: replaced the unfinished draw loop (and the missing `innerGrid()`) with the commented-out noise flow field
   - [x] `shapes`: clicks never completed a shape (constructor pre-filled every corner); fixed, with a hint and a live outline

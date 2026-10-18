@@ -30,7 +30,6 @@ some art I made at uni using [p5.js](https://p5js.org/). click a picture to open
 <figure class="sketch-card"><a class="sketch-frame" href="sketches/perlin/perlin.html"><img src="sketches/perlin/perlin-thumb.webp" alt="perlin" loading="lazy" width="500" height="500"></a><figcaption><a href="sketches/perlin/perlin.html">perlin</a></figcaption></figure>
 <figure class="sketch-card"><a class="sketch-frame" href="sketches/planes/planes.html"><img src="sketches/planes/planes-thumb.webp" alt="planes" loading="lazy" width="500" height="500"></a><figcaption><a href="sketches/planes/planes.html">planes</a></figcaption></figure>
 <figure class="sketch-card"><a class="sketch-frame" href="sketches/spiro/spiro.html"><img src="sketches/spiro/spiro-thumb.webp" alt="spiro" loading="lazy" width="500" height="500"></a><figcaption><a href="sketches/spiro/spiro.html">spiro</a></figcaption></figure>
-<figure class="sketch-card"><a class="sketch-frame" href="sketches/spirohex/spirohex.html"><img src="sketches/spirohex/spirohex-thumb.webp" alt="spirohex" loading="lazy" width="500" height="500"></a><figcaption><a href="sketches/spirohex/spirohex.html">spirohex</a></figcaption></figure>
 <figure class="sketch-card"><a class="sketch-frame" href="sketches/squares/squares.html"><img src="sketches/squares/squares-thumb.webp" alt="squares" loading="lazy" width="500" height="500"></a><figcaption><a href="sketches/squares/squares.html">squares</a></figcaption></figure>
 <figure class="sketch-card"><a class="sketch-frame" href="sketches/starry/starry.html"><img src="sketches/starry/starry-thumb.webp" alt="starry night" loading="lazy" width="500" height="500"></a><figcaption><a href="sketches/starry/starry.html">starry night</a></figcaption></figure>
 <figure class="sketch-card"><a class="sketch-frame" href="sketches/thrill/thrill.html"><img src="sketches/thrill/thrill-thumb.webp" alt="thrill of the arts!" loading="lazy" width="500" height="500"></a><figcaption><a href="sketches/thrill/thrill.html">thrill of the arts!</a></figcaption></figure>
@@ -41,13 +40,7 @@ some art I made at uni using [p5.js](https://p5js.org/). click a picture to open
 
 no preview image (they only draw when you move the mouse, or still need fixing):
 
-- [brush](sketches/brush/brush.html)
 - [hallway](sketches/hallway/hallway.html)
-- [nike_vhs](sketches/nike_vhs/nike_vhs.html)
-- [opentype_test](sketches/opentype_test/opentype_test.html)
-- [prisma](sketches/prisma/prisma.html)
-- [sun](sketches/sun/sun.html)
-- [wall](sketches/wall/wall.html)
 
 I also played around with kinect cameras, exploring how to read depth information from them and display it in fun ways.
 
