@@ -57,11 +57,12 @@
 <body>
   <h1>kyle pollina</h1>
   <canvas id="c"></canvas>
-  <!-- Each link here is drawn on the canvas, stacked under the name in this order -->
+  <!-- Each link here is drawn on the canvas in a row under the name, in this order. class="right"
+       pins a link to the name's right edge instead -->
   <nav>
     <a href="photography.html">photography</a>
-    <a href="applications.html">applications</a>
-    <a href="about.html">about</a>
+    <a href="apps.html">apps</a>
+    <a href="about.html" class="right">about</a>
   </nav>
 
   <script>
@@ -140,8 +141,9 @@
       o.textBaseline = "middle";
       const lineY = (i) => H / 2 + (i - (lines.length - 1) / 2) * size * 1.1;
 
-      // The labels stack just under the name, flush with its left edge (the widest line's ink)
+      // The labels sit in a row just under the name, between its left and right edges (the widest line's ink)
       const left = Math.min(...lines.map((l) => W / 2 - o.measureText(l).actualBoundingBoxLeft));
+      const nameRight = Math.max(...lines.map((l) => W / 2 + o.measureText(l).actualBoundingBoxRight));
       const bottom = lineY(lines.length - 1) + o.measureText(lines[lines.length - 1]).actualBoundingBoxDescent;
 
       // Draw each label into the mask in its own shade, then threshold so the small text stays crisp
@@ -150,20 +152,40 @@
       o.fillStyle = "#000";
       o.fillRect(0, 0, W, H);
       const step = Math.round(LABEL_SIZE * 1.6);
-      const tx = Math.round(left);
-      links.forEach((a, n) => {
-        const ty = Math.round(bottom + 12 + LABEL_SIZE / 2) + n * step;
+      const gap = Math.round(LABEL_SIZE * 1.5);
+      const x0 = Math.round(left), x1 = Math.round(nameRight);
+      const width = (a) => Math.ceil(o.measureText(a.textContent).width);
+      const place = (a, tx, ty) => {
+        const n = links.indexOf(a), w = width(a);
         o.fillStyle = `rgb(${(n + 1) * 40}, 255, 0)`;
         o.fillText(a.textContent, tx, ty);
-
-        // The invisible link covers the label plus some padding, so it's an easy target
-        const padX = Math.round(LABEL_SIZE * 0.5);
-        a.style.left = `${(tx - padX) * CELL}px`;
+        // The invisible link covers the label plus half the gap each side, so neighbours just touch
+        a.style.left = `${(tx - gap / 2) * CELL}px`;
         a.style.top = `${(ty - step / 2) * CELL}px`;
-        a.style.width = `${(o.measureText(a.textContent).width + 2 * padX) * CELL}px`;
+        a.style.width = `${(w + gap) * CELL}px`;
         a.style.height = `${step * CELL}px`;
         a.style.display = "block";
-      });
+      };
+
+      // Left links flow from the left edge, wrapping if they'd run past the name (on a phone)
+      let tx = x0, ty = Math.round(bottom + 12 + LABEL_SIZE / 2);
+      for (const a of links.filter((a) => !a.classList.contains("right"))) {
+        if (tx > x0 && tx + width(a) > x1) {
+          tx = x0;
+          ty += step;
+        }
+        place(a, tx, ty);
+        tx += width(a) + gap;
+      }
+      // Right links end at the right edge; if they'd collide with the left ones, they drop a line
+      const rights = links.filter((a) => a.classList.contains("right"));
+      const rightWidth = rights.reduce((s, a) => s + width(a) + gap, -gap);
+      if (rights.length && x1 - rightWidth < tx) ty += step;
+      let rx = x1 - rightWidth;
+      for (const a of rights) {
+        place(a, rx, ty);
+        rx += width(a) + gap;
+      }
       const ld = o.getImageData(0, 0, W, H).data;
       label = new Uint8Array(W * H);
       // Green says "inside a label"; red/green says which one (the ratio survives anti-aliasing)
