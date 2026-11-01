@@ -11,14 +11,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@144,800&display=block" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: italic;
+      src: url("fonts/IBMPlex/IBMPlexMono-Italic.otf") format("opentype");
+    }
+    /* Keep in step with THEMES in the script */
+    :root { --ink: #111; --paper: #ece8dc; }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink: #d6d0c0; --paper: #161513; }
+    }
     html, body {
       margin: 0;
       height: 100%;
       overflow: hidden;
-      background: #ece8dc;
-    }
-    @media (prefers-color-scheme: dark) {
-      html, body { background: #161513; }
+      background: var(--paper);
     }
     canvas {
       position: fixed;
@@ -35,12 +42,34 @@
       overflow: hidden;
       clip: rect(0 0 0 0);
     }
+    /* Links sit over the canvas; layout() lines them up under the left edge of the name */
+    #links {
+      position: fixed;
+      visibility: hidden;
+    }
+    #links a {
+      display: inline-block;
+      padding: 4px 12px;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      font: italic 15px "IBM Plex Mono", ui-monospace, monospace;
+      text-decoration: none;
+    }
+    #links a:hover, #links a:focus-visible {
+      background: var(--ink);
+      color: var(--paper);
+      outline: none;
+    }
   </style>
 </head>
 
 <body>
   <h1>kyle pollina</h1>
   <canvas id="c"></canvas>
+  <nav id="links">
+    <a href="photography.html">photography</a>
+  </nav>
 
   <script>
     const NAME = "kyle pollina";
@@ -103,6 +132,15 @@
       o.font = `800 ${size}px ${FONT}`;
       o.textAlign = "center";
       o.textBaseline = "middle";
+      const lineY = (i) => H / 2 + (i - (lines.length - 1) / 2) * size * 1.1;
+
+      // Put the links just under the name, flush with its left edge (the widest line's ink)
+      const left = Math.min(...lines.map((l) => W / 2 - o.measureText(l).actualBoundingBoxLeft));
+      const bottom = lineY(lines.length - 1) + o.measureText(lines[lines.length - 1]).actualBoundingBoxDescent;
+      const links = document.getElementById("links");
+      links.style.left = `${left * CELL}px`;
+      links.style.top = `${bottom * CELL + 28}px`;
+      links.style.visibility = "visible";
 
       const draw = (blur) => {
         o.fillStyle = "#000";
@@ -110,7 +148,7 @@
         o.fillStyle = "#fff";
         o.shadowColor = "#fff";
         o.shadowBlur = blur;
-        lines.forEach((l, i) => o.fillText(l, W / 2, H / 2 + (i - (lines.length - 1) / 2) * size * 1.1));
+        lines.forEach((l, i) => o.fillText(l, W / 2, lineY(i)));
         const d = o.getImageData(0, 0, W, H).data;
         const out = new Float32Array(W * H);
         for (let i = 0; i < out.length; i++) out[i] = d[i * 4] / 255;
