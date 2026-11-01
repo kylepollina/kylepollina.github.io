@@ -42,9 +42,9 @@
       overflow: hidden;
       clip: rect(0 0 0 0);
     }
-    /* The label is drawn on the canvas. This invisible link sits exactly over it (layout() sizes it)
-       so clicks, keyboard focus and screen readers still work */
-    #photo-link {
+    /* The labels are drawn on the canvas. These invisible links sit exactly over them (layout()
+       sizes them) so clicks, keyboard focus and screen readers still work */
+    nav a {
       position: fixed;
       display: none;
       color: transparent;
@@ -57,14 +57,16 @@
 <body>
   <h1>kyle pollina</h1>
   <canvas id="c"></canvas>
+  <!-- Each link here is drawn on the canvas, stacked under the name in this order -->
   <nav>
-    <a id="photo-link" href="photography.html">photography</a>
+    <a href="photography.html">photography</a>
+    <a href="applications.html">applications</a>
+    <a href="about.html">about</a>
   </nav>
 
   <script>
     const NAME = "kyle pollina";
     const FONT = "Fraunces";
-    const LABEL = "photography";
     const LABEL_FONT = '"IBM Plex Mono"';
     const LABEL_SIZE = 12;     // label height in dither pixels; below about 8 it stops being readable
     // Follow the system theme. Dark mode isn't a straight swap: light dots on black read heavier,
@@ -102,13 +104,16 @@
 
     let W, H, img, core, halo, label;
 
-    // The canvas label shows its hover state when the invisible link over it is hovered or focused
-    const link = document.getElementById("photo-link");
-    let hover = false;
-    link.addEventListener("pointerenter", () => { hover = true; });
-    link.addEventListener("pointerleave", () => { hover = false; });
-    link.addEventListener("focus", () => { hover = link.matches(":focus-visible"); });
-    link.addEventListener("blur", () => { hover = false; });
+    // A canvas label shows its hover state when the invisible link over it is hovered or focused.
+    // `label` marks each label pixel with its link's number (1-based), `hovered` is that number or 0
+    const links = [...document.querySelectorAll("nav a")];
+    let hovered = 0;
+    links.forEach((a, n) => {
+      a.addEventListener("pointerenter", () => { hovered = n + 1; });
+      a.addEventListener("pointerleave", () => { hovered = 0; });
+      a.addEventListener("focus", () => { hovered = a.matches(":focus-visible") ? n + 1 : 0; });
+      a.addEventListener("blur", () => { hovered = 0; });
+    });
 
     // Draw the name into two masks at dither resolution: the letters, and a soft glow around them
     function layout() {
@@ -135,29 +140,37 @@
       o.textBaseline = "middle";
       const lineY = (i) => H / 2 + (i - (lines.length - 1) / 2) * size * 1.1;
 
-      // The label goes just under the name, flush with its left edge (the widest line's ink)
+      // The labels stack just under the name, flush with its left edge (the widest line's ink)
       const left = Math.min(...lines.map((l) => W / 2 - o.measureText(l).actualBoundingBoxLeft));
       const bottom = lineY(lines.length - 1) + o.measureText(lines[lines.length - 1]).actualBoundingBoxDescent;
 
-      // Draw the label into its own mask, thresholded so the small text stays crisp
+      // Draw each label into the mask in its own shade, then threshold so the small text stays crisp
       o.font = `italic ${LABEL_SIZE}px ${LABEL_FONT}`;
       o.textAlign = "left";
-      const tx = Math.round(left), ty = Math.round(bottom + 12 + LABEL_SIZE / 2);
       o.fillStyle = "#000";
       o.fillRect(0, 0, W, H);
-      o.fillStyle = "#fff";
-      o.fillText(LABEL, tx, ty);
+      const step = Math.round(LABEL_SIZE * 1.6);
+      const tx = Math.round(left);
+      links.forEach((a, n) => {
+        const ty = Math.round(bottom + 12 + LABEL_SIZE / 2) + n * step;
+        o.fillStyle = `rgb(${(n + 1) * 40}, 255, 0)`;
+        o.fillText(a.textContent, tx, ty);
+
+        // The invisible link covers the label plus some padding, so it's an easy target
+        const padX = Math.round(LABEL_SIZE * 0.5);
+        a.style.left = `${(tx - padX) * CELL}px`;
+        a.style.top = `${(ty - step / 2) * CELL}px`;
+        a.style.width = `${(o.measureText(a.textContent).width + 2 * padX) * CELL}px`;
+        a.style.height = `${step * CELL}px`;
+        a.style.display = "block";
+      });
       const ld = o.getImageData(0, 0, W, H).data;
       label = new Uint8Array(W * H);
-      for (let i = 0; i < label.length; i++) label[i] = ld[i * 4] > 110 ? 1 : 0;
-
-      // The invisible link covers the label plus some padding, so it's an easy target
-      const pad = Math.round(LABEL_SIZE * 0.5);
-      link.style.left = `${(tx - pad) * CELL}px`;
-      link.style.top = `${(ty - LABEL_SIZE / 2 - pad) * CELL}px`;
-      link.style.width = `${(o.measureText(LABEL).width + 2 * pad) * CELL}px`;
-      link.style.height = `${(LABEL_SIZE + 2 * pad) * CELL}px`;
-      link.style.display = "block";
+      // Green says "inside a label"; red/green says which one (the ratio survives anti-aliasing)
+      for (let i = 0; i < label.length; i++) {
+        const r = ld[i * 4], g = ld[i * 4 + 1];
+        label[i] = g > 110 ? Math.round((r / g) * 255 / 40) : 0;
+      }
 
       o.font = `800 ${size}px ${FONT}`;
       o.textAlign = "center";
@@ -206,7 +219,7 @@
             lum = lum * (1 - c) + letter * c;
           }
 
-          if (l && hover) lum = 0;
+          if (l && l === hovered) lum = 0;
 
           const ink = lum < brow[x & 7];
           const col = ink ? INK : PAPER;
