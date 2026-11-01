@@ -1,203 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>about · kyle pollina</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <!-- CSS -->
-  <link rel="stylesheet" href="index.css">
-
-  <!-- Scripts -->
-  
-  
-
+  <style>
+    @font-face {
+      font-family: "IBM Plex Mono";
+      font-style: italic;
+      src: url("fonts/IBMPlex/IBMPlexMono-Italic.otf") format("opentype");
+    }
+    /* Same ink and paper as the home page */
+    :root { --ink: #111; --paper: #ece8dc; }
+    @media (prefers-color-scheme: dark) {
+      :root { --ink: #d6d0c0; --paper: #161513; }
+    }
+    body {
+      margin: 0;
+      padding: 32px 24px;
+      background: var(--paper);
+      color: var(--ink);
+      font: italic 15px/1.6 "IBM Plex Mono", ui-monospace, monospace;
+    }
+    a {
+      color: var(--ink);
+    }
+    a:hover {
+      background: var(--ink);
+      color: var(--paper);
+      text-decoration: none;
+    }
+    h1 {
+      margin: 32px 0 0;
+      font-size: 28px;
+      font-weight: normal;
+    }
+    main {
+      max-width: 36em;
+    }
+    p {
+      margin: 1.2em 0 0;
+    }
+    .small {
+      opacity: 0.7;
+    }
+  </style>
 </head>
 
-<body class="
-    mt-5 md:mt-5
-    md:m-auto 
-    md:w-[800px]
-    font-mono-italic
-    selection:bg-[#225B7E]
-    selection:text-white
-    
-    dark:bg-zinc-900
-  ">
-  <div id='header' class="flex justify-center md:justify-start">
-    <div id='header' class="dark:text-white">
-    kylepollina.github.io 
-</div>
-  </div>
-  <div class="mt-3 md:flex md:w-max">
-    
-<div id="nav" class="
-    w-full
-    md:w-max
-">
-    <div id='internal-links'>
+<body>
+  <a href="index.html">← kyle pollina</a>
+  <main>
+    <h1>about</h1>
 
-        
-            <a href="index.html" class="
-                w-full
-                leading-snug
-            ">
-                <div class="
-                    w-max
-                    md:w-full
-                    mx-auto
-                    
-                        text-[#C42E60]
-                        hover:text-white hover:bg-[#C42E60]
+    <p>My name is Kyle Pollina and I <a href="https://www.instagram.com/kylepollina/">photograph wildlife</a>, garden a bit, and sometimes write programs but I'd rather be outside.</p>
 
-                        dark:bg-[#C42E60]
-                        dark:text-white
-                        dark:hover:border-r-4
-                        dark:hover:border-white
-                        dark:hover:underline
-                    
-                    ">home
-                </div>
-            </a>
-        
-            <a href="about.html" class="
-                w-full
-                leading-snug
-            ">
-                <div class="
-                    w-max
-                    md:w-full
-                    mx-auto
-                    
-                        text-white bg-[#225B7E]
-                        dark:border-white
-                        dark:border-r-4
-                        dark:hover:underline
-                    
-                    ">-about
-                </div>
-            </a>
-        
-            <a href="writing/index.html" class="
-                w-full
-                leading-snug
-            ">
-                <div class="
-                    w-max
-                    md:w-full
-                    mx-auto
-                    
-                        text-[#4C8785]
-                        hover:text-white hover:bg-[#4C8785]
+    <p>Based in Chicago, Illinois.</p>
 
-                        dark:bg-[#4C8785]
-                        dark:text-white
-                        dark:hover:border-r-4
-                        dark:hover:border-white
-                        dark:hover:underline
-                    
-                    ">writing
-                </div>
-            </a>
-        
-            <a href="interactive/index.html" class="
-                w-full
-                leading-snug
-            ">
-                <div class="
-                    w-max
-                    md:w-full
-                    mx-auto
-                    
-                        text-[#E65244]
-                        hover:text-white hover:bg-[#E65244]
+    <p>
+      <a href="https://github.com/kylepollina">github</a><br>
+      <a href="mailto:kylepollina@pm.me">kylepollina@pm.me</a>
+    </p>
 
-                        dark:bg-[#E65244]
-                        dark:text-white
-                        dark:hover:border-r-4
-                        dark:hover:border-white
-                        dark:hover:underline
-                    
-                    ">interactive
-                </div>
-            </a>
-        
-    </div>
-
-    <span class="flex justify-center dark:text-white">---------------------</span>
-
-    <div id='external-links'>
-        <div class="mt-1 w-max mx-auto md:mx-0"><a href='https://github.com/kylepollina' class="text-[#225B7E] hover:text-white hover:bg-[#225B7E]">github</a></div>
-        <div class="-mt-1 w-max mx-auto md:mx-0"><a href='mailto:kylepollina@pm.me' class="text-[#225B7E] hover:text-white hover:bg-[#225B7E]">kylepollina@pm.me</a></div>
-    </div>
-
-    <div id='nav-footer' class="flex justify-center mt-3">
-        <p><a href="https://github.com/kylepollina/kylepollina.github.io" class="text-[#225B7E] hover:text-white hover:bg-[#225B7E]">&copy;</a> <span class="dark:text-white">2026</span> </p>
-    </div>
-</div> 
-    <div class="
-    pb-20
-    md:pl-5
-
-    prose
-    prose-h4:font-light
-    prose-h4:font-mono-regular
-
-    prose-a:text-[#225B7E]
-    hover:prose-a:text-white
-    hover:prose-a:bg-[#225B7E]
-
-    prose-em:underline
-    prose-em:not-italic
-    prose-em:font-mono-regular
-    prose-strong:bg-[#225B7E]
-    prose-strong:text-white
-    prose-strong:font-medium
-
-    prose-ul:my-0
-    prose-li:my-0
-
-    prose-pre:rounded-sm
-    prose-pre:bg-none prose-pre:p-0
-    md:prose-pre:w-max
-    md:prose-pre:max-w-[750px]
-    md:prose-pre:min-w-full
-    prose-pre:font-mono-regular
-
-    prose-code:bg-slate-300
-    prose-code:text-[#225B7E]
-    prose-code:rounded-sm
-    prose-code:shadow-inner
-    prose-code:p-1
-    prose-code:before:content-['']
-    prose-code:after:content-['']
-    prose-code:font-light
-    dark:prose-code:bg-slate-700
-
-    dark:text-slate-300
-    dark:prose-h1:text-slate-300
-    dark:prose-h2:text-slate-300
-    dark:prose-h3:text-slate-300
-    dark:prose-h4:text-slate-300
-    dark:prose-blockquote:text-slate-300
-    dark:prose-strong:text-slate-300
-
-">
-<h2>About</h2>
-<p>My name is Kyle Pollina and I <a href="https://www.instagram.com/kylepollina/">photograph wildlife</a>, garden a bit, and sometimes write programs but I'd rather be outside 🏔</p>
-<p>Based in Chicago, Illinois</p>
-<p>Font: <a href="https://github.com/IBM/plex/">IBM Plex Mono Italic</a></p>
-<p><span class="bg-[#C42E60] text-white p-[5px] rounded-sm">#C42E60</span>
-<span class="bg-[#225B7E] text-white p-[5px] rounded-sm">#225B7E</span>
-<span class="bg-[#4C8785] text-white p-[5px] rounded-sm">#4C8785</span>
-<span class="bg-[#D39C49] text-white p-[5px] rounded-sm">#D39C49</span>
-<span class="bg-[#E65244] text-white p-[5px] rounded-sm">#E65244</span></p>
-
-<br>
-
-</div>
-  </div>
+    <p class="small">Fonts: <a href="https://fonts.google.com/specimen/Fraunces">Fraunces</a> and <a href="https://github.com/IBM/plex/">IBM Plex Mono Italic</a></p>
+  </main>
 </body>
 
 </html>
