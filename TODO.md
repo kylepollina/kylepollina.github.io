@@ -54,7 +54,8 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
 - [x] Post dates normalized to `YYYY-MM-DD`
 - [x] Build-only files excluded from the Jekyll pass in `_config.yml`
 - [ ] Consider a GitHub Action that runs the build and a link check on push, so the site can't silently break again
-- [ ] Local `env/` still has old Pelican packages and Python 3.10; recreate it when convenient
+- [x] Local `env/` recreated on Python 3.14 from `requirements.txt` (Pelican gone)
+- [x] Month-only post dates (`date: Oct 2022`) render as "Oct 2022" instead of borrowing the build day (`format_date` in `build_site.py`)
 
 ## Cleanup
 

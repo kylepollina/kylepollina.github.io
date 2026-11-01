@@ -4,10 +4,10 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-import dateparser
 import frontmatter
 import jinja2
 import mistune
+from dateparser.date import DateDataParser
 from mistune.plugins.footnotes import footnotes
 from mistune.plugins.formatting import strikethrough
 from mistune.plugins.table import table
@@ -54,6 +54,12 @@ def build_md_files():
             logger.exception("Error running builder", extra={"file": file})
 
 
+def format_date(value):
+    # Month-only dates ("Oct 2022") stay month-only instead of borrowing today's day of the month
+    data = DateDataParser().get_date_data(str(value))
+    return data.date_obj.strftime("%b %Y" if data.period == "month" else "%b %d %Y")
+
+
 def convert_md_to_html():
     md_files = list(Path(MD_DIR).rglob("*.md"))
     for file in md_files:
@@ -93,7 +99,7 @@ def convert_md_to_html():
         page = fm["page"]
         name = fm.get("title", page)
         title = "kyle pollina" if page == "home" else f"{name} · kyle pollina"
-        date = dateparser.parse(str(fm["date"])).strftime("%b %d %Y") if "date" in fm else ""
+        date = format_date(fm["date"]) if "date" in fm else ""
         with open(html_file, "w+") as f:
             f.write(
                 template.render(
