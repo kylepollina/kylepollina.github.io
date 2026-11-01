@@ -42,23 +42,13 @@
       overflow: hidden;
       clip: rect(0 0 0 0);
     }
-    /* Links sit over the canvas; layout() lines them up under the left edge of the name */
-    #links {
+    /* The button is drawn on the canvas. This invisible link sits exactly over it (layout() sizes it)
+       so clicks, keyboard focus and screen readers still work */
+    #photo-link {
       position: fixed;
-      visibility: hidden;
-    }
-    #links a {
-      display: inline-block;
-      padding: 4px 12px;
-      border: 1px solid var(--ink);
-      background: var(--paper);
-      color: var(--ink);
-      font: italic 15px "IBM Plex Mono", ui-monospace, monospace;
-      text-decoration: none;
-    }
-    #links a:hover, #links a:focus-visible {
-      background: var(--ink);
-      color: var(--paper);
+      display: none;
+      color: transparent;
+      overflow: hidden;
       outline: none;
     }
   </style>
@@ -67,13 +57,16 @@
 <body>
   <h1>kyle pollina</h1>
   <canvas id="c"></canvas>
-  <nav id="links">
-    <a href="photography.html">photography</a>
+  <nav>
+    <a id="photo-link" href="photography.html">photography</a>
   </nav>
 
   <script>
     const NAME = "kyle pollina";
     const FONT = "Fraunces";
+    const LABEL = "photography";
+    const LABEL_FONT = '"IBM Plex Mono"';
+    const LABEL_SIZE = 8;      // label height in dither pixels; much smaller and it stops being readable
     // Follow the system theme. Dark mode isn't a straight swap: light dots on black read heavier,
     // so the cream is dimmer and the grain and glow lighter, and the band flips so it still brightens
     const THEMES = {
@@ -107,7 +100,15 @@
       return m.map((row) => row.map((v) => (v + 0.5) / 64));
     })();
 
-    let W, H, img, core, halo;
+    let W, H, img, core, halo, label, box;
+
+    // The canvas button shows its hover state when the invisible link over it is hovered or focused
+    const link = document.getElementById("photo-link");
+    let hover = false;
+    link.addEventListener("pointerenter", () => { hover = true; });
+    link.addEventListener("pointerleave", () => { hover = false; });
+    link.addEventListener("focus", () => { hover = link.matches(":focus-visible"); });
+    link.addEventListener("blur", () => { hover = false; });
 
     // Draw the name into two masks at dither resolution: the letters, and a soft glow around them
     function layout() {
@@ -134,13 +135,32 @@
       o.textBaseline = "middle";
       const lineY = (i) => H / 2 + (i - (lines.length - 1) / 2) * size * 1.1;
 
-      // Put the links just under the name, flush with its left edge (the widest line's ink)
+      // The button goes just under the name, flush with its left edge (the widest line's ink)
       const left = Math.min(...lines.map((l) => W / 2 - o.measureText(l).actualBoundingBoxLeft));
       const bottom = lineY(lines.length - 1) + o.measureText(lines[lines.length - 1]).actualBoundingBoxDescent;
-      const links = document.getElementById("links");
-      links.style.left = `${left * CELL}px`;
-      links.style.top = `${bottom * CELL + 28}px`;
-      links.style.visibility = "visible";
+
+      // Draw the label into its own mask, thresholded so the small text stays crisp
+      o.font = `italic ${LABEL_SIZE}px ${LABEL_FONT}`;
+      o.textAlign = "left";
+      const padX = Math.round(LABEL_SIZE * 0.7), padY = Math.round(LABEL_SIZE * 0.5);
+      const x0 = Math.round(left), y0 = Math.round(bottom + 10);
+      box = { x0, y0, x1: x0 + Math.ceil(o.measureText(LABEL).width) + 2 * padX, y1: y0 + LABEL_SIZE + 2 * padY };
+      o.fillStyle = "#000";
+      o.fillRect(0, 0, W, H);
+      o.fillStyle = "#fff";
+      o.fillText(LABEL, x0 + padX, (box.y0 + box.y1) / 2);
+      const ld = o.getImageData(0, 0, W, H).data;
+      label = new Uint8Array(W * H);
+      for (let i = 0; i < label.length; i++) label[i] = ld[i * 4] > 110 ? 1 : 0;
+
+      link.style.left = `${box.x0 * CELL}px`;
+      link.style.top = `${box.y0 * CELL}px`;
+      link.style.width = `${(box.x1 - box.x0) * CELL}px`;
+      link.style.height = `${(box.y1 - box.y0) * CELL}px`;
+      link.style.display = "block";
+
+      o.font = `800 ${size}px ${FONT}`;
+      o.textAlign = "center";
 
       const draw = (blur) => {
         o.fillStyle = "#000";
@@ -184,6 +204,15 @@
             lum = lum * (1 - c) + letter * c;
           }
 
+          // The button: a one-pixel ink border with ink text on clean paper. Hovered, the inside
+          // fills with dense dither and the text knocks out to paper
+          if (x >= box.x0 && x < box.x1 && y >= box.y0 && y < box.y1) {
+            const edge = x === box.x0 || x === box.x1 - 1 || y === box.y0 || y === box.y1 - 1;
+            if (edge) lum = 0;
+            else if (hover) lum = label[i] ? 1 : 0.08;
+            else lum = label[i] ? 0 : 1;
+          }
+
           const ink = lum < brow[x & 7];
           const col = ink ? INK : PAPER;
           const p = i * 4;
@@ -202,8 +231,11 @@
       resizeTimer = setTimeout(layout, 100);
     });
 
-    // Wait for the font so the canvas doesn't draw the name in a fallback face
-    document.fonts.load(`800 100px ${FONT}`).finally(layout);
+    // Wait for the fonts so the canvas doesn't draw in a fallback face
+    Promise.all([
+      document.fonts.load(`800 100px ${FONT}`),
+      document.fonts.load(`italic 16px ${LABEL_FONT}`),
+    ]).finally(layout);
     requestAnimationFrame(frame);
   </script>
 </body>
