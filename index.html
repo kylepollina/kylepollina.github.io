@@ -17,6 +17,9 @@
       overflow: hidden;
       background: #ece8dc;
     }
+    @media (prefers-color-scheme: dark) {
+      html, body { background: #111; }
+    }
     canvas {
       position: fixed;
       inset: 0;
@@ -42,8 +45,16 @@
   <script>
     const NAME = "kyle pollina";
     const FONT = "Fraunces";
-    const INK = [17, 17, 17];
-    const PAPER = [236, 232, 220];
+    const DARK_INK = [17, 17, 17];
+    const CREAM = [236, 232, 220];
+    // Follow the system theme: dark mode swaps ink and paper, so the name turns cream on black
+    const darkMode = matchMedia("(prefers-color-scheme: dark)");
+    let INK, PAPER;
+    const applyTheme = () => {
+      [INK, PAPER] = darkMode.matches ? [CREAM, DARK_INK] : [DARK_INK, CREAM];
+    };
+    applyTheme();
+    darkMode.addEventListener("change", applyTheme);
     let CELL = 3;              // screen pixels per dither pixel (2 on phones, set in layout)
 
     const canvas = document.getElementById("c");
