@@ -18,7 +18,7 @@
       background: #ece8dc;
     }
     @media (prefers-color-scheme: dark) {
-      html, body { background: #111; }
+      html, body { background: #161513; }
     }
     canvas {
       position: fixed;
@@ -45,14 +45,15 @@
   <script>
     const NAME = "kyle pollina";
     const FONT = "Fraunces";
-    const DARK_INK = [17, 17, 17];
-    const CREAM = [236, 232, 220];
-    // Follow the system theme: dark mode swaps ink and paper, so the name turns cream on black
-    const darkMode = matchMedia("(prefers-color-scheme: dark)");
-    let INK, PAPER;
-    const applyTheme = () => {
-      [INK, PAPER] = darkMode.matches ? [CREAM, DARK_INK] : [DARK_INK, CREAM];
+    // Follow the system theme. Dark mode isn't a straight swap: light dots on black read heavier,
+    // so the cream is dimmer and the grain and glow lighter, and the band flips so it still brightens
+    const THEMES = {
+      light: { ink: [17, 17, 17], paper: [236, 232, 220], grain: 0.07, glow: 0.45, letter: 0.06, band: 0.55 },
+      dark: { ink: [214, 208, 192], paper: [22, 21, 19], grain: 0.035, glow: 0.3, letter: 0.2, band: -0.35 },
     };
+    const darkMode = matchMedia("(prefers-color-scheme: dark)");
+    let theme;
+    const applyTheme = () => { theme = darkMode.matches ? THEMES.dark : THEMES.light; };
     applyTheme();
     darkMode.addEventListener("change", applyTheme);
     let CELL = 3;              // screen pixels per dither pixel (2 on phones, set in layout)
@@ -126,6 +127,7 @@
       if (!core) return;
       const time = reduce ? 0 : t / 1000;
       const px = img.data;
+      const { ink: INK, paper: PAPER, grain, glow, letter: letterBase, band: bandAmount } = theme;
       // A slow diagonal band of light sweeps across the letters
       const sweep = (time * 0.18) % 1.6 - 0.3;
       for (let y = 0; y < H; y++) {
@@ -135,12 +137,12 @@
           const c = core[i], h = halo[i];
 
           // Paper is near white with a faint vertical falloff; the glow darkens around the letters
-          let lum = 1.01 - 0.07 * (y / H) ** 2 - 0.45 * h * (1 - c);
+          let lum = 1.01 - grain * (y / H) ** 2 - glow * h * (1 - c);
           if (c > 0) {
             const u = (x / W) * 0.8 + (y / H) * 0.5;
             const band = Math.exp(-((u - sweep) ** 2) / 0.012);
             const ripple = 0.06 * Math.sin(x * 0.09 + y * 0.05 + time * 1.3);
-            const letter = 0.06 + 0.28 * (y / H) + 0.55 * band + ripple;
+            const letter = letterBase + 0.28 * (y / H) + bandAmount * band + ripple;
             lum = lum * (1 - c) + letter * c;
           }
 
