@@ -1,7 +1,6 @@
 import re
 from html import escape
 from pathlib import Path
-from textwrap import dedent
 
 import frontmatter
 import jinja2
@@ -78,7 +77,6 @@ def build():
         cards.append(
             f'<figure class="sketch-card">'
             f'<a class="sketch-frame" href="{page}"><img src="{thumb}" alt="{title}" loading="lazy" width="500" height="500"></a>'
-            f'<figcaption><a href="{page}">{title}</a></figcaption>'
             f'</figure>\n'
         )
 
@@ -89,16 +87,6 @@ def build():
 
     if broken:
         content += "no preview image (they only draw when you move the mouse, or still need fixing):\n\n" + "".join(broken)
-
-    content += dedent(
-        """
-        I also played around with kinect cameras, exploring how to read depth information from them and display it in fun ways.
-
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/WwX4lv0vOSY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <br>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/l7ivoH3AzZU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        """
-    )
 
     with open(HERE / "index.md", "w+") as f:
         f.write(content)
