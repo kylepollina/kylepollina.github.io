@@ -44,11 +44,10 @@ a {
   text-decoration: none;
   outline: none;
 }
-main {
-  max-width: 34em;
-}
+/* Pages have a centered heading over a centered column of text */
 h1 {
   margin: 40px 0 0;
+  text-align: center;
   /* 15vw keeps "photography" inside a phone screen */
   font: 800 clamp(48px, 15vw, 200px)/1 Fraunces, serif;
   /* Room for the tails of g, p and y, which hang below the line box */
@@ -57,9 +56,15 @@ h1 {
 p {
   margin: 1em 0 0;
 }
+main > p {
+  max-width: 34em;
+  margin-left: auto;
+  margin-right: auto;
+}
 /* Text for reading: the real text in solid ink, with nothing from dither.js under it */
 .prose {
-  margin-top: 2.5em;
+  max-width: 36em;
+  margin: 2.5em auto 0;
   color: var(--ink);
   font: 18px/1.75 "IBM Plex Mono", ui-monospace, monospace;
 }

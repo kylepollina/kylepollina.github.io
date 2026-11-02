@@ -9,7 +9,8 @@
 //
 // Text inside .prose is for reading: site.css shows the real text in solid ink and nothing is drawn under
 // it, since anything drawn under it trails behind while scrolling (the canvas repaints a frame late). The
-// paper behind prose is kept plain, with no texture or trail, fading out softly past its edges.
+// paper behind prose is kept free of texture and glow, fading out softly past its edges; the mouse trail
+// still shows there.
 (() => {
     // Keep in step with the colors in site.css
     const THEMES = {
@@ -245,12 +246,10 @@
                 if (tr > 0.004) {
                     tr *= keep;
                     trail[i] = tr;
-                    // The trail fades out going into prose
-                    const strength = tr * (1 - plain);
-                    lum -= 0.55 * strength;
+                    lum -= 0.55 * tr;
                     let n = (x * 374761393 + y * 668265263 + tick * 2246822519) | 0;
                     n = Math.imul(n ^ (n >>> 13), 1274126177);
-                    threshold += strength * 0.6 * (((n ^ (n >>> 16)) & 1023) / 1023 - 0.5);
+                    threshold += tr * 0.6 * (((n ^ (n >>> 16)) & 1023) / 1023 - 0.5);
                 } else if (tr) trail[i] = 0;
 
                 const col = lum < threshold ? INK : PAPER;
