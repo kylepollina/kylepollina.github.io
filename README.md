@@ -30,6 +30,8 @@ npm run serve                         # serve.py on http://localhost:8500, with 
 - `content/` — Markdown sources. Frontmatter sets `page` (nav section), `title`, `scripts`, `date`, `published`
 - `content/*/__init__.py` — builders that regenerate a section's `index.md` (writing, interactive)
 - The interactive gallery shows a still (`<sketch>-thumb.webp`) per sketch, linking to its live page; make them with `scripts/make_thumbs.sh <names>`. A sketch with no thumb is linked in a text list instead. The builder also writes a bare `<sketch>-embed.html` next to each page; the home page loads those in an iframe
+- `index.html`, `about.html`, `photography.html`, `photography/` — hand-written pages, drawn by `dither.js` and `photos.js` with `site.css`; not built from `content/` (see `HAND_WRITTEN` in `build_site.py`)
+- `scripts/favorites.sh` — copies favorite photos into `photography/favorites/` for the photography page
 - `templates/` — Jinja templates
 - `interactive/`, `writing/`, `research/` — built HTML plus static assets
 - `scripts/` — p5.js, shared sketch helpers, and the `p5-utilities` submodule

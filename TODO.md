@@ -19,7 +19,7 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
 
 ## Pages
 
-- [ ] `build_site.py` still generates `index.html` and `about.html` from `content/index.md` and `content/about.md`, which would overwrite the new hand-written pages. Don't run it (or `--watch`) until it stops building those two
+- [x] `build_site.py` skips `content/index.md` and `content/about.md` (`HAND_WRITTEN`), so it can't overwrite the new hand-written `index.html` and `about.html`. Edit those two pages directly; the old sources are no longer used
 - [ ] `writing/` and `interactive/` are still published but no longer linked from the new home page, and keep the old look. Hide them, or link them and restyle
 - [ ] Apps page hidden (Nov 2026) until it has something on it. To bring it back: add `<a href="apps.html">apps</a>` to the nav in `index.html`, and remove the `apps.html` line from `exclude` in `_config.yml`
 - [x] Earthscience section hidden from the research index (Oct 2026). To bring it back: remove the `<!-- EARTHSCIENCE-HIDDEN ... -->` wrapper around it in `content/research/index.md` and rebuild. The standalone `earthscience/` page was deleted; recover it with `git show HEAD:content/research/earthscience/index.md` if wanted

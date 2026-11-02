@@ -34,6 +34,8 @@ themes = [
 current_theme = 0
 # Sections built but left out of the nav (and excluded from GitHub Pages in _config.yml). Remove a name to bring it back
 HIDDEN_PAGES = {"research"}
+# Pages written by hand in the site root (site.css, dither.js). Their old sources in content/ aren't built, or they'd be overwritten
+HAND_WRITTEN = {"content/index.md", "content/about.md"}
 
 
 def main():
@@ -63,6 +65,8 @@ def format_date(value):
 def convert_md_to_html():
     md_files = list(Path(MD_DIR).rglob("*.md"))
     for file in md_files:
+        if file.as_posix() in HAND_WRITTEN:
+            continue
         with open(file, "r") as f:
             fm = frontmatter.load(f)
 
