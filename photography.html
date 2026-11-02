@@ -53,29 +53,20 @@
     .mosaic .tall4 { grid-row: span 4; }
     .mosaic .small { grid-row: span 1; }
 
-    /* Feature: one big photo beside the text, then a row of three under it. With class="flip" the
-       header comes first, so the text is on the left */
-    .feature {
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      gap: 12px 2.5em;
+    /* Trio: centered text over a row of three squares */
+    .trio header {
+      text-align: center;
     }
-    .feature.flip {
-      grid-template-columns: 2fr 3fr;
+    .trio .prose {
+      margin: 1.2em auto 0;
     }
-    .feature .hero {
-      aspect-ratio: 4 / 5;
-    }
-    .feature header {
-      align-self: center;
-    }
-    .feature .three {
-      grid-column: 1 / -1;
+    .trio .three {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
+      margin-top: 2.5em;
     }
-    .feature .three .photo {
+    .trio .three .photo {
       aspect-ratio: 1;
     }
 
@@ -122,10 +113,7 @@
       }
       .mosaic .photo, .mosaic .wide { grid-column: span 1; }
       .mosaic .wide { grid-column: span 2; }
-      .feature, .feature.flip {
-        grid-template-columns: 1fr;
-      }
-      .feature .three {
+      .trio .three {
         gap: 8px;
       }
     }
@@ -169,21 +157,20 @@
       })();
     </script>
 
-    <section class="album feature">
-      <figure class="photo hero"><img src="photography/kaleido/desktop-poster.jpg" alt="Kaleido playing a rose photo as a kaleidoscope on a Mac desktop" loading="lazy"><video src="photography/kaleido/desktop-loop.mp4" muted loop playsinline preload="none"></video></figure>
+    <section class="album trio">
       <header>
         <h2><a href="photography/kaleido.html">kaleido</a></h2>
         <p class="meta prose">october 2026 · an app for macOS</p>
-        <div class="prose">
-          <p>Reimagine your photos. Turn them into a digital kaleidoscope wallpaper.</p>
-          <p><a href="photography/kaleido.html">see the whole album →</a></p>
-        </div>
       </header>
+      <div class="prose">
+        <p>Reimagine your photos. Turn them into a digital kaleidoscope wallpaper.</p>
+      </div>
       <div class="three">
         <figure class="photo"><img src="photography/kaleido/compare-dahlia-poster.jpg" alt="Kaleido playing a dahlia photo" loading="lazy"><video src="photography/kaleido/compare-dahlia.mp4" muted loop playsinline preload="none"></video></figure>
         <figure class="photo"><img src="photography/kaleido/compare-grevillea-poster.jpg" alt="Kaleido playing a grevillea photo" loading="lazy"><video src="photography/kaleido/compare-grevillea.mp4" muted loop playsinline preload="none"></video></figure>
         <figure class="photo"><img src="photography/kaleido/compare-trees-poster.jpg" alt="Kaleido playing a photo of autumn trees" loading="lazy"><video src="photography/kaleido/compare-trees.mp4" muted loop playsinline preload="none"></video></figure>
       </div>
+      <p class="prose open-album"><a href="photography/kaleido.html">see the whole album →</a></p>
     </section>
 
     <!-- A few from the album; the title and the link under the photos open the whole thing -->
@@ -207,21 +194,20 @@
       <p class="prose open-album"><a href="photography/stereogram.html">see the whole album →</a></p>
     </section>
 
-    <section class="album feature flip">
+    <section class="album trio">
       <header>
         <h2><a href="photography/alleys.html">alleys!</a></h2>
         <p class="meta prose">2022 – 2024</p>
-        <div class="prose">
-          <p>Every alley is a little hallway somebody forgot to put a roof on.</p>
-          <p><a href="photography/alleys.html">see the whole album →</a></p>
-        </div>
       </header>
-      <figure class="photo hero"><img src="photography/alleys/dsc04812.jpg" alt="An alley with grass down the middle and a car at the end" loading="lazy"></figure>
+      <div class="prose">
+        <p>Every alley is a little hallway somebody forgot to put a roof on.</p>
+      </div>
       <div class="three">
         <figure class="photo"><img src="photography/alleys/wiggle.webp" alt="A grassy alley under a tree in white blossom, wiggling in 3D" loading="lazy"></figure>
         <figure class="photo"><img src="photography/alleys/dsc01330.jpg" alt="A leafy alley with a fence on one side" loading="lazy"></figure>
         <figure class="photo"><img src="photography/alleys/dsc04836.jpg" alt="A gravel alley between houses" loading="lazy"></figure>
       </div>
+      <p class="prose open-album"><a href="photography/alleys.html">see the whole album →</a></p>
     </section>
 
   </main>
