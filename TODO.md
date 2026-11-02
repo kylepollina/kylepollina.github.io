@@ -17,6 +17,22 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
   - [ ] Decide where AI fits: an assistant while authoring (marimo AI, Jupyter AI, Claude Code) vs. in the published page itself (natural-language queries over the data)
 - [ ] Rework the site into a more complete portfolio
 
+## Dithered site follow-ups
+
+Specs are in `docs/`.
+
+- [ ] Check on a real phone: headings scrolling without lag, tap to color, and videos playing on iOS. Small album titles like "kaleido" look a little muddy on phones; make them bigger or crisper if that bothers you
+- [ ] Replace drafted text with your own: the alleys "hallway" line, and the stereogram descriptions (the build story was inferred from the photos)
+- [ ] Faster photo loading: photos stay solid blocks until loaded, and small grid spots download the full 1600px file. Try smaller versions and a paper-colored placeholder
+- [ ] Link previews: pages have no description or preview image, so shared links look bare. A dithered preview image would suit the site
+- [ ] Accessibility: photos can't be colored from the keyboard, and the favorites grid has no alt text
+- [ ] Repo size: `photography/` is about 81MB, 51MB of it favorites, and git keeps every version. Decide whether all 172 favorites belong in the repo, or use smaller copies or host them elsewhere, before running `scripts/favorites.sh` often
+- [ ] Bring the sketches into the new style; they could look great dithered (goes with deciding what happens to `writing/` and `interactive/`)
+- [ ] Kaleido album: add download and GitHub links once they're public
+- [ ] Code cleanup: the Bayer matrix is duplicated in `dither.js` and `photos.js`; `photography.html` has unused layout rules (`.mosaic .tall`, `.small`); the Tailwind and template setup only serves the old pages
+- [ ] Delete the merged local `dither` branch
+- [ ] Decide whether the stereogram album finishes the "3D wigglegrams page" item above
+
 ## Pages
 
 - [x] `build_site.py` skips `content/index.md` and `content/about.md` (`HAND_WRITTEN`), so it can't overwrite the new hand-written `index.html` and `about.html`. Edit those two pages directly; the old sources are no longer used
