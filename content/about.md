@@ -4,7 +4,7 @@ page: about
 
 ## About
 
-My name is Kyle Pollina and I [photograph wildlife](https://www.instagram.com/kylepollina/), garden a bit, and sometimes write programs but I'd rather be outside 🏔
+My name is Kyle Pollina and I [photograph wildlife](https://www.instagram.com/kylepollina/), garden a bit, and write programs
 
 Based in Chicago, Illinois
 
