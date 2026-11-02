@@ -6,43 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>photography · kyle pollina</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <style>
-    @font-face {
-      font-family: "IBM Plex Mono";
-      font-style: italic;
-      src: url("fonts/IBMPlex/IBMPlexMono-Italic.otf") format("opentype");
-    }
-    /* Same ink and paper as the home page */
-    :root { --ink: #111; --paper: #ece8dc; }
-    @media (prefers-color-scheme: dark) {
-      :root { --ink: #d6d0c0; --paper: #161513; }
-    }
-    body {
-      margin: 0;
-      padding: 32px 24px;
-      background: var(--paper);
-      color: var(--ink);
-      font: italic 15px "IBM Plex Mono", ui-monospace, monospace;
-    }
-    a {
-      color: var(--ink);
-    }
-    a:hover {
-      background: var(--ink);
-      color: var(--paper);
-      text-decoration: none;
-    }
-    h1 {
-      margin: 32px 0 0;
-      font-size: 28px;
-      font-weight: normal;
-    }
-  </style>
+  <!-- Fraunces, SIL Open Font License: https://fonts.google.com/specimen/Fraunces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@144,800&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
 </head>
 
 <body>
-  <a href="index.html">← kyle pollina</a>
-  <h1>photography</h1>
+  <canvas id="dither"></canvas>
+  <nav><a href="index.html">← kyle pollina</a></nav>
+  <main>
+    <h1>photography</h1>
+  </main>
+  <script src="dither.js"></script>
 </body>
 
 </html>
