@@ -1,6 +1,6 @@
 # kylepollina.github.io
 
-Personal site, served by GitHub Pages from `master`. Pages are written in Markdown under `content/` and built into HTML committed alongside them.
+Personal site, served by GitHub Pages from `master`. The home, about and photography pages are hand-written, with specs in [`docs/`](docs/). The older sections are written in Markdown under `content/` and built into HTML committed alongside them.
 
 ## Setup
 

@@ -5,6 +5,8 @@ exclude:
   - biology-logs/
   - apps.html  # hidden for now; see TODO.md
   - TODO.md
+  - CLAUDE.md
+  - docs/
   - README.md
   - templates/
   - build_site.py
