@@ -22,7 +22,7 @@ Tracker for reviving the site. Not published (excluded in `_config.yml`).
 Specs are in `docs/`.
 
 - [ ] Check on a real phone: headings scrolling without lag, tap to color, and videos playing on iOS. Small album titles like "kaleido" look a little muddy on phones; make them bigger or crisper if that bothers you
-- [ ] Replace drafted text with your own: the alleys "hallway" line, and the stereogram descriptions (the build story was inferred from the photos)
+- [ ] Replace drafted text with your own: the stereogram descriptions (the build story was inferred from the photos)
 - [ ] Faster photo loading: photos stay solid blocks until loaded, and small grid spots download the full 1600px file. Try smaller versions and a paper-colored placeholder
 - [ ] Link previews: pages have no description or preview image, so shared links look bare. A dithered preview image would suit the site
 - [ ] Accessibility: photos can't be colored from the keyboard, and the favorites grid has no alt text

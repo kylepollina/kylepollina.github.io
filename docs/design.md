@@ -42,7 +42,7 @@ The theme follows the system setting. These colors live in two places that must 
 2. A favorites grid: random photos, random crop, and one of three layouts that fill the grid exactly. It's different on every load, and doesn't move once loaded.
 3. Album previews, newest first. Each has a centered title, a date line, a short description, its photos, and "see the whole album →". Previews use `trio` (three squares) or `mosaic` (mixed sizes).
 
-**Album pages:** a back link to photography, then the title, date and text, then every photo. The layout can suit the album: sections for stereogram, plain columns for alleys.
+**Album pages:** a back link to photography, then the title, date and text, then every photo. The layout can suit the album: sections for stereogram, a lead video and pairs for kaleido.
 
 ## How photos behave
 

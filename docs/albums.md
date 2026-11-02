@@ -4,7 +4,7 @@ The recipe for getting photos onto the site. Commands run from the repo root and
 
 ## Checklist
 
-1. Ask for the order. Stereogram used date added, but alleys was dropped in all at once, so date added was meaningless and date taken was used instead. Check with `mdls -raw -name kMDItemDateAdded FILE` and `exiftool -DateTimeOriginal FILE`.
+1. Ask for the order. Stereogram used date added, but date added means nothing for a folder dropped in all at once, so use date taken there. Check with `mdls -raw -name kMDItemDateAdded FILE` and `exiftool -DateTimeOriginal FILE`.
 2. Look at the photos first. A contact sheet is quickest:
    ```bash
    magick montage SRC/*.jpg -auto-orient -thumbnail 300x300 -geometry +4+4 -tile 5x /tmp/sheet.jpg
@@ -60,7 +60,6 @@ Copy the closest existing page. Paths are relative to `photography/`.
 
 | Page | Layout | Good for |
 |---|---|---|
-| `alleys.html` | One set of columns | A plain set of photos |
 | `stereogram.html` | Titled sections | A project with a story |
 | `kaleido.html` | Lead video, pairs, captioned features | An app or before-and-after |
 
