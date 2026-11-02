@@ -83,6 +83,6 @@ Don't bring these back without a new reason.
 
 - **Apps page:** hidden until it has content (steps in `TODO.md`).
 - **Kaleido album:** leaves out Apple's aerials and wallpaper, since those images are Apple's and the site is public. It has no GitHub link while that repo is private.
-- **Old pages:** `old-site/writing/` and `old-site/interactive/` are still online in the old style but aren't linked. Open question in `TODO.md`.
+- **Old pages:** `old-site/writing/` and `old-site/interactive/` are still online in the old style. Nothing on the new site links to them, and their old URLs don't redirect. Kyle wants it that way.
 
 Open work lives in `TODO.md`, not here.

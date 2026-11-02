@@ -38,7 +38,7 @@ Specs are in `docs/`.
 ## Pages
 
 - [x] `build_site.py` skips `content/index.md` and `content/about.md` (`HAND_WRITTEN`), so it can't overwrite the new hand-written `index.html` and `about.html`. Edit those two pages directly; the old sources are no longer used
-- [ ] `writing/` and `interactive/` are still published but no longer linked from the new home page, and keep the old look. Hide them, or link them and restyle
+- [x] `writing/` and `interactive/` stay published under `/old-site/` in the old look, with no links from the new site and no redirects from their old URLs
 - [ ] Apps page hidden (Nov 2026) until it has something on it. To bring it back: add `<a href="apps.html">apps</a>` to the nav in `index.html`, and remove the `apps.html` line from `exclude` in `_config.yml`
 - [x] Earthscience section hidden from the research index (Oct 2026). To bring it back: remove the `<!-- EARTHSCIENCE-HIDDEN ... -->` wrapper around it in `content/research/index.md` and rebuild. The standalone `earthscience/` page was deleted; recover it with `git show HEAD:content/research/earthscience/index.md` if wanted
 - [x] Research section hidden (Oct 2026): out of the nav (`HIDDEN_PAGES` in `build_site.py`) and unpublished (`research/` and `biology-logs/` in `_config.yml` `exclude`); content and built pages are kept. To bring it back: remove "research" from `HIDDEN_PAGES`, remove the `old-site/research/` and `old-site/biology-logs/` lines from `exclude`, rebuild
