@@ -12,7 +12,7 @@ How the dithered pages work, the constraints that shaped them, and how to test t
 | `index.html`, `about.html`, `photography.html`, `apps.html` | Hand-written pages in the root |
 | `photography/*.html` | Album pages, loading `../site.css` and friends |
 
-These pages are not built. `build_site.py` skips `content/index.md` and `content/about.md` (`HAND_WRITTEN`) so it can't overwrite them, so those two sources are dead. It still builds `writing/`, `interactive/` and `research/` in the old style.
+These pages are not built. `old-site/build_site.py` skips `content/index.md` and `content/about.md` (`HAND_WRITTEN`) so it can't overwrite them, so those two sources are dead. It still builds `writing/`, `interactive/` and `research/` in the old style.
 
 ## How text gets drawn
 

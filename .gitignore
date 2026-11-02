@@ -1,5 +1,5 @@
 .DS_Store
-/env/
+/old-site/env/
 __pycache__
 node_modules
 .vscode/

@@ -6,6 +6,6 @@ Before changing the site's look, pages or photos, read the specs:
 - [docs/rendering.md](docs/rendering.md): how the dithering works, the scroll lag rule, and test pane quirks
 - [docs/albums.md](docs/albums.md): adding photos and albums, including stripping location data
 
-`index.html`, `about.html`, `photography.html` and `photography/` are hand-written, so edit them directly. `build_site.py` only builds the old-style sections.
+`index.html`, `about.html`, `photography.html` and `photography/` are hand-written, so edit them directly. The old-style sections live in `old-site/`, with their own `build_site.py` that runs from inside that folder.
 
 Update the specs when a design decision changes. Open work goes in `TODO.md`.

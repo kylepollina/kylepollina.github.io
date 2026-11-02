@@ -1,21 +1,23 @@
-# GitHub Pages (Jekyll) settings. The site itself is built by build_site.py.
-# content/ can't be excluded yet: sketch pages load their JS from it.
+# GitHub Pages (Jekyll) settings. The old site is built by old-site/build_site.py.
+# old-site/content/ can't be excluded yet: sketch pages load their JS from it.
 exclude:
-  - research/  # hidden for now; see HIDDEN_PAGES in build_site.py
-  - biology-logs/
   - apps.html  # hidden for now; see TODO.md
   - TODO.md
   - CLAUDE.md
   - docs/
   - README.md
-  - templates/
-  - build_site.py
   - serve.py
-  - logger.py
-  - requirements.txt
   - package.json
-  - package-lock.json
-  - tailwind.config.js
-  - index.tailwind.css
-  - node_modules/
-  - env/
+  - scripts/
+  - old-site/research/  # hidden for now; see HIDDEN_PAGES in old-site/build_site.py
+  - old-site/biology-logs/
+  - old-site/templates/
+  - old-site/build_site.py
+  - old-site/logger.py
+  - old-site/requirements.txt
+  - old-site/package.json
+  - old-site/package-lock.json
+  - old-site/tailwind.config.js
+  - old-site/index.tailwind.css
+  - old-site/node_modules/
+  - old-site/env/

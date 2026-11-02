@@ -2,6 +2,8 @@
 
 Tracker for reviving the site. Not published (excluded in `_config.yml`).
 
+The old site moved into `old-site/` (Nov 2026). Paths below to `content/`, `templates/`, `writing/`, `interactive/`, `research/`, `biology-logs/`, `build_site.py`, the sketch scripts and `make_thumbs.sh` are inside that folder.
+
 ## Big projects
 
 - [ ] **Move writing to Bear Blog.** Link to your existing Bear Blog sites from here, and migrate the old posts. 8 posts in `content/writing/`, all now listed; `wikipedia-catches-up` is just a title with no body
@@ -39,7 +41,7 @@ Specs are in `docs/`.
 - [ ] `writing/` and `interactive/` are still published but no longer linked from the new home page, and keep the old look. Hide them, or link them and restyle
 - [ ] Apps page hidden (Nov 2026) until it has something on it. To bring it back: add `<a href="apps.html">apps</a>` to the nav in `index.html`, and remove the `apps.html` line from `exclude` in `_config.yml`
 - [x] Earthscience section hidden from the research index (Oct 2026). To bring it back: remove the `<!-- EARTHSCIENCE-HIDDEN ... -->` wrapper around it in `content/research/index.md` and rebuild. The standalone `earthscience/` page was deleted; recover it with `git show HEAD:content/research/earthscience/index.md` if wanted
-- [x] Research section hidden (Oct 2026): out of the nav (`HIDDEN_PAGES` in `build_site.py`) and unpublished (`research/` and `biology-logs/` in `_config.yml` `exclude`); content and built pages are kept. To bring it back: remove "research" from `HIDDEN_PAGES`, remove both `exclude` lines, rebuild
+- [x] Research section hidden (Oct 2026): out of the nav (`HIDDEN_PAGES` in `build_site.py`) and unpublished (`research/` and `biology-logs/` in `_config.yml` `exclude`); content and built pages are kept. To bring it back: remove "research" from `HIDDEN_PAGES`, remove the `old-site/research/` and `old-site/biology-logs/` lines from `exclude`, rebuild
 - [ ] Review the research pages
 - [x] About: remove Miglia.co, change location to Chicago
 - [ ] About: check the Instagram link is still current
@@ -86,6 +88,6 @@ Specs are in `docs/`.
 - [x] Moved the orphan pages into `content/` (wikipedia-catches-up, earthscience, biology-logs index)
 - [x] Deleted the unused Pitch Test fonts, `Icon\r`, root `__init__.py`, `styles.css`, `.writing/` draft
 - [x] `.vscode/` is now gitignored; `.gitignore` tidied
-- [ ] `ideas/` has three 2022 screenshots committed to the public repo; move them out if they're private notes
-- [ ] Delete the untracked `old-site-crap/` once you're sure nothing in it is needed
+- [x] `ideas/` is gone from the repo
+- [x] The untracked `old-site-crap/` is gone
 - [ ] `research/earthscience/index.html` duplicates the earthscience section of the research index; keep one
