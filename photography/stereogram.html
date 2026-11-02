@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>stereogram · kyle pollina</title>
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <!-- Fraunces, SIL Open Font License: https://fonts.google.com/specimen/Fraunces -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@144,800&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="../site.css">
+  <style>
+    /* An album page: the photos in the order they were added, in three parts */
+    header {
+      text-align: center;
+    }
+    header .meta {
+      margin-top: 0.4em;
+    }
+    section {
+      max-width: 72rem;
+      margin: 6em auto 0;
+    }
+    h2 {
+      margin: 0;
+      font: 800 clamp(32px, 5vw, 64px)/1 Fraunces, serif;
+      padding-bottom: 0.2em;
+    }
+    section .prose {
+      margin: 0.8em 0 0;
+    }
+    .photos {
+      display: grid;
+      gap: 12px;
+      margin-top: 2em;
+    }
+    /* The img's width and height give each photo its shape */
+    .photos .photo img {
+      height: auto;
+    }
+    .build .photos {
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .frames .photos {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    /* The wiggles are all tall but not all the same height, so they stack in columns */
+    .wiggles .photos {
+      display: block;
+      columns: 4;
+      column-gap: 12px;
+    }
+    .wiggles .photo {
+      break-inside: avoid;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 760px) {
+      .build .photos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .frames .photos {
+        grid-template-columns: 1fr;
+      }
+      .wiggles .photos {
+        columns: 2;
+      }
+      .photos {
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="dither"></canvas>
+  <nav><a href="../photography.html">← photography</a></nav>
+  <main>
+    <header>
+      <h1>stereogram</h1>
+      <p class="meta prose">september 2026 · three lenses, one frame</p>
+    </header>
+
+    <section class="build">
+      <h2>the camera</h2>
+      <div class="prose">
+        <p>A disposable camera, taken apart for its lens, and a 3D-printed mount that holds three lenses side by side in front of the Sony.</p>
+      </div>
+      <div class="photos">
+        <figure class="photo"><img src="stereogram/img_1380.jpg" width="1200" height="1600" alt="A Fujifilm QuickSnap disposable camera next to the printed mount" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/img_1377.jpg" width="1200" height="1600" alt="The disposable camera taken apart" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/img_1381.jpg" width="1200" height="1600" alt="The mount with three lenses in it" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/img_1382.jpg" width="1200" height="1600" alt="The back of the mount, with dividers between the lenses" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/img_1383.jpg" width="1200" height="1600" alt="The mount on a Sony camera" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section class="frames">
+      <h2>three at once</h2>
+      <div class="prose">
+        <p>Each frame holds three views of the same scene, a little apart.</p>
+      </div>
+      <div class="photos">
+        <figure class="photo"><img src="stereogram/dsc06189.jpg" width="1800" height="1200" alt="Pink roses in a hedge, three times over" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06190.jpg" width="1800" height="1200" alt="Purple flowers, three times over" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06202.jpg" width="1800" height="1200" alt="An elevated train platform, three times over" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06254.jpg" width="1800" height="1200" alt="A building and parked cars, three times over" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06292.jpg" width="1800" height="1200" alt="Trees over a path, three times over" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06291.jpg" width="1800" height="1200" alt="A fallen tree in the woods, three times over" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <section class="wiggles">
+      <h2>wiggles</h2>
+      <div class="prose">
+        <p>Flip between the views and the scene stands up.</p>
+      </div>
+      <div class="photos">
+        <figure class="photo"><img src="stereogram/dsc06188-wiggle.webp" width="600" height="1486" alt="A pink rose" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06189-wiggle.webp" width="600" height="1281" alt="Pink roses in a hedge" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06192-wiggle.webp" width="600" height="1238" alt="Hydrangeas" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06187-wiggle.webp" width="600" height="1217" alt="Roses and climbing vines by a red house" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06226-wiggle.webp" width="600" height="1211" alt="Inside a train car" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06260-wiggle.webp" width="600" height="1230" alt="A car on a city street" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06290-wiggle.webp" width="600" height="1292" alt="White and purple asters" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06287-wiggle.webp" width="600" height="1271" alt="Asters and goldenrod under a tree" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06255-wiggle.webp" width="600" height="1196" alt="The Swift Tavern sign" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06282-wiggle.webp" width="600" height="1328" alt="Goldenrod and foxglove" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06276-wiggle.webp" width="600" height="1279" alt="Purple and yellow flowers" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/dsc06291-wiggle.webp" width="600" height="1189" alt="A tree against the sky" loading="lazy"></figure>
+      </div>
+    </section>
+  </main>
+  <script src="../dither.js"></script>
+  <script src="../photos.js"></script>
+</body>
+
+</html>

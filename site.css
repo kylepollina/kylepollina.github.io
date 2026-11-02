@@ -78,6 +78,43 @@ main > p {
   color: var(--paper);
   text-decoration: none;
 }
+/* An album's line of where and when, solid like prose: dithered at this size, under the title's glow,
+   it was hard to read */
+.meta.prose {
+  max-width: none;
+  margin: 0;
+  font-style: italic;
+  font-size: 16px;
+}
+/* A photo, dithered by photos.js; hover or tap shows the real one */
+.photo {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--ink);
+}
+.photo img,
+.photo canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photo canvas {
+  position: absolute;
+  inset: 0;
+  image-rendering: pixelated;
+  /* After the mouse leaves, the color stays a couple of seconds, then the dither slowly comes back */
+  transition: opacity 1.5s ease-in 2s;
+}
+.photo:not(.dithered) img {
+  opacity: 0;
+}
+.photo:hover canvas,
+.photo.open canvas {
+  opacity: 0;
+  transition: opacity 0.4s;
+}
 @media (max-width: 640px) {
   body {
     padding: 20px 20px 64px;

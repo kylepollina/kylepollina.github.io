@@ -11,6 +11,150 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@144,800&display=block" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
+  <style>
+    /* Each album is a title, a line of where and when, a few lines about it, and its photos. The three
+       albums here each try a different layout */
+    .album {
+      max-width: 72rem;
+      margin: 7em auto 0;
+    }
+    .album h2 {
+      margin: 0;
+      font: 800 clamp(40px, 7vw, 96px)/1 Fraunces, serif;
+      padding-bottom: 0.2em;
+    }
+    .album .prose {
+      margin: 1.2em 0 0;
+    }
+    .album .open-album {
+      max-width: none;
+      margin: 1.2em 0 0;
+      text-align: right;
+    }
+
+    /* Mosaic: centered text over a grid of mixed sizes */
+    .mosaic header {
+      text-align: center;
+    }
+    .mosaic .prose {
+      margin: 1.2em auto 0;
+    }
+    .mosaic .grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: clamp(90px, 13vw, 180px);
+      grid-auto-flow: dense;
+      gap: 12px;
+      margin-top: 2.5em;
+    }
+    .mosaic .photo { grid-column: span 2; grid-row: span 2; }
+    .mosaic .wide { grid-column: span 4; }
+    .mosaic .tall { grid-row: span 3; }
+    .mosaic .tall4 { grid-row: span 4; }
+    .mosaic .small { grid-row: span 1; }
+
+    /* Strip: the text on the left, the photos in a row that scrolls sideways */
+    .strip {
+      display: grid;
+      grid-template-columns: minmax(16em, 1fr) 2.4fr;
+      gap: 2.5em;
+      align-items: end;
+    }
+    .strip .row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: var(--ink) transparent;
+      padding-bottom: 12px;
+    }
+    .strip .photo {
+      flex: none;
+      height: min(62vh, 520px);
+      aspect-ratio: 2 / 3;
+      scroll-snap-align: start;
+    }
+    .strip .photo.landscape {
+      aspect-ratio: 3 / 2;
+    }
+
+    /* Feature: one big photo beside the text, then a row of three under it */
+    .feature {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 12px 2.5em;
+    }
+    .feature .hero {
+      aspect-ratio: 4 / 5;
+    }
+    .feature header {
+      align-self: center;
+    }
+    .feature .three {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .feature .three .photo {
+      aspect-ratio: 1;
+    }
+
+    /* A few favorites under the title, picked at random on each load, in a grid of wide, tall, square
+       and small spots (one of a few layouts, also random). Each photo is cropped somewhere random */
+    .favorites {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: clamp(70px, 10vw, 140px);
+      gap: 12px;
+      max-width: 72rem;
+      margin: 2.5em auto 0;
+    }
+    .favorites .photo {
+      grid-column: var(--col);
+      grid-row: var(--row);
+    }
+
+    @media (max-width: 760px) {
+      .album {
+        margin-top: 5em;
+      }
+      /* Two columns on phones: the first photo across both, then pairs */
+      .favorites {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 30vw;
+        gap: 8px;
+      }
+      .favorites .photo {
+        grid-column: auto;
+        grid-row: auto;
+      }
+      .favorites .photo:first-child {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      .favorites .photo:nth-child(n + 6) {
+        display: none;
+      }
+      .mosaic .grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 28vw;
+        gap: 8px;
+      }
+      .mosaic .photo, .mosaic .wide { grid-column: span 1; }
+      .mosaic .wide { grid-column: span 2; }
+      .strip, .feature {
+        grid-template-columns: 1fr;
+      }
+      .strip .photo {
+        height: 58vh;
+      }
+      .feature .three {
+        gap: 8px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -19,30 +163,97 @@
   <main>
     <h1>photography</h1>
 
-    <!-- Placeholder text to try scrolling -->
-    <div class="prose">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <!-- Filled from photography/favorites (scripts/favorites.sh) before photos.js dithers them -->
+    <div class="favorites"></div>
+    <script src="photography/favorites/list.js"></script>
+    <script>
+      (() => {
+        // Each layout fills the 6 columns and 4 rows exactly: [columns, rows] for each spot
+        const layouts = [
+          [["1/5", "1/3"], ["5/7", "1/4"], ["1/3", "3/5"], ["3/5", "3/4"], ["3/5", "4/5"], ["5/7", "4/5"]],
+          [["1/3", "1/5"], ["3/7", "1/3"], ["3/5", "3/5"], ["5/7", "3/4"], ["5/7", "4/5"]],
+          [["1/4", "1/3"], ["4/7", "1/2"], ["4/5", "2/5"], ["5/7", "2/4"], ["1/3", "3/5"], ["3/4", "3/5"], ["5/7", "4/5"]],
+        ];
+        const spots = layouts[Math.floor(Math.random() * layouts.length)];
+        const pick = [...FAVORITES].sort(() => Math.random() - 0.5).slice(0, spots.length);
+        const r = (a, b) => a + Math.random() * (b - a);
+        const grid = document.querySelector(".favorites");
+        pick.forEach((name, i) => {
+          const fig = document.createElement("figure");
+          fig.className = "photo";
+          fig.style.setProperty("--col", spots[i][0]);
+          fig.style.setProperty("--row", spots[i][1]);
+          // A random spot in the photo, zoomed in up to 1.5 times
+          fig.dataset.crop = `${r(0, 1).toFixed(2)} ${r(0, 1).toFixed(2)} ${r(1, 1.5).toFixed(2)}`;
+          const img = document.createElement("img");
+          img.src = `photography/favorites/${name}`;
+          img.alt = "";
+          fig.appendChild(img);
+          grid.appendChild(fig);
+        });
+      })();
+    </script>
 
-    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <a href="https://www.instagram.com/kylepollina/">Sed ut perspiciatis</a> unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+    <!-- A few from the album; the title and the link under the photos open the whole thing -->
+    <section class="album mosaic">
+      <header>
+        <h2><a href="photography/stereogram.html">stereogram</a></h2>
+        <p class="meta prose">september 2026 · three lenses, one frame</p>
+      </header>
+      <div class="prose">
+        <p>A disposable camera taken apart for its lens, a 3D-printed mount that holds three lenses side by side, and the wiggles that came out of it.</p>
+      </div>
+      <div class="grid">
+        <figure class="photo wide"><img src="photography/stereogram/dsc06202.jpg" alt="An elevated train platform, three times over" loading="lazy"></figure>
+        <figure class="photo tall4"><img src="photography/stereogram/dsc06188-wiggle.webp" alt="A pink rose, wiggling in 3D" loading="lazy"></figure>
+        <figure class="photo"><img src="photography/stereogram/img_1381.jpg" alt="The printed mount with three lenses in it" loading="lazy"></figure>
+        <figure class="photo"><img src="photography/stereogram/img_1383.jpg" alt="The mount on a Sony camera" loading="lazy"></figure>
+        <figure class="photo tall4"><img src="photography/stereogram/dsc06255-wiggle.webp" alt="The Swift Tavern sign, wiggling in 3D" loading="lazy"></figure>
+        <figure class="photo tall4"><img src="photography/stereogram/dsc06276-wiggle.webp" alt="Purple and yellow flowers, wiggling in 3D" loading="lazy"></figure>
+        <figure class="photo tall4"><img src="photography/stereogram/dsc06282-wiggle.webp" alt="Goldenrod and foxglove, wiggling in 3D" loading="lazy"></figure>
+      </div>
+      <p class="prose open-album"><a href="photography/stereogram.html">see the whole album →</a></p>
+    </section>
 
-    <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+    <!-- Placeholder photos from picsum.photos until the real albums are ready -->
 
-    <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+    <section class="album strip">
+      <header>
+        <h2>alleys!</h2>
+        <p class="meta prose">20xx · somewhere</p>
+        <div class="prose">
+          <p>Ut enim ad minim veniam, quis nostrud exercitation. Every alley is a little hallway somebody forgot to put a roof on. Scroll sideways →</p>
+        </div>
+      </header>
+      <div class="row">
+        <figure class="photo"><img src="https://picsum.photos/seed/alley1/800/1200" alt="" crossorigin="anonymous" loading="lazy"></figure>
+        <figure class="photo landscape"><img src="https://picsum.photos/seed/alley2/1200/800" alt="" crossorigin="anonymous" loading="lazy"></figure>
+        <figure class="photo"><img src="https://picsum.photos/seed/alley3/800/1200" alt="" crossorigin="anonymous" loading="lazy"></figure>
+        <figure class="photo"><img src="https://picsum.photos/seed/alley4/800/1200" alt="" crossorigin="anonymous" loading="lazy"></figure>
+        <figure class="photo landscape"><img src="https://picsum.photos/seed/alley5/1200/800" alt="" crossorigin="anonymous" loading="lazy"></figure>
+        <figure class="photo"><img src="https://picsum.photos/seed/alley6/800/1200" alt="" crossorigin="anonymous" loading="lazy"></figure>
+      </div>
+    </section>
 
-    <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-
-    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-
-    <p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
-
-    <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</p>
-
-    <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus. <a href="about.html">Omnis voluptas</a> assumenda est, omnis dolor repellendus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-    <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-    </div>
+    <section class="album feature">
+      <figure class="photo hero"><img src="https://picsum.photos/seed/kaleido1/1200/1500" alt="" crossorigin="anonymous" loading="lazy"></figure>
+      <header>
+        <h2>kaleido</h2>
+        <p class="meta prose">ongoing · everything else</p>
+        <div class="prose">
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore. The big pile: whatever caught my eye that didn't belong anywhere else. Excepteur sint occaecat cupidatat non proident.</p>
+          <p><a href="https://www.instagram.com/kylepollina/">more on instagram</a></p>
+        </div>
+      </header>
+      <div class="three">
+        <figure class="photo"><img src="https://picsum.photos/seed/kaleido2/900/900" alt="" crossorigin="anonymous" loading="lazy"></figure>
+        <figure class="photo"><img src="https://picsum.photos/seed/kaleido3/900/900" alt="" crossorigin="anonymous" loading="lazy"></figure>
+        <figure class="photo"><img src="https://picsum.photos/seed/kaleido4/900/900" alt="" crossorigin="anonymous" loading="lazy"></figure>
+      </div>
+    </section>
   </main>
   <script src="dither.js"></script>
+  <script src="photos.js"></script>
 </body>
 
 </html>
