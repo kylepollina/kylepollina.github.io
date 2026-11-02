@@ -42,7 +42,8 @@ Specs are in `docs/`.
 - [x] Research section hidden (Oct 2026): out of the nav (`HIDDEN_PAGES` in `build_site.py`) and unpublished (`research/` and `biology-logs/` in `_config.yml` `exclude`); content and built pages are kept. To bring it back: remove "research" from `HIDDEN_PAGES`, remove both `exclude` lines, rebuild
 - [ ] Review the research pages
 - [x] About: remove Miglia.co, change location to Chicago
-- [ ] About: check the Instagram link and `kylepollina@pm.me` are still current
+- [ ] About: check the Instagram link is still current
+- [ ] Old pages (`templates/nav.html`, built into `writing/`, `interactive/`, `research/`, `biology-logs/`) still link `kylepollina@pm.me`; the about page now says `kylepollina [at] gmail`
 - [x] Home page now loads a random sketch in an iframe (weighted list in `content/index.md`, cubies most often); the iframe is `max-width:100%`, so check it on a phone
 
 ## Interactive sketches
