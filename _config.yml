@@ -3,6 +3,7 @@
 exclude:
   - research/  # hidden for now; see HIDDEN_PAGES in build_site.py
   - biology-logs/
+  - apps.html  # hidden for now; see TODO.md
   - TODO.md
   - README.md
   - templates/
