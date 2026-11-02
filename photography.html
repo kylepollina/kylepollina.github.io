@@ -12,8 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@144,800&display=block" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
   <style>
-    /* Each album is a title, a line of where and when, a few lines about it, and its photos. The three
-       albums here each try a different layout */
+    /* Each album is a title, a line of where and when, a few lines about it, and its photos. Albums take
+       turns between a few layouts */
     .album {
       max-width: 72rem;
       margin: 7em auto 0;
@@ -53,37 +53,15 @@
     .mosaic .tall4 { grid-row: span 4; }
     .mosaic .small { grid-row: span 1; }
 
-    /* Strip: the text on the left, the photos in a row that scrolls sideways */
-    .strip {
-      display: grid;
-      grid-template-columns: minmax(16em, 1fr) 2.4fr;
-      gap: 2.5em;
-      align-items: end;
-    }
-    .strip .row {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: thin;
-      scrollbar-color: var(--ink) transparent;
-      padding-bottom: 12px;
-    }
-    .strip .photo {
-      flex: none;
-      height: min(62vh, 520px);
-      aspect-ratio: 2 / 3;
-      scroll-snap-align: start;
-    }
-    .strip .photo.landscape {
-      aspect-ratio: 3 / 2;
-    }
-
-    /* Feature: one big photo beside the text, then a row of three under it */
+    /* Feature: one big photo beside the text, then a row of three under it. With class="flip" the
+       header comes first, so the text is on the left */
     .feature {
       display: grid;
       grid-template-columns: 3fr 2fr;
       gap: 12px 2.5em;
+    }
+    .feature.flip {
+      grid-template-columns: 2fr 3fr;
     }
     .feature .hero {
       aspect-ratio: 4 / 5;
@@ -144,11 +122,8 @@
       }
       .mosaic .photo, .mosaic .wide { grid-column: span 1; }
       .mosaic .wide { grid-column: span 2; }
-      .strip, .feature {
+      .feature, .feature.flip {
         grid-template-columns: 1fr;
-      }
-      .strip .photo {
-        height: 58vh;
       }
       .feature .three {
         gap: 8px;
@@ -215,25 +190,24 @@
       <p class="prose open-album"><a href="photography/stereogram.html">see the whole album →</a></p>
     </section>
 
-    <!-- Placeholder photos from picsum.photos until the real albums are ready -->
-
-    <section class="album strip">
+    <section class="album feature flip">
       <header>
-        <h2>alleys!</h2>
-        <p class="meta prose">20xx · somewhere</p>
+        <h2><a href="photography/alleys.html">alleys!</a></h2>
+        <p class="meta prose">2022 – 2024</p>
         <div class="prose">
-          <p>Ut enim ad minim veniam, quis nostrud exercitation. Every alley is a little hallway somebody forgot to put a roof on. Scroll sideways →</p>
+          <p>Every alley is a little hallway somebody forgot to put a roof on.</p>
+          <p><a href="photography/alleys.html">see the whole album →</a></p>
         </div>
       </header>
-      <div class="row">
-        <figure class="photo"><img src="https://picsum.photos/seed/alley1/800/1200" alt="" crossorigin="anonymous" loading="lazy"></figure>
-        <figure class="photo landscape"><img src="https://picsum.photos/seed/alley2/1200/800" alt="" crossorigin="anonymous" loading="lazy"></figure>
-        <figure class="photo"><img src="https://picsum.photos/seed/alley3/800/1200" alt="" crossorigin="anonymous" loading="lazy"></figure>
-        <figure class="photo"><img src="https://picsum.photos/seed/alley4/800/1200" alt="" crossorigin="anonymous" loading="lazy"></figure>
-        <figure class="photo landscape"><img src="https://picsum.photos/seed/alley5/1200/800" alt="" crossorigin="anonymous" loading="lazy"></figure>
-        <figure class="photo"><img src="https://picsum.photos/seed/alley6/800/1200" alt="" crossorigin="anonymous" loading="lazy"></figure>
+      <figure class="photo hero"><img src="photography/alleys/dsc04812.jpg" alt="An alley with grass down the middle and a car at the end" loading="lazy"></figure>
+      <div class="three">
+        <figure class="photo"><img src="photography/alleys/wiggle.webp" alt="A grassy alley under a tree in white blossom, wiggling in 3D" loading="lazy"></figure>
+        <figure class="photo"><img src="photography/alleys/dsc01330.jpg" alt="A leafy alley with a fence on one side" loading="lazy"></figure>
+        <figure class="photo"><img src="photography/alleys/dsc04836.jpg" alt="A gravel alley between houses" loading="lazy"></figure>
       </div>
     </section>
+
+    <!-- Placeholder photos from picsum.photos until the real album is ready -->
 
     <section class="album feature">
       <figure class="photo hero"><img src="https://picsum.photos/seed/kaleido1/1200/1500" alt="" crossorigin="anonymous" loading="lazy"></figure>

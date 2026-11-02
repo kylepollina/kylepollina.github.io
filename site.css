@@ -79,8 +79,10 @@ main > p {
   text-decoration: none;
 }
 /* An album's line of where and when, solid like prose: dithered at this size, under the title's glow,
-   it was hard to read */
+   it was hard to read. Inline-block so it's only as wide as its text, which keeps the plain patch dither.js
+   clears behind prose from running across the page */
 .meta.prose {
+  display: inline-block;
   max-width: none;
   margin: 0;
   font-style: italic;
