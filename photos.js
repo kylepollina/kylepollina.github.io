@@ -8,6 +8,8 @@
 // across the photo, and zoom over 1 crops in tighter.
 //
 // An animated photo (a wiggle GIF or WebP) is dithered as a still, so it only moves while it shows in color.
+// A video works the same way: put its first frame in the img, then a muted, looping <video> after it. It
+// plays while it shows in color and rewinds once the dither is back over it.
 (() => {
     const BAYER = (() => {
         let m = [[0]];
@@ -106,14 +108,42 @@
         fig.classList.add("dithered");
     }
 
+    const showing = new Set(); // the figures on screen
+
+    // Called when a photo's color may have changed. Not on leaving a photo, since its color lingers: the
+    // canvas's transitionend catches the dither coming back
+    function syncVideo(fig) {
+        const video = fig.querySelector("video");
+        if (!video) return;
+        const color = fig.matches(":hover") || fig.classList.contains("open") || fig.banded;
+        if (color && showing.has(fig)) video.play().catch(() => {});
+        else {
+            video.pause();
+            if (!color) video.currentTime = 0; // The dither shows the first frame
+        }
+    }
+
     const figs = [...document.querySelectorAll("figure.photo")];
+    const watch = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+            e.isIntersecting ? showing.add(e.target) : showing.delete(e.target);
+            syncVideo(e.target);
+        }
+    });
     for (const fig of figs) {
-        fig.appendChild(document.createElement("canvas"));
+        const canvas = document.createElement("canvas");
+        fig.appendChild(canvas);
         const img = fig.querySelector("img");
         img.addEventListener("load", () => draw(fig));
         draw(fig);
         // Touch screens have no hover: a tap shows the photo, another tap dithers it again
-        fig.addEventListener("click", () => fig.classList.toggle("open"));
+        fig.addEventListener("click", () => {
+            fig.classList.toggle("open");
+            syncVideo(fig);
+        });
+        fig.addEventListener("pointerenter", () => syncVideo(fig));
+        canvas.addEventListener("transitionend", () => syncVideo(fig));
+        watch.observe(fig);
     }
 
     // Touch screens have no mouse to sweep over the photos, so the light band that crosses the page
@@ -123,11 +153,6 @@
     const BAND_SPEED = 0.18, BAND_LOOP = 1.6; // band position u = 0.8 x/width + 0.5 y/height of the window
     const AHEAD = 0.08, CORE = 0.04, TRAIL = 0.45; // how far color reaches around the band, in u
     if (matchMedia("(hover: none)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        const showing = new Set();
-        const watch = new IntersectionObserver((entries) => {
-            for (const e of entries) e.isIntersecting ? showing.add(e.target) : showing.delete(e.target);
-        });
-        figs.forEach((f) => watch.observe(f));
         const shimmer = (t) => {
             requestAnimationFrame(shimmer);
             const sweep = (((t / 1000) * BAND_SPEED) % BAND_LOOP) - 0.3;
@@ -143,7 +168,15 @@
                 // Skip the mask while the band is nowhere near
                 if (sweep + AHEAD < uMid - (g * (r.width + r.height)) / 2 || sweep - TRAIL > uMid + (g * (r.width + r.height)) / 2) {
                     if (canvas.style.maskImage) canvas.style.maskImage = canvas.style.webkitMaskImage = "";
+                    if (fig.banded) {
+                        fig.banded = false;
+                        syncVideo(fig);
+                    }
                     continue;
+                }
+                if (!fig.banded) {
+                    fig.banded = true;
+                    syncVideo(fig);
                 }
                 // Distances along the gradient line, which runs through the middle of the box
                 const rad = (angle * Math.PI) / 180;
