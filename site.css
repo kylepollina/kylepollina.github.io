@@ -5,6 +5,11 @@
   font-style: italic;
   src: url("fonts/IBMPlex/IBMPlexMono-Italic.otf") format("opentype");
 }
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  src: url("fonts/IBMPlex/IBMPlexMono-Regular.otf") format("opentype");
+}
 /* Keep in step with THEMES in dither.js */
 :root { --ink: #111; --paper: #ece8dc; }
 @media (prefers-color-scheme: dark) {
@@ -46,13 +51,34 @@ h1 {
   margin: 40px 0 0;
   /* 15vw keeps "photography" inside a phone screen */
   font: 800 clamp(48px, 15vw, 200px)/1 Fraunces, serif;
+  /* Room for the tails of g, p and y, which hang below the line box */
+  padding-bottom: 0.2em;
 }
 p {
   margin: 1em 0 0;
+}
+/* Text for reading: the real text in solid ink, with nothing from dither.js under it */
+.prose {
+  margin-top: 2.5em;
+  color: var(--ink);
+  font: 18px/1.75 "IBM Plex Mono", ui-monospace, monospace;
+}
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.prose a:hover,
+.prose a:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
 }
 @media (max-width: 640px) {
   body {
     padding: 20px 20px 64px;
     font-size: 17px;
+  }
+  .prose {
+    font-size: 16px;
   }
 }

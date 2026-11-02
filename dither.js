@@ -6,8 +6,12 @@
 // Needs a <canvas id="dither"> styled to cover the viewport (site.css does it). Its data-cell and
 // data-cell-phone set the dot size in screen pixels, 2 and 1.5 if left out. Text at least BIG dither pixels tall is
 // drawn soft with a glow around it (headings); smaller text is drawn crisp so it stays readable.
+//
+// Text inside .prose is for reading: site.css shows the real text in solid ink and nothing is drawn under
+// it, since anything drawn under it trails behind while scrolling (the canvas repaints a frame late). The
+// paper behind prose is kept plain, with no texture or trail, fading out softly past its edges.
 (() => {
-    // Keep in step with THEMES in index.html
+    // Keep in step with the colors in site.css
     const THEMES = {
         light: { ink: [17, 17, 17], paper: [236, 232, 220], grain: 0.07, glow: 0.45, letter: 0.06, band: 0.55 },
         dark: { ink: [214, 208, 192], paper: [22, 21, 19], grain: 0.035, glow: 0.3, letter: 0.2, band: -0.35 },
@@ -15,6 +19,7 @@
     const BIG = 28; // dither pixels
     const TRAIL_RADIUS = 9; // dither pixels
     const TRAIL_FADE = 1.1; // seconds for the trail to drop to about a third; gone in about 3
+    const CLEAR = 12; // how far the plain column fades out past the prose, in dither pixels
 
     const darkMode = matchMedia("(prefers-color-scheme: dark)");
     let theme;
@@ -44,7 +49,7 @@
     })();
 
     // CELL is screen pixels per dither pixel, rounded so each dot is a whole number of device pixels
-    let CELL, W, H, img, core, halo, small, trail;
+    let CELL, W, H, img, core, halo, small, clean, trail;
     let hoverRects = [];
 
     function resize() {
@@ -58,6 +63,7 @@
         img = ctx.createImageData(W, H);
         trail = new Float32Array(W * H);
         last = null;
+
         paint();
     }
 
@@ -68,7 +74,7 @@
         const range = document.createRange();
         for (let node; (node = walker.nextNode()); ) {
             const el = node.parentElement;
-            if (!el || el.closest("script, style, canvas, .sr-only")) continue;
+            if (!el || el.closest("script, style, canvas, .sr-only, .prose")) continue;
             const cs = getComputedStyle(el);
             const size = parseFloat(cs.fontSize) / CELL;
             const font = `${cs.fontStyle} ${cs.fontWeight} ${size}px ${cs.fontFamily}`;
@@ -107,13 +113,28 @@
     function paint() {
         if (!W) return;
         const all = words();
+
+        // How plain the paper is: 1 over prose, fading to 0 CLEAR pixels past it
+        clean = new Float32Array(W * H);
+        for (const el of document.querySelectorAll(".prose")) {
+            const r = el.getBoundingClientRect();
+            const x0 = r.left / CELL, x1 = r.right / CELL, y0 = r.top / CELL, y1 = r.bottom / CELL;
+            for (let y = Math.max(0, Math.floor(y0 - CLEAR)); y < Math.min(H, y1 + CLEAR); y++) {
+                const fy = 1 - Math.min(1, Math.max(y0 - y, y - y1, 0) / CLEAR);
+                for (let x = Math.max(0, Math.floor(x0 - CLEAR)); x < Math.min(W, x1 + CLEAR); x++) {
+                    const v = fy * (1 - Math.min(1, Math.max(x0 - x, x - x1, 0) / CLEAR));
+                    const i = y * W + x;
+                    if (v > clean[i]) clean[i] = v;
+                }
+            }
+        }
         o.textBaseline = "alphabetic";
         o.textAlign = "left";
 
         clear();
         for (const w of all.filter((w) => w.size < BIG)) o.fillText(w.text, w.x, baseline(w));
-        // Links in running text (not nav) get an underline, one per line they wrap onto
-        for (const a of document.querySelectorAll("main a:not(nav a)")) {
+        // Links in running text (not nav or prose, which has real underlines) get an underline, one per line
+        for (const a of document.querySelectorAll("main a:not(nav a, .prose a)")) {
             const cs = getComputedStyle(a);
             const size = parseFloat(cs.fontSize) / CELL;
             if (size >= BIG) continue;
@@ -205,7 +226,10 @@
             for (let x = 0; x < W; x++) {
                 const i = y * W + x;
                 const c = core[i], h = halo[i];
-                let lum = 1.01 - grain * (y / H) ** 2 - glow * h * (1 - c);
+                // Paper is near white with a faint vertical falloff and a glow around headings, both
+                // left out behind prose
+                const plain = clean[i];
+                let lum = 1.01 - (grain * (y / H) ** 2 + glow * h * (1 - c)) * (1 - plain);
                 if (c > 0) {
                     // Small text gets half the shading so it stays readable as the band passes
                     const k = small[i] ? 0.5 : 1;
@@ -221,10 +245,12 @@
                 if (tr > 0.004) {
                     tr *= keep;
                     trail[i] = tr;
-                    lum -= 0.55 * tr;
+                    // The trail fades out going into prose
+                    const strength = tr * (1 - plain);
+                    lum -= 0.55 * strength;
                     let n = (x * 374761393 + y * 668265263 + tick * 2246822519) | 0;
                     n = Math.imul(n ^ (n >>> 13), 1274126177);
-                    threshold += tr * 0.6 * (((n ^ (n >>> 16)) & 1023) / 1023 - 0.5);
+                    threshold += strength * 0.6 * (((n ^ (n >>> 16)) & 1023) / 1023 - 0.5);
                 } else if (tr) trail[i] = 0;
 
                 const col = lum < threshold ? INK : PAPER;
