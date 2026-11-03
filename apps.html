@@ -11,6 +11,51 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@144,800&display=block" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
+  <style>
+    /* Each app is a title, a line of when and what it is, a few lines about it, a few photos, and a link to its site */
+    .app {
+      max-width: 72rem;
+      margin: 7em auto 0;
+    }
+    .app header {
+      text-align: center;
+    }
+    .app h2 {
+      margin: 0;
+      font: 800 clamp(40px, 7vw, 96px)/1 Fraunces, serif;
+      padding-bottom: 0.2em;
+    }
+    .app .prose {
+      margin: 1.2em auto 0;
+    }
+    .app .visit {
+      max-width: none;
+      margin: 1.2em 0 0;
+      text-align: right;
+    }
+    .three {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 2.5em;
+    }
+    .three .photo {
+      aspect-ratio: 1;
+    }
+    /* Only a few here, so they keep moving as long as stills keep their color */
+    .photo:not(:hover, .open):has(video, img[src$=".webp"], img[src$=".gif"]) canvas {
+      transition-delay: 10s;
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        margin-top: 5em;
+      }
+      .three {
+        gap: 8px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -18,8 +63,25 @@
   <nav><a href="index.html">← kyle pollina</a></nav>
   <main>
     <h1>apps</h1>
+
+    <section class="app">
+      <header>
+        <h2><a href="https://getkaleido.app/">kaleido</a></h2>
+        <p class="meta prose">october 2026 · an app for macOS</p>
+      </header>
+      <div class="prose">
+        <p>Reimagine your photos. Turn them into a digital kaleidoscope wallpaper.</p>
+      </div>
+      <div class="three">
+        <figure class="photo"><img src="photography/kaleido/compare-dahlia-poster.jpg" alt="Kaleido playing a dahlia photo" loading="lazy"><video src="photography/kaleido/compare-dahlia.mp4" muted loop playsinline preload="none"></video></figure>
+        <figure class="photo"><img src="photography/kaleido/compare-grevillea-poster.jpg" alt="Kaleido playing a grevillea photo" loading="lazy"><video src="photography/kaleido/compare-grevillea.mp4" muted loop playsinline preload="none"></video></figure>
+        <figure class="photo"><img src="photography/kaleido/compare-trees-poster.jpg" alt="Kaleido playing a photo of autumn trees" loading="lazy"><video src="photography/kaleido/compare-trees.mp4" muted loop playsinline preload="none"></video></figure>
+      </div>
+      <p class="prose visit"><a href="https://getkaleido.app/">getkaleido.app →</a></p>
+    </section>
   </main>
   <script src="dither.js"></script>
+  <script src="photos.js"></script>
 </body>
 
 </html>

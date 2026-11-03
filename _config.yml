@@ -1,7 +1,6 @@
 # GitHub Pages (Jekyll) settings. The old site is built by old-site/build_site.py.
 # old-site/content/ can't be excluded yet: sketch pages load their JS from it.
 exclude:
-  - apps.html  # hidden for now; see TODO.md
   - TODO.md
   - CLAUDE.md
   - docs/

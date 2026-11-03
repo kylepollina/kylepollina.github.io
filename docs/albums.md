@@ -71,10 +71,10 @@ The date line goes in `<p class="meta prose">`, and reading text in `<div class=
 
 ## Preview on the photography page
 
-Pick `trio` (three squares) or `mosaic` (mixed sizes), and copy an existing section:
+Copy the existing section in `photography.html` (`mosaic`, mixed sizes on a six-column grid):
 
 ```html
-<section class="album trio">
+<section class="album mosaic">
   <header>
     <h2><a href="photography/NAME.html">name</a></h2>
     <p class="meta prose">october 2026</p>
@@ -82,7 +82,7 @@ Pick `trio` (three squares) or `mosaic` (mixed sizes), and copy an existing sect
   <div class="prose">
     <p>A line or two.</p>
   </div>
-  <div class="three">
+  <div class="grid">
     <figure class="photo"><img src="photography/NAME/a.jpg" alt="…" loading="lazy"></figure>
     <figure class="photo"><img src="photography/NAME/b.jpg" alt="…" loading="lazy"></figure>
     <figure class="photo"><img src="photography/NAME/c.jpg" alt="…" loading="lazy"></figure>

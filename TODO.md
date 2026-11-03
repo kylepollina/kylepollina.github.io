@@ -29,7 +29,7 @@ Specs are in `docs/`.
 - [ ] Accessibility: photos can't be colored from the keyboard, and the favorites grid has no alt text
 - [ ] Repo size: `photography/` is about 95MB, 65MB of it favorites, and git keeps every version. Decide whether all 215 favorites belong in the repo, or use smaller copies or host them elsewhere
 - [ ] Bring the sketches into the new style; they could look great dithered (goes with deciding what happens to `writing/` and `interactive/`)
-- [ ] Kaleido album: add download and GitHub links once they're public
+- [ ] `photography/kaleido.html` is still online but nothing links to it now that Kaleido has its own site. Delete it, or keep it. The apps page uses three of the videos in `photography/kaleido/`, so keep those
 - [ ] Code cleanup: the Bayer matrix is duplicated in `dither.js` and `photos.js`; `photography.html` has unused layout rules (`.mosaic .tall`, `.small`); the Tailwind and template setup only serves the old pages
 - [ ] Delete the merged local `dither` branch
 - [ ] Decide whether the stereogram album finishes the "3D wigglegrams page" item above
@@ -38,7 +38,7 @@ Specs are in `docs/`.
 
 - [x] `build_site.py` skips `content/index.md` and `content/about.md` (`HAND_WRITTEN`), so it can't overwrite the new hand-written `index.html` and `about.html`. Edit those two pages directly; the old sources are no longer used
 - [x] `writing/` and `interactive/` stay published under `/old-site/` in the old look, with no links from the new site and no redirects from their old URLs
-- [ ] Apps page hidden (Nov 2026) until it has something on it. To bring it back: add `<a href="apps.html">apps</a>` to the nav in `index.html`, and remove the `apps.html` line from `exclude` in `_config.yml`
+- [x] Apps page back (Nov 2026), in the home nav, with a section for Kaleido linking to https://getkaleido.app/
 - [x] Earthscience section hidden from the research index (Oct 2026). To bring it back: remove the `<!-- EARTHSCIENCE-HIDDEN ... -->` wrapper around it in `content/research/index.md` and rebuild. The standalone `earthscience/` page was deleted; recover it with `git show HEAD:content/research/earthscience/index.md` if wanted
 - [x] Research section hidden (Oct 2026): out of the nav (`HIDDEN_PAGES` in `build_site.py`) and unpublished (`research/` and `biology-logs/` in `_config.yml` `exclude`); content and built pages are kept. To bring it back: remove "research" from `HIDDEN_PAGES`, remove the `old-site/research/` and `old-site/biology-logs/` lines from `exclude`, rebuild
 - [ ] Review the research pages

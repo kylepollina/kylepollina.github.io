@@ -40,7 +40,9 @@ The theme follows the system setting. These colors live in two places that must 
 
 1. The heading.
 2. A favorites grid: random photos, random crop, and one of three layouts that fill the grid exactly. It's different on every load, and doesn't move once loaded.
-3. Album previews, newest first. Each has a centered title, a date line, a short description, its photos, and "see the whole album →". Previews use `trio` (three squares) or `mosaic` (mixed sizes).
+3. Album previews, newest first. Each has a centered title, a date line, a short description, its photos, and "see the whole album →". Previews use `mosaic` (mixed sizes).
+
+**Apps page:** the heading, then a section per app, newest first: a centered title linking to the app's own site, a date line, a short description, a few photos, and a link out. The full story lives on the app's site, not here.
 
 **Album pages:** a back link to photography, then the title, date and text, then every photo. The layout can suit the album: sections for stereogram, a lead video and pairs for kaleido.
 
@@ -81,8 +83,7 @@ Don't bring these back without a new reason.
 
 ## Decided, for now
 
-- **Apps page:** hidden until it has content (steps in `TODO.md`).
-- **Kaleido album:** leaves out Apple's aerials and wallpaper, since those images are Apple's and the site is public. It has no GitHub link while that repo is private.
+- **Kaleido album:** leaves out Apple's aerials and wallpaper, since those images are Apple's and the site is public. It has no GitHub link while that repo is private. Nothing links to this page now: Kaleido moved to the apps page, which links out to its own site.
 - **Old pages:** `old-site/writing/` and `old-site/interactive/` are still online in the old style. Nothing on the new site links to them, and their old URLs don't redirect. Kyle wants it that way.
 
 Open work lives in `TODO.md`, not here.

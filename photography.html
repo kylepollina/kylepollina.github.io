@@ -53,23 +53,6 @@
     .mosaic .tall4 { grid-row: span 4; }
     .mosaic .small { grid-row: span 1; }
 
-    /* Trio: centered text over a row of three squares */
-    .trio header {
-      text-align: center;
-    }
-    .trio .prose {
-      margin: 1.2em auto 0;
-    }
-    .trio .three {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 2.5em;
-    }
-    .trio .three .photo {
-      aspect-ratio: 1;
-    }
-
     /* A few favorites under the title, picked at random on each load, in a grid of wide, tall, square
        and small spots (one of a few layouts, also random). Each photo is cropped somewhere random */
     .favorites {
@@ -113,9 +96,6 @@
       }
       .mosaic .photo, .mosaic .wide { grid-column: span 1; }
       .mosaic .wide { grid-column: span 2; }
-      .trio .three {
-        gap: 8px;
-      }
     }
   </style>
 </head>
@@ -126,7 +106,7 @@
   <main>
     <h1>photography</h1>
 
-    <!-- Filled from photography/favorites (scripts/favorites.sh) before photos.js dithers them -->
+    <!-- Filled from photography/favorites (scripts/favorites.py) before photos.js dithers them -->
     <div class="favorites"></div>
     <script src="photography/favorites/list.js"></script>
     <script>
@@ -156,22 +136,6 @@
         });
       })();
     </script>
-
-    <section class="album trio">
-      <header>
-        <h2><a href="photography/kaleido.html">kaleido</a></h2>
-        <p class="meta prose">october 2026 · an app for macOS</p>
-      </header>
-      <div class="prose">
-        <p>Reimagine your photos. Turn them into a digital kaleidoscope wallpaper.</p>
-      </div>
-      <div class="three">
-        <figure class="photo"><img src="photography/kaleido/compare-dahlia-poster.jpg" alt="Kaleido playing a dahlia photo" loading="lazy"><video src="photography/kaleido/compare-dahlia.mp4" muted loop playsinline preload="none"></video></figure>
-        <figure class="photo"><img src="photography/kaleido/compare-grevillea-poster.jpg" alt="Kaleido playing a grevillea photo" loading="lazy"><video src="photography/kaleido/compare-grevillea.mp4" muted loop playsinline preload="none"></video></figure>
-        <figure class="photo"><img src="photography/kaleido/compare-trees-poster.jpg" alt="Kaleido playing a photo of autumn trees" loading="lazy"><video src="photography/kaleido/compare-trees.mp4" muted loop playsinline preload="none"></video></figure>
-      </div>
-      <p class="prose open-album"><a href="photography/kaleido.html">see the whole album →</a></p>
-    </section>
 
     <!-- A few from the album; the title and the link under the photos open the whole thing -->
     <section class="album mosaic">
