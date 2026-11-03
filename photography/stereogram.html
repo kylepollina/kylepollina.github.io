@@ -40,8 +40,27 @@
     .photos .photo img {
       height: auto;
     }
-    .build .photos {
-      grid-template-columns: repeat(5, 1fr);
+    section .prose + .photos {
+      margin-bottom: 2em;
+    }
+    /* Seven photos of the same shape: a row of four over a row of three */
+    .build .shots {
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .shots .photo {
+      grid-column: span 4;
+    }
+    .shots .photo:nth-child(-n + 4) {
+      grid-column: span 3;
+    }
+    /* Tall photos, the same size in each row however many there are */
+    .build .tall {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .tall .photo {
+      flex: 0 0 calc((100% - 24px) / 3);
     }
     .frames .photos {
       grid-template-columns: repeat(2, 1fr);
@@ -57,8 +76,18 @@
       margin-bottom: 12px;
     }
     @media (max-width: 760px) {
-      .build .photos {
+      .build .shots {
         grid-template-columns: repeat(2, 1fr);
+      }
+      .shots .photo,
+      .shots .photo:nth-child(-n + 4) {
+        grid-column: span 1;
+      }
+      .shots .photo:first-child {
+        grid-column: span 2;
+      }
+      .tall .photo {
+        flex-basis: calc((100% - 8px) / 2);
       }
       .frames .photos {
         grid-template-columns: 1fr;
@@ -80,16 +109,36 @@
     <header>
       <h1>stereogram</h1>
       <p class="meta prose">september 2026 · three lenses, one frame</p>
+      <div class="prose">
+        <p>Building a stereo adapter for my camera, and some custom software to animate the images.</p>
+      </div>
     </header>
 
     <section class="build">
       <h2>the camera</h2>
       <div class="prose">
-        <p>A disposable camera, taken apart for its lens, and a 3D-printed mount that holds three lenses side by side in front of the Sony.</p>
+        <p>First buy a disposable camera. Make sure to take photos with your friends!</p>
       </div>
-      <div class="photos">
+      <div class="photos shots">
+        <figure class="photo"><img src="stereogram/disposable-00.jpg" width="1600" height="1067" alt="The sun setting between dark trees under heavy clouds" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/disposable-1.jpg" width="1600" height="1067" alt="Hands toasting drinks over a blanket and a hand of cards" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/disposable-5.jpg" width="1600" height="1067" alt="Someone playing guitar in front of a tapestry of a sun over waves" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/disposable-10.jpg" width="1600" height="1067" alt="Someone sitting on a fallen log in a sunlit forest" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/disposable-14.jpg" width="1600" height="1067" alt="White tents and wildflowers in a field" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/disposable-24.jpg" width="1600" height="1067" alt="Three friends smiling at a campground" loading="lazy"></figure>
+        <figure class="photo"><img src="stereogram/disposable-25.jpg" width="1600" height="1067" alt="Colorful tents under willow trees" loading="lazy"></figure>
+      </div>
+      <div class="prose">
+        <p>Next take the camera apart for its lenses. Use blunt force, they don't make these things easy access.</p>
+      </div>
+      <div class="photos tall">
         <figure class="photo"><img src="stereogram/img_1380.jpg" width="1200" height="1600" alt="A Fujifilm QuickSnap disposable camera next to the printed mount" loading="lazy"></figure>
         <figure class="photo"><img src="stereogram/img_1377.jpg" width="1200" height="1600" alt="The disposable camera taken apart" loading="lazy"></figure>
+      </div>
+      <div class="prose">
+        <p>Get the 3D printed adapter made. I had this made many years ago and had been holding onto it all this time. I don't know where I got the files, but they exist online so look them up.</p>
+      </div>
+      <div class="photos tall">
         <figure class="photo"><img src="stereogram/img_1381.jpg" width="1200" height="1600" alt="The mount with three lenses in it" loading="lazy"></figure>
         <figure class="photo"><img src="stereogram/img_1382.jpg" width="1200" height="1600" alt="The back of the mount, with dividers between the lenses" loading="lazy"></figure>
         <figure class="photo"><img src="stereogram/img_1383.jpg" width="1200" height="1600" alt="The mount on a Sony camera" loading="lazy"></figure>
@@ -97,9 +146,9 @@
     </section>
 
     <section class="frames">
-      <h2>three at once</h2>
+      <h2>the image(s)</h2>
       <div class="prose">
-        <p>Each frame holds three views of the same scene, a little apart.</p>
+        <p>The camera will project 3 images onto the frame, all from the different perspectives of the lenses. These are kind of already cool on their own.</p>
       </div>
       <div class="photos">
         <figure class="photo"><img src="stereogram/dsc06189.jpg" width="1800" height="1200" alt="Pink roses in a hedge, three times over" loading="lazy"></figure>
@@ -114,7 +163,7 @@
     <section class="wiggles">
       <h2>wiggles</h2>
       <div class="prose">
-        <p>Flip between the views and the scene stands up.</p>
+        <p>I (had Claude) put together some software to cut the images up and animate them. Make sure to orient each of the images around an origin point, like a flower that can be seen in all three perspectives. Otherwise the wiggles won't line up if the adapter isn't perfectly horizontal.</p>
       </div>
       <div class="photos">
         <figure class="photo"><img src="stereogram/dsc06188-wiggle.webp" width="600" height="1486" alt="A pink rose" loading="lazy"></figure>
