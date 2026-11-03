@@ -9,7 +9,7 @@ The old site moved into `old-site/` (Nov 2026). Paths below to `content/`, `temp
 - [ ] **Move writing to Bear Blog.** Link to your existing Bear Blog sites from here, and migrate the old posts. 8 posts in `content/writing/`, all now listed; `wikipedia-catches-up` is just a title with no body
 - [x] **Refresh the p5.js art.** The interactive page is a gallery of still images (`*-thumb.webp`, made by `scripts/make_thumbs.sh`) linking to each live sketch; it was too slow with every sketch running in an iframe
 - [ ] **Add a 3D wigglegrams page** to show off that project (started on the `dither` branch: `photography/stereogram.html`)
-- [ ] **Favorites from Photos as a build step.** `scripts/favorites.sh` fills the random prints on the photography page from `~/Desktop/favorites`; make it export the hearted photos straight from Photos instead (AppleScript `media items whose favorite is true` works but timed out for 172 photos, so export in batches or use `osxphotos`). 172 favorites come to ~51MB in the repo
+- [ ] **Update the favorites wall on every push.** `scripts/favorites.py` works by hand and `.githooks/pre-push` is written but off, because listing favorites through AppleScript took 49s to over 5 minutes. Try `osxphotos`, which reads the library database directly (needs Full Disk Access for the terminal), then turn the hook on with `git config core.hooksPath .githooks`
 - [ ] **AI-driven interactive environmental science.** Move on from the Jupyter notebooks (linked from research via nbviewer, source in `kylepollina/earthscience`) to something interactive that can live on this site. Options to look at:
   - [ ] marimo: reactive Python notebooks stored as plain `.py` files; can export to WASM/HTML that runs in the browser with no server (works on GitHub Pages); built-in AI assistant
   - [ ] Quarto: publishes notebooks as polished pages; interactivity via Observable JS or Pyodide
@@ -27,7 +27,7 @@ Specs are in `docs/`.
 - [ ] Faster photo loading: photos stay solid blocks until loaded, and small grid spots download the full 1600px file. Try smaller versions and a paper-colored placeholder
 - [ ] Link previews: pages have no description or preview image, so shared links look bare. A dithered preview image would suit the site
 - [ ] Accessibility: photos can't be colored from the keyboard, and the favorites grid has no alt text
-- [ ] Repo size: `photography/` is about 81MB, 51MB of it favorites, and git keeps every version. Decide whether all 168 favorites belong in the repo, or use smaller copies or host them elsewhere, before running `scripts/favorites.sh` often
+- [ ] Repo size: `photography/` is about 95MB, 65MB of it favorites, and git keeps every version. Decide whether all 215 favorites belong in the repo, or use smaller copies or host them elsewhere
 - [ ] Bring the sketches into the new style; they could look great dithered (goes with deciding what happens to `writing/` and `interactive/`)
 - [ ] Kaleido album: add download and GitHub links once they're public
 - [ ] Code cleanup: the Bayer matrix is duplicated in `dither.js` and `photos.js`; `photography.html` has unused layout rules (`.mosaic .tall`, `.small`); the Tailwind and template setup only serves the old pages

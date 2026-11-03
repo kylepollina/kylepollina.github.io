@@ -1,0 +1,31 @@
+#!/bin/bash
+# Before master is pushed, bring the favorites wall up to date with Apple Photos. A push can't take on a commit made
+# while it's running, so if that made one this stops, and pushing again sends everything.
+# Turned on with: git config core.hooksPath .githooks
+export PATH="/opt/homebrew/bin:$PATH"
+PATHS=(photography/favorites scripts/favorites_skipped.txt)
+
+while read -r _ _ remote_ref _; do
+  [ "$remote_ref" = refs/heads/master ] && pushing_master=1
+done
+[ -n "$pushing_master" ] || exit 0
+
+cd "$(git rev-parse --show-toplevel)" || exit 1
+python3 scripts/favorites.py </dev/null
+status=$?
+if [ "$status" = 2 ]; then
+  echo "Push stopped: fix the location data above first."
+  exit 1
+fi
+if [ "$status" != 0 ]; then
+  echo "Couldn't update the favorites, pushing without them."
+  exit 0
+fi
+
+git add -A -- "${PATHS[@]}"
+if git diff --cached --quiet -- "${PATHS[@]}"; then
+  exit 0
+fi
+git commit -q -m "Favorites: update the wall from Photos" -- "${PATHS[@]}" || exit 1
+echo "Favorites changed and were committed. Run git push again to send them."
+exit 1

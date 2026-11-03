@@ -15,7 +15,7 @@ npm run serve                         # serve.py on http://localhost:8500, with 
 - `index.html`, `about.html`, `photography.html`, `apps.html`, `photography/` — hand-written pages, drawn by `dither.js` and `photos.js` with `site.css`
 - `fonts/`, `favicon.png` — shared with the old site
 - `docs/` — specs for the look, the rendering and adding albums
-- `scripts/favorites.sh` — copies favorite photos into `photography/favorites/` for the photography page
+- `scripts/favorites.py` — updates `photography/favorites/` from the hearted photos in Apple Photos, for the photography page
 - `old-site/` — the older sections, kept online but not linked from the new pages
 
 ## Old site

@@ -96,14 +96,16 @@ No sideways scrollers and no big feature photo, see [design.md](design.md#tried-
 ## Favorites grid
 
 ```bash
-scripts/favorites.sh            # from ~/Desktop/favorites, or pass a folder
+python3 scripts/favorites.py    # from the hearted photos in Apple Photos
 ```
 
-This replaces `photography/favorites/`, shrinks and strips every photo, skips any that look the same as another (`scripts/favorites_dedupe.py`, so re-exports and near-identical burst shots can't both land on the wall), and writes `list.js`, which the page picks from. Going straight from the Photos app is a `TODO.md` item.
+This asks Photos for the hearted photos, adds new ones (shrunk and stripped), removes un-hearted ones, and writes `list.js`, which the page picks from. Photos already on the site aren't touched. Any that look the same as another are skipped and remembered in `scripts/favorites_skipped.txt`, so re-exports and near-identical burst shots can't both land on the wall. It stops with an error if any location data remains.
+
+It's run by hand, not on every push. Asking Photos for the list took anywhere from 49 seconds to over 5 minutes, too slow to hold up a push. `.githooks/pre-push` would run it automatically (`git config core.hooksPath .githooks`), but it's off until the listing is faster, see `TODO.md`.
 
 ## Keep an eye on repo size
 
-Git keeps every version of every file forever. Favorites are about 51MB of the 81MB in `photography/`, and because each run of `favorites.sh` can re-encode photos, running it often can grow the repo fast. Prefer running it rarely, and keep album media small.
+Git keeps every version of every file forever. Favorites are about 65MB of `photography/`. `favorites.py` only adds new photos, so running it costs little, but every photo ever added stays in the history. Keep album media small.
 
 | Media | Typical size |
 |---|---|
