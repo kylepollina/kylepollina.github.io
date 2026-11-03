@@ -49,7 +49,7 @@ The theme follows the system setting. These colors live in two places that must 
 | Action | What happens |
 |---|---|
 | At rest | Two-tone dither, at the page's dot size |
-| Hover | Color in 0.4s. After the mouse leaves: holds 2s, then fades back over 1.5s, so you can sweep across them and watch them settle. Still photos on album pages hold 10s, so they stay colored while you look around |
+| Hover | Color in 0.4s. After the mouse leaves: holds, then fades back over 1.5s, so you can sweep across them and watch them settle. Still photos hold 4s, or 10s on album pages so they stay colored while you look around. Animated photos hold 2s, because many moving at once is overwhelming |
 | Click or tap | Stays in color until clicked again |
 | Wiggle or video | Still while dithered, moves only in color. A video rewinds once the dither is back |
 | Phone | Tap only. Nothing colors itself |
