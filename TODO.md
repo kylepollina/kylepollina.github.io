@@ -29,7 +29,6 @@ Specs are in `docs/`.
 - [ ] Accessibility: photos can't be colored from the keyboard, and the favorites grid has no alt text
 - [ ] Repo size: `photography/` is about 95MB, 65MB of it favorites, and git keeps every version. Decide whether all 215 favorites belong in the repo, or use smaller copies or host them elsewhere
 - [ ] Bring the sketches into the new style; they could look great dithered (goes with deciding what happens to `writing/` and `interactive/`)
-- [ ] `photography/kaleido.html` is still online but nothing links to it now that Kaleido has its own site. Delete it, or keep it. The apps page uses three of the videos in `photography/kaleido/`, so keep those
 - [ ] Code cleanup: the Bayer matrix is duplicated in `dither.js` and `photos.js`; `photography.html` has unused layout rules (`.mosaic .tall`, `.small`); the Tailwind and template setup only serves the old pages
 - [ ] Delete the merged local `dither` branch
 - [ ] Decide whether the stereogram album finishes the "3D wigglegrams page" item above

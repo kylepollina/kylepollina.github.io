@@ -61,11 +61,10 @@ Copy the closest existing page. Paths are relative to `photography/`.
 | Page | Layout | Good for |
 |---|---|---|
 | `stereogram.html` | Titled sections | A project with a story |
-| `kaleido.html` | Lead video, pairs, captioned features | An app or before-and-after |
 
 Give every img its real `width` and `height` so the shape is known before it loads, and write real alt text. Find a size with `magick identify -format '%wx%h\n' FILE`.
 
-Use the owner's words where they exist. Kaleido's text came from its landing page. If you have to draft text, say so clearly so Kyle can replace it.
+Use the owner's words where they exist. If you have to draft text, say so clearly so Kyle can replace it.
 
 The date line goes in `<p class="meta prose">`, and reading text in `<div class="prose">`.
 

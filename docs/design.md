@@ -44,14 +44,14 @@ The theme follows the system setting. These colors live in two places that must 
 
 **Apps page:** the heading, then a section per app, newest first: a centered title linking to the app's own site, a date line, a short description, a few photos, and a link out. The full story lives on the app's site, not here.
 
-**Album pages:** a back link to photography, then the title, date and text, then every photo. The layout can suit the album: sections for stereogram, a lead video and pairs for kaleido.
+**Album pages:** a back link to photography, then the title, date and text, then every photo. The layout can suit the album, like the titled sections on stereogram.
 
 ## How photos behave
 
 | Action | What happens |
 |---|---|
 | At rest | Two-tone dither, at the page's dot size |
-| Hover | Color in 0.4s. After the mouse leaves: holds, then fades back over 1.5s, so you can sweep across them and watch them settle. Still photos hold 10s, so they stay colored while you look around. Animated photos hold 2s, because many moving at once is overwhelming, except on kaleido, which holds 10s |
+| Hover | Color in 0.4s. After the mouse leaves: holds, then fades back over 1.5s, so you can sweep across them and watch them settle. Still photos hold 10s, so they stay colored while you look around. Animated photos hold 2s, because many moving at once is overwhelming, except on the apps page, which holds 10s |
 | Click or tap | Stays in color until clicked again |
 | Wiggle or video | Still while dithered, moves only in color. A video rewinds once the dither is back |
 | Phone | Tap only. Nothing colors itself |
@@ -83,7 +83,6 @@ Don't bring these back without a new reason.
 
 ## Decided, for now
 
-- **Kaleido album:** leaves out Apple's aerials and wallpaper, since those images are Apple's and the site is public. It has no GitHub link while that repo is private. Nothing links to this page now: Kaleido moved to the apps page, which links out to its own site.
 - **Old pages:** `old-site/writing/` and `old-site/interactive/` are still online in the old style. Nothing on the new site links to them, and their old URLs don't redirect. Kyle wants it that way.
 
 Open work lives in `TODO.md`, not here.
