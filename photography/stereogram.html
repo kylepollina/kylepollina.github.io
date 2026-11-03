@@ -38,10 +38,6 @@
       gap: 12px;
       margin-top: 2em;
     }
-    /* Still photos keep their color for longer here: 10s, not the 2s in site.css */
-    .photo:not(:hover, .open, :has(video, img[src$=".webp"], img[src$=".gif"])) canvas {
-      transition-delay: 10s;
-    }
     /* The img's width and height give each photo its shape */
     .photos .photo img {
       height: auto;

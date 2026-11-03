@@ -113,8 +113,8 @@ main > p {
   position: absolute;
   inset: 0;
   image-rendering: pixelated;
-  /* After the mouse leaves, the color stays a few seconds, then the dither slowly comes back */
-  transition: opacity 1.5s ease-in 4s;
+  /* After the mouse leaves, the color stays for a while, then the dither slowly comes back */
+  transition: opacity 1.5s ease-in 10s;
 }
 /* Animated photos settle sooner, since a lot of them moving at once is overwhelming */
 .photo:not(:hover, .open):has(video, img[src$=".webp"], img[src$=".gif"]) canvas {
