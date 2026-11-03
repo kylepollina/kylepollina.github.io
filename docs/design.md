@@ -26,7 +26,7 @@ The whole site is one living, two-tone dithered surface, not a fun home page wit
 The theme follows the system setting. These colors live in two places that must match: `site.css` and `THEMES` in `dither.js`. The paper's fade toward the bottom of the window is the same strength in both themes (`grain`).
 
 - **Headings:** Fraunces 800, drawn in dots with a soft glow, and centered.
-- **Reading text:** IBM Plex Mono, solid ink, 18px (16px on phones), in a centered column 36em wide. Text inside the column stays left-aligned.
+- **Reading text:** IBM Plex Mono, solid ink, 18px (16px on phones), in a centered column 36em wide. Text inside the column stays left-aligned, except on album pages, where it's centered.
 - **Date lines:** IBM Plex Mono italic, 16px, solid.
 - **Dots:** 2px on subpages, 3px on the home page, 1.5px and 2px on phones. Always a whole number of device pixels.
 
