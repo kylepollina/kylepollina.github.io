@@ -99,7 +99,7 @@ No sideways scrollers and no big feature photo, see [design.md](design.md#tried-
 scripts/favorites.sh            # from ~/Desktop/favorites, or pass a folder
 ```
 
-This replaces `photography/favorites/`, shrinks and strips every photo, and writes `list.js`, which the page picks from. Going straight from the Photos app is a `TODO.md` item.
+This replaces `photography/favorites/`, shrinks and strips every photo, skips any that look the same as another (`scripts/favorites_dedupe.py`, so re-exports and near-identical burst shots can't both land on the wall), and writes `list.js`, which the page picks from. Going straight from the Photos app is a `TODO.md` item.
 
 ## Keep an eye on repo size
 

@@ -28,7 +28,7 @@ Specs are in `docs/`.
 - [ ] Faster photo loading: photos stay solid blocks until loaded, and small grid spots download the full 1600px file. Try smaller versions and a paper-colored placeholder
 - [ ] Link previews: pages have no description or preview image, so shared links look bare. A dithered preview image would suit the site
 - [ ] Accessibility: photos can't be colored from the keyboard, and the favorites grid has no alt text
-- [ ] Repo size: `photography/` is about 81MB, 51MB of it favorites, and git keeps every version. Decide whether all 172 favorites belong in the repo, or use smaller copies or host them elsewhere, before running `scripts/favorites.sh` often
+- [ ] Repo size: `photography/` is about 81MB, 51MB of it favorites, and git keeps every version. Decide whether all 168 favorites belong in the repo, or use smaller copies or host them elsewhere, before running `scripts/favorites.sh` often
 - [ ] Bring the sketches into the new style; they could look great dithered (goes with deciding what happens to `writing/` and `interactive/`)
 - [ ] Kaleido album: add download and GitHub links once they're public
 - [ ] Code cleanup: the Bayer matrix is duplicated in `dither.js` and `photos.js`; `photography.html` has unused layout rules (`.mosaic .tall`, `.small`); the Tailwind and template setup only serves the old pages

@@ -9,12 +9,16 @@ OUT=photography/favorites
 set -e
 rm -rf "$OUT"
 mkdir -p "$OUT"
-list=()
 for f in "$SRC"/*.{jpg,jpeg,JPG,JPEG,heic,HEIC}; do
   [ -e "$f" ] || continue
   name=$(basename "${f%.*}" | tr 'A-Z ' 'a-z-' | tr -d '()').jpg
   magick "$f" -auto-orient -resize '1600x1600>' -strip -quality 80 "$OUT/$name"
-  list+=("\"$name\"")
+done
+# The page picks without repeating a file, but two files can be the same shot
+python3 "$(dirname "$0")/favorites_dedupe.py" "$OUT"
+list=()
+for f in "$OUT"/*.jpg; do
+  list+=("\"$(basename "$f")\"")
 done
 (IFS=,; echo "window.FAVORITES = [${list[*]}];") > "$OUT/list.js"
 echo "${#list[@]} photos in $OUT"
