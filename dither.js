@@ -12,14 +12,15 @@
 // paper behind prose is kept free of texture and glow, fading out softly past its edges; the mouse trail
 // still shows there.
 //
-// Touch screens scroll ahead of the page's scripts, so anything on the fixed canvas visibly trails behind.
-// There, on pages that scroll, headings and the back link get a small canvas of their own inside the element,
-// which moves with the page. The band and ripple still run on it; the paper shows through around the dots.
+// Browsers scroll ahead of the page's scripts, so anything on the fixed canvas trails behind, most of all on
+// touch screens. So on pages that scroll, headings and the back link get a small canvas of their own inside the
+// element, which moves with the page. The band, ripple, trail and hover still run on it; the paper shows through
+// around the dots. With a mouse those dots are the ones the page canvas would draw, see blend.
 (() => {
     // Keep in step with the colors in site.css
     const THEMES = {
         light: { ink: [17, 17, 17], paper: [236, 232, 220], grain: 0.07, glow: 0.45, letter: 0.06, band: 0.55 },
-        dark: { ink: [214, 208, 192], paper: [22, 21, 19], grain: 0.035, glow: 0.3, letter: 0.2, band: -0.35 },
+        dark: { ink: [214, 208, 192], paper: [22, 21, 19], grain: 0.07, glow: 0.3, letter: 0.2, band: -0.35 },
     };
     const BIG = 28; // dither pixels
     const TRAIL_RADIUS = 9; // dither pixels
@@ -58,7 +59,11 @@
     let hoverRects = [];
 
     const LIFTED = "h1, h2, body > nav a";
-    const lift = matchMedia("(hover: none)").matches && getComputedStyle(document.body).overflowY !== "hidden";
+    const lift = getComputedStyle(document.body).overflowY !== "hidden";
+    // With a mouse, layers dither on the page canvas's grid and include its paper, so their dots land exactly where
+    // that canvas would put them and blend with its texture. Phones keep a grid of their own, which moves with the
+    // page: a grid fixed to the screen makes the letters shimmer there.
+    const blend = !matchMedia("(hover: none)").matches;
     let layers = [], layersWidth;
 
     function resize() {
@@ -69,6 +74,9 @@
         H = Math.max(1, Math.ceil(innerHeight / CELL));
         canvas.width = off.width = W;
         canvas.height = off.height = H;
+        // Exactly W by H dots, running off the window if need be: stretching it to fit would make the dots uneven
+        canvas.style.width = `${W * CELL}px`;
+        canvas.style.height = `${H * CELL}px`;
         img = ctx.createImageData(W, H);
         trail = new Float32Array(W * H);
         clean = new Float32Array(W * H);
@@ -180,7 +188,7 @@
         hover();
     }
 
-    // A small canvas inside each heading and the back link, with its own masks, for touch screens
+    // A small canvas inside each heading and the back link, with its own masks
     const onScreen = new Set();
     const watchLayers = new IntersectionObserver((entries) => {
         for (const e of entries) e.isIntersecting ? onScreen.add(e.target.layer) : onScreen.delete(e.target.layer);
@@ -240,7 +248,7 @@
             });
             el.appendChild(canvas);
             const layer = {
-                canvas, w: lw, h: lh, heading, core: lcore, halo: heading ? mask(true) : new Float32Array(lw * lh),
+                el, canvas, snap: 0, w: lw, h: lh, heading, core: lcore, halo: heading ? mask(true) : new Float32Array(lw * lh),
                 ctx: canvas.getContext("2d"), img: new ImageData(lw, lh),
             };
             canvas.layer = layer;
@@ -248,31 +256,51 @@
             watchLayers.observe(canvas);
         }
     }
-    function drawLayer(l, time, sweep) {
-        const { ink: INK, glow, letter: letterBase, band: bandAmount } = theme;
+    function drawLayer(l, time, sweep, tick) {
+        const { ink: INK, grain, glow, letter: letterBase, band: bandAmount } = theme;
         const k = l.heading ? 1 : 0.5; // Small text gets half the shading, as below
         const r = l.canvas.getBoundingClientRect();
-        const ox = r.left / CELL, oy = r.top / CELL;
+        let ox = r.left / CELL, oy = r.top / CELL;
+        if (blend) {
+            // Scrolling can leave the layer between the page canvas's rows: nudge it onto one
+            const top = r.top - l.snap;
+            oy = Math.round(top / CELL);
+            const snap = oy * CELL - top;
+            if (snap !== l.snap) l.canvas.style.translate = `0 ${(l.snap = snap)}px`;
+            ox = Math.round(ox);
+        }
         const px = l.img.data;
+        const solid = hovered && (l.el === hovered || l.el.contains(hovered));
         for (let y = 0; y < l.h; y++) {
-            const brow = BAYER[y & 7];
+            const sy = oy + y;
+            const brow = BAYER[(blend ? sy : y) & 7];
+            const ty = Math.round(sy), rowOn = ty >= 0 && ty < H;
+            const paper = blend ? grain * (sy / H) * (sy / H) : 0;
             for (let x = 0; x < l.w; x++) {
-                const i = y * l.w + x, c = l.core[i];
-                let lum = 1.01 - glow * l.halo[i] * (1 - c);
+                const i = y * l.w + x, c = l.core[i], sx = ox + x;
+                const tx = blend ? sx : Math.round(sx);
+                const s = rowOn && tx >= 0 && tx < W ? ty * W + tx : -1;
+                const plain = blend && s >= 0 ? clean[s] : 0;
+                let lum = 1.01 - (paper + glow * l.halo[i] * (1 - c)) * (1 - plain);
+                let threshold = brow[(blend ? sx : x) & 7];
                 if (c > 0) {
-                    const sx = ox + x, sy = oy + y;
                     const u = (sx / W) * 0.8 + (sy / H) * 0.5;
                     const band = Math.exp(-((u - sweep) ** 2) / 0.012);
                     const ripple = 0.06 * Math.sin(sx * 0.09 + sy * 0.05 + time * 1.3);
                     const letter = letterBase + k * (0.28 * (sy / H) + bandAmount * band + ripple);
                     lum = lum * (1 - c) + letter * c;
                 }
+                // Without blend, only on the letters: the page canvas's dots around them don't line up with these
+                if ((blend || c > 0) && s >= 0 && trail[s] > 0.004) {
+                    lum -= 0.55 * trail[s];
+                    threshold += trail[s] * 0.6 * twinkle(tx, ty, tick);
+                }
                 const p = i * 4;
                 px[p] = INK[0];
                 px[p + 1] = INK[1];
                 px[p + 2] = INK[2];
                 // Only the dots: the paper and its texture on the page canvas show through the rest
-                px[p + 3] = lum < brow[x & 7] ? 255 : 0;
+                px[p + 3] = (solid && c >= 0.5) || lum < threshold ? 255 : 0;
             }
         }
         l.ctx.putImageData(l.img, 0, 0);
@@ -298,6 +326,11 @@
     }
 
     // The mouse leaves a trail that thickens the dither under it and twinkles, then fades out
+    const twinkle = (x, y, tick) => {
+        let n = (x * 374761393 + y * 668265263 + tick * 2246822519) | 0;
+        n = Math.imul(n ^ (n >>> 13), 1274126177);
+        return ((n ^ (n >>> 16)) & 1023) / 1023 - 0.5;
+    };
     let last = null;
     const stamp = (cx, cy) => {
         const r = TRAIL_RADIUS;
@@ -361,9 +394,7 @@
                     tr *= keep;
                     trail[i] = tr;
                     lum -= 0.55 * tr;
-                    let n = (x * 374761393 + y * 668265263 + tick * 2246822519) | 0;
-                    n = Math.imul(n ^ (n >>> 13), 1274126177);
-                    threshold += tr * 0.6 * (((n ^ (n >>> 16)) & 1023) / 1023 - 0.5);
+                    threshold += tr * 0.6 * twinkle(x, y, tick);
                 } else if (tr) trail[i] = 0;
 
                 const col = lum < threshold ? INK : PAPER;
@@ -384,7 +415,7 @@
                     px[p + 2] = INK[2];
                 }
         ctx.putImageData(img, 0, 0);
-        for (const l of onScreen) drawLayer(l, time, sweep);
+        for (const l of onScreen) drawLayer(l, time, sweep, tick);
     }
 
     let resizeTimer, scrollQueued;

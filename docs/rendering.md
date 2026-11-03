@@ -33,8 +33,9 @@ Set `data-cell` and `data-cell-phone` on `<canvas id="dither">` to change the do
 So:
 
 - **Never draw under real text.** Prose is skipped by `dither.js`, and the paper behind it is only cleared of texture and glow (`clean` mask, fading over `CLEAR` pixels). Keep `.prose` boxes tight to their text, because the cleared patch matches the box. A full-width box clears a wide visible strip, which is why `.meta.prose` is `inline-block`.
-- **Anything that scrolls and must look solid gets its own canvas inside its element.** Photos always do. On touch screens, headings and the back link do too: `LIFTED` in `dither.js`, built by `buildLayers()`. Those canvases are transparent except for their dots, so the paper shows through.
-- **Pages that don't scroll can stay on the fixed canvas.** That's why the home page has no layers, and why desktop headings stay on it. Desktop lag is small, and only phones were a problem.
+- **Anything that scrolls and must look solid gets its own canvas inside its element.** Photos always do. So do headings and the back link: `LIFTED` in `dither.js`, built by `buildLayers()`. Those canvases are transparent except for their dots, so the paper shows through.
+- **With a mouse, layers must blend with the page canvas (`blend` in `dither.js`).** Kyle preferred how heading dots mix with the fade on one canvas, and plain layers looked like they sat on top. So desktop layers use the page canvas's formula and grid, which gives the same dots as drawing on it (0 pixels different in a comparison, about 1% at odd scroll offsets, since the letter masks aren't redrawn). This relies on the page canvas being exactly `W × H` dots, unstretched. The texture inside the letters stays fixed to the screen while their edges move with the page. Phones keep their own grid, since a screen-fixed one shimmers there.
+- **Pages that don't scroll can stay on the fixed canvas.** That's why the home page has no layers.
 
 If a new element looks like it's sliding around while scrolling, this is the cause.
 
