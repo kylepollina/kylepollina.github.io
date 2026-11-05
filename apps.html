@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@144,800&display=block" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
   <style>
-    /* Each app is a title, a line of when and what it is, a few lines about it, a few photos, and a link to its site */
+    /* Each app is a title, a line of when and what it is, a few lines about it, a few photos if it has nice ones, and a link to its site */
     .app {
       max-width: 72rem;
       margin: 7em auto 0;
@@ -41,13 +41,6 @@
     }
     .three .photo {
       aspect-ratio: 1;
-    }
-    /* An app with a single wide screenshot, keeping the screenshot's shape so no note gets cropped */
-    .one {
-      margin-top: 2.5em;
-    }
-    .one .photo {
-      aspect-ratio: 2026 / 1000;
     }
     /* Only a few here, so they keep moving as long as stills keep their color */
     .photo:not(:hover, .open):has(video, img[src$=".webp"], img[src$=".gif"]) canvas {
@@ -78,9 +71,6 @@
       </header>
       <div class="prose">
         <p>Small sticky notes for your desktop, with checklists and focus timers. No accounts, no cloud.</p>
-      </div>
-      <div class="one">
-        <figure class="photo"><img src="photography/stackies/notes.jpg" width="2026" height="1000" alt="Five Stackies notes in different colors on a Mac desktop" loading="lazy"></figure>
       </div>
       <p class="prose visit"><a href="https://www.pollina.dev/stackies/">pollina.dev/stackies →</a></p>
     </section>

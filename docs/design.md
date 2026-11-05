@@ -42,7 +42,7 @@ The theme follows the system setting. These colors live in two places that must 
 2. A favorites grid: random photos, random crop, and one of three layouts that fill the grid exactly. It's different on every load, and doesn't move once loaded.
 3. Album previews, newest first. Each has a centered title, a date line, a short description, its photos, and "see the whole album →". Previews use `mosaic` (mixed sizes).
 
-**Apps page:** the heading, then a section per app, newest first: a centered title linking to the app's own site, a date line, a short description, a few photos, and a link out. The full story lives on the app's site, not here.
+**Apps page:** the heading, then a section per app, newest first: a centered title linking to the app's own site, a date line, a short description, a few photos, and a link out. Leave the photos out for an app that only has screenshots (like Stackies), since those aren't nice pictures. The full story lives on the app's site, not here.
 
 **Album pages:** a back link to photography, then the title, date and text, then every photo. The layout can suit the album, like the titled sections on stereogram.
 
