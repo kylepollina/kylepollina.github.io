@@ -32,7 +32,7 @@ The theme follows the system setting. These colors live in two places that must 
 
 ## Page anatomy
 
-**Home:** the name fills the window, with a row of links directly under it. "about" is pinned to the right edge. The page doesn't scroll.
+**Home:** the name fills the window, with a row of links directly under it. "about" is pinned to the right edge. When the links don't all fit on one line, they stack down the left instead, rather than leaving one stranded. The page doesn't scroll.
 
 **Subpages:** a back link at the top left, then a centered heading over a centered column. With or without prose, every subpage is laid out this way.
 

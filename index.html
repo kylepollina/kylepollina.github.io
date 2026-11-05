@@ -41,8 +41,10 @@
                     display: block;
                 }
             }
-            /* The row spans the name; class="right" pins a link to its right edge, and it drops to a
-               second row (still on the right) when there isn't room */
+            /* The row spans the name, and class="right" pins a link to its right edge. When the links don't
+               all fit, they stack down the left instead: 15.2em is their combined width (20 letters at 0.6em
+               plus two gaps), so add 0.6em per letter and 1.5em per gap for a new link. Below that the
+               flex-basis is huge, which gives each link its own row; above it, it's negative, which counts as 0 */
             nav {
                 position: absolute;
                 top: 100%;
@@ -52,6 +54,9 @@
                 flex-wrap: wrap;
                 column-gap: 1.5em;
                 font-size: 36px;
+            }
+            nav a {
+                flex-basis: calc((15.2em - 100%) * 999);
             }
             nav .right {
                 margin-left: auto;
