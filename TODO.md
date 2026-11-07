@@ -39,6 +39,7 @@ Specs are in `docs/`.
 - [x] `writing/` and `interactive/` stay published under `/old-site/` in the old look, with no links from the new site and no redirects from their old URLs
 - [x] Apps page back (Nov 2026), in the home nav, with a section for Kaleido linking to https://getkaleido.app/
 - [x] Stackies section on the apps page (Nov 2026), linking to https://www.pollina.dev/stackies/
+- [x] Flyers section on the apps page (Nov 2026), linking to https://www.pollina.dev/flyer-calendar/
 - [x] Earthscience section hidden from the research index (Oct 2026). To bring it back: remove the `<!-- EARTHSCIENCE-HIDDEN ... -->` wrapper around it in `content/research/index.md` and rebuild. The standalone `earthscience/` page was deleted; recover it with `git show HEAD:content/research/earthscience/index.md` if wanted
 - [x] Research section hidden (Oct 2026): out of the nav (`HIDDEN_PAGES` in `build_site.py`) and unpublished (`research/` and `biology-logs/` in `_config.yml` `exclude`); content and built pages are kept. To bring it back: remove "research" from `HIDDEN_PAGES`, remove the `old-site/research/` and `old-site/biology-logs/` lines from `exclude`, rebuild
 - [ ] Review the research pages
